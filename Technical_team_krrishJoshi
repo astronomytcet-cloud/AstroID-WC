@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astronomy Club | Working Committee</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @font-face {
+      font-family: "Meta";
+      src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow-x: hidden;
+      margin: 0;
+      height: 100vh;
+      position: relative;
+      background: black;
+    }
+
+    /* Background container fills viewport & hides overflow */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    /* Two background images stacked vertically */
+    .bg-image {
+      position: absolute;
+      width: 100%;
+      height: 200vh;
+      /* twice viewport height */
+      background-image: url('https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg');
+      background-repeat: repeat-y;
+      background-size: cover;
+      animation: moveDown 10s linear infinite;
+    }
+
+    /* Animate from top: 0 to -100vh to simulate infinite downward movement */
+    @keyframes moveDown {
+      0% {
+        top: 0;
+      }
+
+      100% {
+        top: -100vh;
+      }
+    }
+
+    .title {
+      position: fixed;
+      bottom: -100px;
+      width: 100%;
+      text-align: center;
+      animation: riseToTop 3s ease-out forwards;
+      z-index: 1000;
+      padding: 0 5vw;
+    }
+
+    .title h1 {
+      font-family: "Meta", sans-serif;
+      font-size: 10vw;
+      color: transparent;
+      -webkit-text-stroke: 1px #d6f4f4;
+      font-variation-settings: "wght" 900, "ital" 1;
+      text-shadow:
+        3px 3px 0px #07bccc,
+        5px 5px 0px #e601c0,
+        7px 7px 0px #e9019a,
+        10px 10px 0px #f40468,
+        15px 15px 8px #482896;
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+
+    .title h1:hover {
+      font-variation-settings: "wght" 100, "ital" 0;
+      text-shadow: none;
+    }
+
+    .title h3 {
+      font-size: 5vw;
+      margin-top: 1vw;
+    }
+
+    .container {
+      padding: 120px 20vw 20px 20vw;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      justify-content: flex-start;
+      z-index: 1;
+      position: relative;
+    }
+
+    @keyframes riseToTop {
+      0% {
+        bottom: -100px;
+        opacity: 0;
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      100% {
+        bottom: 85%;
+      }
+    }
+
+    .content {
+      opacity: 0;
+      animation: fadeIn 2s ease 3s forwards;
+      padding: 120px 5vw 20px 5vw;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    img {
+      width: 50vw;
+      max-width: 200px;
+      margin-top: 5vh;
+      border-radius: 10px;
+    }
+
+    h3 {
+      font-size: 6vw;
+      margin: 2vh 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 1vh 0;
+      font-size: 4vw;
+    }
+
+    @media (min-width: 768px) {
+      .title h1 {
+        font-size: 4rem;
+      }
+
+      .title h3 {
+        margin-top: 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+      }
+
+      li {
+        font-size: 1rem;
+      }
+
+      img {
+        width: 200px;
+      }
+
+      container {
+        padding: 120px 20vw 20px 20vw;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-container">
+    <div class="bg-image"></div>
+  </div>
+
+  <div class="title">
+    <h1>Astronomy Club</h1>
+    <h3>Working Member</h3>
+  </div>
+  <div class="conatiner">
+
+    <div class="content">
+      <img src="Favrite_Leader-removebg-preview.png" alt="Working Member image without background">
+      <h3>Krrish Joshi</h3>
+      <ul>
+        <li>Domain: Technical</li>
+        <li>Domain_Head : Tanmay Walunj</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+
+</html>
