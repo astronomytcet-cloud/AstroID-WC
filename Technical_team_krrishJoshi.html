@@ -52,6 +52,7 @@
       0% {
         top: 0;
       }
+
       100% {
         top: -100vh;
       }
@@ -74,11 +75,11 @@
       -webkit-text-stroke: 1px #d6f4f4;
       font-variation-settings: "wght" 900, "ital" 1;
       text-shadow:
-        3px 3px 0px #07bccc,
-        5px 5px 0px #e601c0,
-        7px 7px 0px #e9019a,
-        10px 10px 0px #f40468,
-        15px 15px 8px #482896;
+        3px 3px 0px #0acddf,
+        5px 5px 0px #0c80c4,
+        7px 7px 0px #0b4295,
+        10px 10px 0px #353138,
+        15px 15px 8px #ffffff;
       cursor: pointer;
       transition: all 0.5s;
     }
@@ -98,9 +99,11 @@
         bottom: -100px;
         opacity: 0;
       }
+
       40% {
         opacity: 1;
       }
+
       100% {
         bottom: 85%;
       }
@@ -134,27 +137,35 @@
 
     .name {
       font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 7vw;
+      font-size: 6.5vw;
       background-color: #ffffff;
       color: #208e98;
       width: 350px;
-      padding: 10px;
-      margin-top: 2vh;
-      border: #e601c0 2px solid;
+      height: 75px;
+      margin-top: 0.5vh;
+      border: #06365a 4px solid;
+      border-radius: 8px;
       transition: 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     .name:hover {
-      background-color: #e601c0;
+      background-color: #034e90;
+      border: #ffffff 4px solid !important;
+      border-radius: 0px;
       color: white;
       cursor: pointer;
     }
 
     .details-box {
+      font-family: Georgia, 'Times New Roman', Times, serif;
       margin-top: 20px;
-      padding: 20px;
-      border: 2px solid #f40468;
-      background-color: #e601c0;
+      border-radius: 8px;
+      border: 4px solid #03243d;
+      background-color: #054f6cde;
       color: #d6f4f4;
       font-weight: bold;
       width: 350px;
@@ -175,8 +186,73 @@
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       font-size: 4vw;
       margin-top: 1vh;
+      color: #d6f4f4;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+.logo {
+      position: fixed;
+      bottom: 10px;
+      left: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 1001;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      background-color: thistle;
     }
 
+    .logo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgb(255, 255, 255);
+    }
+
+    /* Bulletin */
+    .bulletin {
+      position: fixed;
+      bottom: 15px;
+      height: 25px;
+      white-space: nowrap;
+      font-size: 1rem;
+      background-color: #056988;
+      border:#06bcbc 2px solid ;
+      color: #d6f4f4;
+      padding: 10px 20px;
+      border-radius: 0 5px 5px 0;
+      border-left: 5px solid #00ffff;
+      z-index: 1000;
+      font-weight: bold;
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+
+    .bulletin.active {
+      visibility: visible;
+      animation: scrollBulletin 15s linear infinite;
+    }
+
+    @keyframes scrollBulletin {
+      0% {
+        left: 100%;
+        opacity: 1;
+      }
+      5% {
+        opacity: 1;
+      }
+      10% {
+        opacity: 1; /* Fade out behind logo */
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        left: -100%;
+        opacity: 1;
+      }
+    }
     @media (min-width: 768px) {
       .title h1 {
         font-size: 4rem;
@@ -186,12 +262,14 @@
         margin-top: 1.5rem;
         font-size: 1.5rem;
       }
-      .details-box{
+
+      .details-box {
         min-width: 250px;
         align-self: center;
         align-items: center;
         align-content: center;
       }
+
       .name {
         font-size: 2rem;
         width: 350px;
@@ -207,6 +285,11 @@
 
       img {
         width: 200px;
+      }
+
+      .bulletin {
+        font-size: 1.1rem;
+        bottom: 50px;
       }
     }
   </style>
@@ -226,16 +309,34 @@
     <div class="content">
       <img src="Photo_from_krrish-removebg-preview.png" alt="Working Member image without background" />
       <h3 class="name">KRRISH JOSHI</h3>
-
       <div class="details-box">
         <ul>
           <li>Domain: Technical</li>
           <li>Domain Head: Tanmay Walunj</li>
         </ul>
-        <div class="year">AC-TCET 2025–2026</div>
+      </div>
+      <div class="year" style="background-color: #07bccc; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        AC-TCET 2025–2026
       </div>
     </div>
   </div>
+
+  <!-- Bulletin Text -->
+  <div class="bulletin" id="bulletinText">
+    Astronomy Club of Thakur College of Engineering and Technology
+  </div>
+
+  <!-- Logo -->
+  <img src="logo-removebg-preview.png" alt="Astronomy Club Logo" class="logo" id="logoButton" />
+
+  <script>
+      const logo = document.getElementById("logoButton");
+    const bulletin = document.getElementById("bulletinText");
+
+    logo.addEventListener("click", () => {
+      bulletin.classList.toggle("active");
+    });
+  </script>
 </body>
 
 </html>
