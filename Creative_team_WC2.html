@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astronomy Club | Working Committee</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @font-face {
+      font-family: "Meta";
+      src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow-x: hidden;
+      margin: 0;
+      height: 100vh;
+      background: black;
+    }
+
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .bg-image {
+      position: absolute;
+      width: 100%;
+      height: 200vh;
+      background-image: url('https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg');
+      background-repeat: repeat-y;
+      background-size: cover;
+      animation: moveDown 10s linear infinite;
+    }
+
+    @keyframes moveDown {
+      0% {
+        top: 0;
+      }
+
+      100% {
+        top: -100vh;
+      }
+    }
+
+    .title {
+      position: fixed;
+      bottom: -100px;
+      width: 100%;
+      text-align: center;
+      animation: riseToTop 3s ease-out forwards;
+      z-index: 1000;
+      padding: 0 5vw;
+    }
+
+    .title h1 {
+      font-family: "Meta", sans-serif;
+      font-size: 10vw;
+      color: transparent;
+      -webkit-text-stroke: 1px #d6f4f4;
+      font-variation-settings: "wght" 900, "ital" 1;
+      text-shadow:
+        3px 3px 0px #0acddf,
+        5px 5px 0px #0c80c4,
+        7px 7px 0px #0b4295,
+        10px 10px 0px #353138,
+        15px 15px 8px #ffffff;
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+
+    .title h1:hover {
+      font-variation-settings: "wght" 100, "ital" 0;
+      text-shadow: none;
+    }
+
+    .title h3 {
+      font-size: 5vw;
+      margin-top: 1vw;
+    }
+
+    @keyframes riseToTop {
+      0% {
+        bottom: -100px;
+        opacity: 0;
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      100% {
+        bottom: 85%;
+      }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 120px 5vw 20px 5vw;
+    }
+
+    .content {
+      opacity: 0;
+      animation: fadeIn 2s ease 3s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    img {
+      width: 50vw;
+      max-width: 200px;
+      margin-top: 5vh;
+      border-radius: 10px;
+    }
+
+    .name {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 6.5vw;
+      background-color: #ffffff;
+      color: #208e98;
+      width: 350px;
+      height: 75px;
+      margin-top: 0.5vh;
+      border: #06365a 4px solid;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .name:hover {
+      background-color: #034e90;
+      border: #ffffff 4px solid !important;
+      border-radius: 0px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .details-box {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      margin-top: 20px;
+      border-radius: 8px;
+      border: 4px solid #03243d;
+      background-color: #054f6cde;
+      color: #d6f4f4;
+      font-weight: bold;
+      width: 350px;
+      max-width: 90vw;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 1vh 0;
+      font-size: 4vw;
+    }
+
+    .year {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 4vw;
+      margin-top: 1vh;
+      color: #d6f4f4;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+.logo {
+      position: fixed;
+      bottom: 10px;
+      left: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 1001;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      background-color: thistle;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgb(255, 255, 255);
+    }
+
+    /* Bulletin */
+    .bulletin {
+      position: fixed;
+      bottom: 15px;
+      height: 25px;
+      white-space: nowrap;
+      font-size: 1rem;
+      background-color: #056988;
+      border:#06bcbc 2px solid ;
+      color: #d6f4f4;
+      padding: 10px 20px;
+      border-radius: 0 5px 5px 0;
+      border-left: 5px solid #00ffff;
+      z-index: 1000;
+      font-weight: bold;
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+
+    .bulletin.active {
+      visibility: visible;
+      animation: scrollBulletin 15s linear infinite;
+    }
+
+    @keyframes scrollBulletin {
+      0% {
+        left: 100%;
+        opacity: 1;
+      }
+      5% {
+        opacity: 1;
+      }
+      10% {
+        opacity: 1; /* Fade out behind logo */
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        left: -100%;
+        opacity: 1;
+      }
+    }
+    @media (min-width: 768px) {
+      .title h1 {
+        font-size: 4rem;
+      }
+
+      .title h3 {
+        margin-top: 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      .details-box {
+        min-width: 250px;
+        align-self: center;
+        align-items: center;
+        align-content: center;
+      }
+
+      .name {
+        font-size: 2rem;
+        width: 350px;
+      }
+
+      li {
+        font-size: 1rem;
+      }
+
+      .year {
+        font-size: 1rem;
+      }
+
+      img {
+        width: 200px;
+      }
+
+      .bulletin {
+        font-size: 1.1rem;
+        bottom: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-container">
+    <div class="bg-image"></div>
+  </div>
+
+  <div class="title">
+    <h1>Astronomy Club</h1>
+    <h3>Working Member</h3>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <img src="W PRATHAM.png" alt="Working Member image without background" />
+      <h3 class="name">PRATHAM GUPTA</h3>
+      <div class="details-box">
+        <ul>
+          <li>Domain: Creative team</li>
+          <li>Domain Head: Mansi More</li>
+        </ul>
+      </div>
+      <div class="year" style="background-color: #07bccc; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        AC-TCET 2025–2026
+      </div>
+    </div>
+  </div>
+
+  <!-- Bulletin Text -->
+  <div class="bulletin" id="bulletinText">
+    Astronomy Club of Thakur College of Engineering and Technology
+  </div>
+
+  <!-- Logo -->
+  <img src="logo-removebg-preview.png" alt="Astronomy Club Logo" class="logo" id="logoButton" />
+
+  <script>
+      const logo = document.getElementById("logoButton");
+    const bulletin = document.getElementById("bulletinText");
+
+    logo.addEventListener("click", () => {
+      bulletin.classList.toggle("active");
+    });
+  </script>
+</body>
+
+</html>
