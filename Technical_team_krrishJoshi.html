@@ -25,11 +25,9 @@
       overflow-x: hidden;
       margin: 0;
       height: 100vh;
-      position: relative;
       background: black;
     }
 
-    /* Background container fills viewport & hides overflow */
     .bg-container {
       position: fixed;
       top: 0;
@@ -40,24 +38,20 @@
       z-index: -1;
     }
 
-    /* Two background images stacked vertically */
     .bg-image {
       position: absolute;
       width: 100%;
       height: 200vh;
-      /* twice viewport height */
       background-image: url('https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg');
       background-repeat: repeat-y;
       background-size: cover;
       animation: moveDown 10s linear infinite;
     }
 
-    /* Animate from top: 0 to -100vh to simulate infinite downward movement */
     @keyframes moveDown {
       0% {
         top: 0;
       }
-
       100% {
         top: -100vh;
       }
@@ -99,38 +93,30 @@
       margin-top: 1vw;
     }
 
-    .container {
-      padding: 120px 20vw 20px 20vw;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-      justify-content: flex-start;
-      z-index: 1;
-      position: relative;
-    }
-
     @keyframes riseToTop {
       0% {
         bottom: -100px;
         opacity: 0;
       }
-
       40% {
         opacity: 1;
       }
-
       100% {
         bottom: 85%;
       }
     }
 
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 120px 5vw 20px 5vw;
+    }
+
     .content {
       opacity: 0;
       animation: fadeIn 2s ease 3s forwards;
-      padding: 120px 5vw 20px 5vw;
-      text-align: center;
     }
 
     @keyframes fadeIn {
@@ -146,9 +132,33 @@
       border-radius: 10px;
     }
 
-    h3 {
-      font-size: 6vw;
-      margin: 2vh 0;
+    .name {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 7vw;
+      background-color: #ffffff;
+      color: #208e98;
+      width: 350px;
+      padding: 10px;
+      margin-top: 2vh;
+      border: #e601c0 2px solid;
+      transition: 0.3s ease;
+    }
+
+    .name:hover {
+      background-color: #e601c0;
+      color: white;
+      cursor: pointer;
+    }
+
+    .details-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px solid #f40468;
+      background-color: #e601c0;
+      color: #d6f4f4;
+      font-weight: bold;
+      width: 350px;
+      max-width: 90vw;
     }
 
     ul {
@@ -161,6 +171,12 @@
       font-size: 4vw;
     }
 
+    .year {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 4vw;
+      margin-top: 1vh;
+    }
+
     @media (min-width: 768px) {
       .title h1 {
         font-size: 4rem;
@@ -170,30 +186,33 @@
         margin-top: 1.5rem;
         font-size: 1.5rem;
       }
-
-      h4 {
-        font-size: 1.5rem;
+      .details-box{
+        min-width: 250px;
+        align-self: center;
+        align-items: center;
+        align-content: center;
+      }
+      .name {
+        font-size: 2rem;
+        width: 350px;
       }
 
       li {
         font-size: 1rem;
       }
 
-      img {
-        width: 200px;
+      .year {
+        font-size: 1rem;
       }
 
-      container {
-        padding: 120px 20vw 20px 20vw;
-        background: rgba(0, 0, 0, 0.8);
-        justify-content: flex-start;
+      img {
+        width: 200px;
       }
     }
   </style>
 </head>
 
 <body>
-
   <div class="bg-container">
     <div class="bg-image"></div>
   </div>
@@ -202,17 +221,20 @@
     <h1>Astronomy Club</h1>
     <h3>Working Member</h3>
   </div>
-  <div class="conatiner">
 
+  <div class="container">
     <div class="content">
-     <img src="Photo_from_krrish-removebg-preview.png" alt="Working Member image without background">
-      <h3>Krrish Joshi</h3>
-      <ul>
-        <li>Domain: Technical</li>
-        <li>Domain_Head : Tanmay Walunj</li>
-      </ul>
-    </div>
+      <img src="Photo_from_krrish-removebg-preview.png" alt="Working Member image without background" />
+      <h3 class="name">KRRISH JOSHI</h3>
 
+      <div class="details-box">
+        <ul>
+          <li>Domain: Technical</li>
+          <li>Domain Head: Tanmay Walunj</li>
+        </ul>
+        <div class="year">AC-TCET 2025–2026</div>
+      </div>
+    </div>
   </div>
 </body>
 
