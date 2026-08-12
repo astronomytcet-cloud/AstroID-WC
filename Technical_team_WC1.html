@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -176,17 +175,34 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
+
       width: min(1100px, 92%);
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(5, 8, 25, 0.55);
-      backdrop-filter: blur(15px);
+
+      padding: 13px 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.14),
+          rgba(255, 255, 255, 0.035)
+        );
+
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+
+      border: 1px solid rgba(255, 255, 255, 0.22);
+
       border-radius: 50px;
+
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 15px 40px rgba(0, 0, 0, 0.3);
+
       z-index: 100;
-      box-shadow: 0 0 40px rgba(0, 120, 255, 0.12);
     }
 
     .brand {
@@ -291,38 +307,100 @@
       position: relative;
       width: 100%;
       min-height: 570px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+
       border-radius: 35px;
+
+      /* Apple Glass */
       background:
         linear-gradient(
           135deg,
-          rgba(14, 20, 55, 0.86),
-          rgba(3, 6, 22, 0.90)
+          rgba(255, 255, 255, 0.16),
+          rgba(255, 255, 255, 0.055) 40%,
+          rgba(255, 255, 255, 0.02)
         );
-      backdrop-filter: blur(25px);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+
+      backdrop-filter: blur(35px) saturate(180%);
+      -webkit-backdrop-filter: blur(35px) saturate(180%);
+
+      /* Glass border */
+      border: 1px solid rgba(255, 255, 255, 0.28);
+
+      /* Apple-like depth */
       box-shadow:
-        0 30px 100px rgba(0, 0, 0, 0.65),
-        inset 0 0 50px rgba(0, 150, 255, 0.04);
-      transition: transform 0.15s ease-out;
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.08);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.15s ease-out,
+        box-shadow 0.4s ease;
     }
 
     .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          120deg,
-          transparent 20%,
-          rgba(0, 225, 255, 0.06),
-          transparent 70%
-        );
-      pointer-events: none;
-    }
+    content: "";
 
+    position: absolute;
+    inset: 0;
+
+    background:
+      linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.22),
+        transparent 25%,
+        transparent 65%,
+        rgba(120, 220, 255, 0.08)
+      );
+
+    opacity: 0.55;
+
+    pointer-events: none;
+  }
+  .card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 70%;
+  height: 200%;
+
+  top: -60%;
+  left: -100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+
+  transform: rotate(20deg);
+
+  animation: glassReflection 8s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+@keyframes glassReflection {
+
+  0% {
+    left: -100%;
+  }
+
+  45% {
+    left: 140%;
+  }
+
+  100% {
+    left: 140%;
+  }
+
+}
     /* =========================
        IMAGE SIDE
     ========================== */
@@ -453,24 +531,52 @@
     }
 
     .detail {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 16px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.035);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
+        display: flex;
+        align-items: center;
+        gap: 15px;
 
-    .detail:hover {
-      transform: translateX(10px);
-      border-color: rgba(0, 234, 255, 0.5);
-      background: rgba(0, 234, 255, 0.06);
-      box-shadow: 0 0 25px rgba(0, 234, 255, 0.08);
-    }
+        padding: 16px 18px;
 
+        border-radius: 18px;
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.035)
+          );
+
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.25),
+          0 8px 25px rgba(0, 0, 0, 0.15);
+
+        transition: all 0.35s ease;
+
+        cursor: pointer;
+      }
+
+   .detail:hover {
+        transform: translateY(-5px) scale(1.02);
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.22),
+            rgba(255, 255, 255, 0.06)
+          );
+
+        border-color: rgba(255, 255, 255, 0.4);
+
+        box-shadow:
+          0 15px 35px rgba(0, 0, 0, 0.25),
+          inset 0 1px 1px rgba(255, 255, 255, 0.4),
+          0 0 25px rgba(0, 210, 255, 0.08);
+    }
     .icon {
       width: 40px;
       height: 40px;
@@ -503,14 +609,33 @@
     .year {
       display: inline-flex;
       width: fit-content;
-      padding: 10px 18px;
+
+      padding: 11px 20px;
+
       border-radius: 50px;
-      border: 1px solid rgba(0, 234, 255, 0.4);
-      color: #7ef5ff;
-      background: rgba(0, 234, 255, 0.06);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.16),
+          rgba(255, 255, 255, 0.04)
+        );
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      border: 1px solid rgba(255, 255, 255, 0.25);
+
+      color: #c8faff;
+
       font-family: Orbitron, sans-serif;
+
       font-size: 0.7rem;
       letter-spacing: 2px;
+
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
     /* =========================
@@ -1062,11 +1187,11 @@
 
     document.addEventListener("mousemove", (e) => {
 
-      const x = (window.innerWidth / 2 - e.clientX) / 35;
-      const y = (window.innerHeight / 2 - e.clientY) / 35;
+    const x = (window.innerWidth / 2 - e.clientX) / 180;
+    const y = (window.innerHeight / 2 - e.clientY) / 180;
 
-      card.style.transform =
-        `rotateY(${-x}deg) rotateX(${y}deg)`;
+    card.style.transform =
+    `rotateY(${-x}deg) rotateX(${y}deg)`;
 
     });
 
