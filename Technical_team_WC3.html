@@ -8,7 +8,7 @@
   <title>Astronomy Club | Technical Team</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600,700&display=swap');
 
     * {
       margin: 0;
@@ -24,15 +24,15 @@
     }
 
     body {
-      background: #08151c;
+      background: #090814;
       color: white;
       font-family: "Space Grotesk", sans-serif;
       min-height: 100vh;
     }
 
-    /* =====================================================
-       SPACE BACKGROUND
-    ===================================================== */
+     /* =====================================================
+       TECHNICAL SPACE BACKGROUND
+     ===================================================== */
 
     .space {
       position: fixed;
@@ -42,22 +42,32 @@
 
       background:
         radial-gradient(
-          circle at 20% 20%,
-          rgba(39, 84, 107, 0.34),
+          circle at 15% 20%,
+          rgba(122, 65, 170, 0.32),
           transparent 32%
         ),
         radial-gradient(
-          circle at 80% 70%,
-          rgba(39, 84, 107, 0.22),
-          transparent 36%
+          circle at 85% 25%,
+          rgba(0, 210, 220, 0.20),
+          transparent 34%
         ),
         radial-gradient(
-          circle at 50% 100%,
-          rgba(74, 150, 176, 0.12),
-          transparent 38%
+          circle at 70% 85%,
+          rgba(225, 65, 150, 0.20),
+          transparent 35%
         ),
-        #08151c;
+        radial-gradient(
+          circle at 30% 90%,
+          rgba(50, 90, 200, 0.18),
+          transparent 35%
+        ),
+        #090814;
     }
+
+
+    /* =====================================================
+       NEBULAS
+    ===================================================== */
 
     .nebula {
       position: absolute;
@@ -67,23 +77,23 @@
 
       border-radius: 50%;
 
-      filter: blur(100px);
+      filter: blur(110px);
 
-      opacity: 0.25;
+      opacity: 0.28;
 
       animation:
-        nebulaMove 18s ease-in-out infinite alternate;
+        nebulaMove 20s ease-in-out infinite alternate;
     }
 
     .nebula.one {
-      background: #27546B;
+      background: #7a41aa;
 
       top: -300px;
       left: -250px;
     }
 
     .nebula.two {
-      background: #397d98;
+      background: #db3f9b;
 
       right: -300px;
       bottom: -300px;
@@ -92,7 +102,7 @@
     }
 
     .nebula.three {
-      background: #5caec7;
+      background: #25d9e5;
 
       left: 35%;
       top: 35%;
@@ -100,7 +110,7 @@
       width: 400px;
       height: 400px;
 
-      opacity: 0.12;
+      opacity: 0.14;
 
       animation-delay: -3s;
     }
@@ -115,8 +125,8 @@
 
       to {
         transform:
-          translate(80px, -50px)
-          scale(1.15);
+          translate(90px, -60px)
+          scale(1.18);
       }
     }
 
@@ -157,7 +167,7 @@
 
       50% {
         opacity: 1;
-        transform: scale(1.5);
+        transform: scale(1.6);
       }
     }
 
@@ -169,14 +179,15 @@
     .shooting-star {
       position: absolute;
 
-      width: 120px;
+      width: 140px;
       height: 2px;
 
       background:
         linear-gradient(
           90deg,
           transparent,
-          white
+          #ffffff,
+          #d66cff
         );
 
       transform: rotate(-35deg);
@@ -184,7 +195,7 @@
       opacity: 0;
 
       animation:
-        shooting 7s linear infinite;
+        shooting 8s linear infinite;
     }
 
     .shooting-star:nth-child(1) {
@@ -194,8 +205,8 @@
     }
 
     .shooting-star:nth-child(2) {
-      top: 35%;
-      left: 20%;
+      top: 45%;
+      left: 25%;
       animation-delay: 4s;
     }
 
@@ -227,38 +238,38 @@
     }
 
 
-    /* =====================================================
-       TECH GRID EASTER EGG
-    ===================================================== */
+     /* =====================================================
+       TECHNICAL ART GRID
+     ===================================================== */
 
-    .tech-grid {
+    .creative-grid {
       position: absolute;
 
-      width: 320px;
-      height: 320px;
+      width: 400px;
+      height: 400px;
 
       right: -100px;
-      top: 35%;
+      top: 30%;
 
-      opacity: 0.12;
+      opacity: 0.10;
 
       transform:
-        rotate(30deg)
+        rotate(25deg)
         perspective(500px)
         rotateX(55deg);
 
       background-image:
         linear-gradient(
-          rgba(120, 210, 230, 0.25) 1px,
+          rgba(230, 100, 220, 0.3) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(120, 210, 230, 0.25) 1px,
+          rgba(80, 220, 240, 0.3) 1px,
           transparent 1px
         );
 
-      background-size: 32px 32px;
+      background-size: 35px 35px;
 
       mask-image:
         radial-gradient(
@@ -275,6 +286,59 @@
         );
 
       pointer-events: none;
+    }
+
+
+     /* =====================================================
+       FLOATING TECHNICAL SYMBOLS
+     ===================================================== */
+
+    .creative-symbol {
+      position: absolute;
+
+      color: rgba(255, 255, 255, 0.18);
+
+      font-family: serif;
+
+      pointer-events: none;
+
+      animation:
+        floatSymbol 8s ease-in-out infinite alternate;
+    }
+
+    .symbol-one {
+      top: 22%;
+      left: 8%;
+      font-size: 3rem;
+    }
+
+    .symbol-two {
+      top: 65%;
+      right: 12%;
+      font-size: 4rem;
+      animation-delay: -3s;
+    }
+
+    .symbol-three {
+      top: 40%;
+      left: 15%;
+      font-size: 2rem;
+      animation-delay: -5s;
+    }
+
+    @keyframes floatSymbol {
+
+      from {
+        transform:
+          translateY(0)
+          rotate(0deg);
+      }
+
+      to {
+        transform:
+          translateY(-25px)
+          rotate(12deg);
+      }
     }
 
 
@@ -302,7 +366,7 @@
       background:
         linear-gradient(
           135deg,
-          rgba(39, 84, 107, 0.45),
+          rgba(105, 54, 145, 0.42),
           rgba(255, 255, 255, 0.055)
         );
 
@@ -347,12 +411,12 @@
       width: 10px;
       height: 10px;
 
-      background: #27546B;
+      background: #d85ee9;
 
       border-radius: 50%;
 
       box-shadow:
-        0 0 15px #27546B;
+        0 0 15px #d85ee9;
 
       animation:
         pulse 2s infinite;
@@ -364,12 +428,12 @@
         transform: scale(1.4);
 
         box-shadow:
-          0 0 25px #27546B;
+          0 0 25px #d85ee9;
       }
     }
 
     .status {
-      color: #b9efff;
+      color: #eabaff;
 
       font-size: 0.7rem;
 
@@ -407,7 +471,7 @@
 
 
     /* =====================================================
-       ORBIT
+       ARTISTIC ORBIT
     ===================================================== */
 
     .orbit {
@@ -417,7 +481,7 @@
       height: 900px;
 
       border:
-        1px solid rgba(80, 180, 210, 0.12);
+        1px solid rgba(210, 100, 230, 0.15);
 
       border-radius: 50%;
 
@@ -429,7 +493,7 @@
         rotateX(65deg);
 
       animation:
-        orbitSpin 20s linear infinite;
+        orbitSpin 25s linear infinite;
 
       pointer-events: none;
     }
@@ -443,12 +507,12 @@
       width: 12px;
       height: 12px;
 
-      background: #27546B;
-
       border-radius: 50%;
 
+      background: #d85ee9;
+
       box-shadow:
-        0 0 25px #27546B;
+        0 0 25px #d85ee9;
     }
 
     .orbit::before {
@@ -460,10 +524,10 @@
       bottom: 10%;
       right: 20%;
 
-      background: #5caec7;
+      background: #45e5ed;
 
       box-shadow:
-        0 0 25px #5caec7;
+        0 0 25px #45e5ed;
     }
 
     @keyframes orbitSpin {
@@ -498,9 +562,9 @@
       background:
         linear-gradient(
           135deg,
-          rgba(39, 84, 107, 0.58),
-          rgba(39, 84, 107, 0.30) 45%,
-          rgba(8, 21, 28, 0.42)
+          rgba(105, 54, 145, 0.48),
+          rgba(225, 70, 160, 0.20) 45%,
+          rgba(8, 7, 20, 0.48)
         );
 
       backdrop-filter:
@@ -549,7 +613,7 @@
           rgba(255, 255, 255, 0.22),
           transparent 25%,
           transparent 65%,
-          rgba(120, 205, 225, 0.10)
+          rgba(220, 100, 230, 0.12)
         );
 
       opacity: 0.55;
@@ -601,11 +665,11 @@
     }
 
 
-    /* =====================================================
-       TECHNICAL EASTER EGG OVERLAY
-    ===================================================== */
+     /* =====================================================
+       TECHNICAL EASTER EGGS
+     ===================================================== */
 
-    .tech-overlay {
+    .creative-overlay {
       position: absolute;
 
       inset: 0;
@@ -614,125 +678,74 @@
 
       z-index: 10;
 
-      font-family:
-        "Space Grotesk",
-        monospace;
-
       color:
-        rgba(180, 230, 242, 0.28);
+        rgba(255, 220, 255, 0.28);
 
       font-size: 0.55rem;
 
       letter-spacing: 1.5px;
     }
 
-    .tech-code {
+    .creative-code {
       position: absolute;
 
       white-space: nowrap;
 
-      text-shadow:
-        0 0 10px
-        rgba(39, 84, 107, 0.4);
+      opacity: 0.5;
 
-      opacity: 0.45;
+      font-family: "Space Grotesk", sans-serif;
     }
 
-
-    /* Theme hex */
-
-    .code-1 {
+    .art-1 {
       top: 22px;
       left: 30px;
-
-      color:
-        rgba(158, 212, 227, 0.4);
     }
 
-
-    /* Git */
-
-    .code-2 {
+    .art-2 {
       bottom: 24px;
       left: 30px;
-
-      color:
-        rgba(158, 212, 227, 0.32);
     }
 
-
-    /* Coding */
-
-    .code-3 {
+    .art-3 {
       top: 30px;
       right: 35px;
 
-      font-size: 0.8rem;
-
-      color:
-        rgba(191, 250, 255, 0.35);
+      font-size: 1.1rem;
     }
 
-
-    /* API */
-
-    .code-4 {
+    .art-4 {
       top: 52%;
       right: 25px;
 
       transform: rotate(90deg);
-
-      color:
-        rgba(158, 212, 227, 0.25);
     }
 
-
-    /* Binary */
-
-    .code-5 {
+    .art-5 {
       bottom: 30px;
       right: 35px;
 
       font-size: 0.48rem;
-
-      opacity: 0.3;
     }
 
-
-    /* TCP */
-
-    .code-6 {
+    .art-6 {
       top: 48%;
       left: 22px;
 
       transform: rotate(-90deg);
-
-      color:
-        rgba(158, 212, 227, 0.23);
     }
 
-
-    /* Build */
-
-    .code-7 {
+    .art-7 {
       top: 100px;
       right: 30px;
 
       font-size: 0.48rem;
-
-      opacity: 0.28;
     }
 
-
-    /* Developer joke */
-
-    .code-8 {
+    .art-8 {
       bottom: 85px;
       left: 30px;
 
       font-size: 0.48rem;
-
-      opacity: 0.22;
     }
 
 
@@ -770,7 +783,8 @@
       background:
         radial-gradient(
           circle,
-          rgba(0, 214, 255, 0.18),
+          rgba(210, 80, 240, 0.20),
+          rgba(40, 210, 230, 0.10),
           transparent 65%
         );
 
@@ -795,13 +809,16 @@
       background:
         linear-gradient(
           145deg,
-          rgba(255, 255, 255, 0.22),
-          rgba(39, 84, 107, 0.38)
+          rgba(255, 255, 255, 0.25),
+          rgba(215, 70, 190, 0.38)
         );
 
       box-shadow:
         0 20px 55px
         rgba(0, 0, 0, 0.35),
+
+        0 0 40px
+        rgba(210, 80, 230, 0.12),
 
         inset 0 1px 1px
         rgba(255, 255, 255, 0.35);
@@ -840,7 +857,7 @@
 
       letter-spacing: 2px;
 
-      color: #bfe7ef;
+      color: #edc7f5;
 
       opacity: 0.95;
 
@@ -874,7 +891,7 @@
     .eyebrow {
       font-family: Orbitron, sans-serif;
 
-      color: #b9efff;
+      color: #e9b9ff;
 
       font-size: 0.75rem;
 
@@ -901,8 +918,9 @@
         linear-gradient(
           90deg,
           #ffffff,
-          #dff6ff,
-          #9ed4e3
+          #f1dfff,
+          #d76be9,
+          #6de8ef
         );
 
       background-clip: text;
@@ -913,7 +931,7 @@
     }
 
     .role {
-      color: #d8eaf0;
+      color: #eadce9;
 
       font-size: 1rem;
 
@@ -921,7 +939,7 @@
     }
 
     .role span {
-      color: #9ed4e3;
+      color: #e08cf0;
     }
 
 
@@ -952,7 +970,7 @@
       background:
         linear-gradient(
           135deg,
-          rgba(39, 84, 107, 0.34),
+          rgba(120, 60, 150, 0.30),
           rgba(255, 255, 255, 0.045)
         );
 
@@ -977,8 +995,6 @@
 
       transition:
         all 0.35s ease;
-
-      cursor: default;
     }
 
     .detail:hover {
@@ -989,7 +1005,7 @@
       background:
         linear-gradient(
           135deg,
-          rgba(55, 111, 136, 0.48),
+          rgba(170, 70, 180, 0.40),
           rgba(255, 255, 255, 0.07)
         );
 
@@ -1004,7 +1020,7 @@
         rgba(255, 255, 255, 0.4),
 
         0 0 25px
-        rgba(39, 84, 107, 0.08);
+        rgba(220, 80, 230, 0.10);
     }
 
     .icon {
@@ -1018,9 +1034,9 @@
       border-radius: 12px;
 
       background:
-        rgba(39, 84, 107, 0.25);
+        rgba(190, 70, 210, 0.20);
 
-      color: #b9efff;
+      color: #efc1ff;
 
       font-size: 1.2rem;
 
@@ -1030,7 +1046,7 @@
     .detail small {
       display: block;
 
-      color: #b7d0d9;
+      color: #d0b9d4;
 
       font-size: 0.65rem;
 
@@ -1044,12 +1060,12 @@
     .detail strong {
       font-size: 0.95rem;
 
-      color: #f4fcff;
+      color: #fff7ff;
     }
 
 
     /* =====================================================
-       YEAR / BUILD BADGE
+       YEAR BADGE
     ===================================================== */
 
     .year {
@@ -1065,7 +1081,7 @@
       background:
         linear-gradient(
           135deg,
-          rgba(39, 84, 107, 0.35),
+          rgba(145, 65, 165, 0.35),
           rgba(255, 255, 255, 0.05)
         );
 
@@ -1079,7 +1095,7 @@
         1px solid
         rgba(255, 255, 255, 0.25);
 
-      color: #e8faff;
+      color: #f7e8ff;
 
       font-family: Orbitron, sans-serif;
 
@@ -1096,41 +1112,30 @@
     }
 
 
-    /* =====================================================
-       TECH TERMINAL
-    ===================================================== */
+     /* =====================================================
+       TECHNICAL QUOTE
+     ===================================================== */
 
-    .terminal {
+    .creative-quote {
       position: absolute;
 
       right: 25px;
       bottom: 25px;
 
-      font-family: monospace;
-
-      font-size: 0.45rem;
+      font-size: 0.48rem;
 
       line-height: 1.6;
 
       letter-spacing: 1px;
 
       color:
-        rgba(170, 225, 240, 0.25);
+        rgba(240, 210, 250, 0.30);
 
       text-align: right;
 
       pointer-events: none;
 
       user-select: none;
-    }
-
-    .terminal span {
-      display: block;
-    }
-
-    .terminal .green {
-      color:
-        rgba(150, 240, 210, 0.35);
     }
 
 
@@ -1176,7 +1181,7 @@
         )
         drop-shadow(
           0 0 70px
-          rgba(90, 180, 255, 0.25)
+          rgba(200, 100, 255, 0.25)
         );
 
       opacity: 0.95;
@@ -1213,7 +1218,7 @@
       border-radius: 8px;
 
       background:
-        rgba(3, 15, 22, 0.65);
+        rgba(8, 5, 16, 0.65);
 
       border:
         1px solid
@@ -1222,7 +1227,7 @@
       backdrop-filter:
         blur(10px);
 
-      color: #a9c5cf;
+      color: #cbb6d2;
 
       font-size: 0.6rem;
 
@@ -1238,6 +1243,7 @@
       position: fixed;
 
       right: 25px;
+
       bottom: 25px;
 
       width: 68px;
@@ -1246,19 +1252,26 @@
       border-radius: 12px;
 
       object-fit: contain;
+
       padding: 6px;
 
-      background: rgba(2, 6, 12, 0.65);
+      background:
+        rgba(8, 5, 16, 0.65);
 
       z-index: 100;
 
       cursor: pointer;
 
-      border: 2px solid rgba(39, 84, 107, 0.6);
+      border:
+        2px solid
+        rgba(210, 90, 225, 0.6);
 
-      box-shadow: 0 0 20px rgba(39, 84, 107, 0.25);
+      box-shadow:
+        0 0 20px
+        rgba(210, 90, 225, 0.25);
 
-      transition: 0.3s;
+      transition:
+        0.3s;
     }
 
     .logo-button:hover {
@@ -1267,9 +1280,9 @@
         rotate(10deg);
 
       box-shadow:
-        0 0 20px #27546B,
+        0 0 20px #d85ee9,
         0 0 50px
-        rgba(39, 84, 107, 0.3);
+        rgba(210, 80, 230, 0.3);
     }
 
 
@@ -1294,16 +1307,16 @@
       border-radius: 50px;
 
       background:
-        rgba(4, 18, 28, 0.85);
+        rgba(15, 7, 22, 0.85);
 
       border:
         1px solid
-        rgba(120, 210, 235, 0.35);
+        rgba(220, 110, 240, 0.35);
 
       backdrop-filter:
         blur(15px);
 
-      color: #bffaff;
+      color: #f1d0ff;
 
       font-size: 0.75rem;
 
@@ -1320,7 +1333,7 @@
 
       box-shadow:
         0 0 30px
-        rgba(0, 200, 255, 0.1);
+        rgba(210, 80, 230, 0.1);
     }
 
     .bulletin.active {
@@ -1342,7 +1355,7 @@
       inset: 0;
 
       background:
-        rgba(0, 8, 12, 0.8);
+        rgba(8, 3, 14, 0.8);
 
       backdrop-filter:
         blur(15px);
@@ -1382,29 +1395,29 @@
       background:
         linear-gradient(
           145deg,
-          rgba(20, 58, 74, 0.95),
-          rgba(4, 15, 21, 0.98)
+          rgba(80, 35, 100, 0.95),
+          rgba(10, 5, 18, 0.98)
         );
 
       border:
         1px solid
-        rgba(120, 210, 235, 0.35);
+        rgba(220, 100, 240, 0.35);
 
       box-shadow:
         0 0 80px
-        rgba(0, 180, 255, 0.15);
+        rgba(210, 80, 230, 0.15);
     }
 
     .modal-box h2 {
       font-family: Orbitron;
 
-      color: #b9efff;
+      color: #e8b5ff;
 
       margin-bottom: 15px;
     }
 
     .modal-box p {
-      color: #d8eaf0;
+      color: #ead9ee;
 
       line-height: 1.7;
     }
@@ -1418,12 +1431,12 @@
       border-radius: 30px;
 
       border:
-        1px solid #27546B;
+        1px solid #d85ee9;
 
       background:
         transparent;
 
-      color: #b9efff;
+      color: #efc5ff;
 
       cursor: pointer;
 
@@ -1432,12 +1445,12 @@
     }
 
     .close:hover {
-      background: #27546B;
+      background: #d85ee9;
 
       color: white;
 
       box-shadow:
-        0 0 25px #27546B;
+        0 0 25px #d85ee9;
     }
 
 
@@ -1461,7 +1474,6 @@
 
       main {
         padding-top: 100px;
-
         padding-bottom: 150px;
       }
 
@@ -1533,6 +1545,7 @@
 
       .orbit {
         width: 500px;
+
         height: 500px;
       }
 
@@ -1542,6 +1555,7 @@
 
       .moon {
         width: 180px;
+
         height: 110px;
       }
 
@@ -1549,15 +1563,15 @@
         display: none;
       }
 
-      .tech-grid {
-        opacity: 0.07;
+      .creative-grid {
+        opacity: 0.06;
       }
 
-      .tech-overlay {
+      .creative-overlay {
         opacity: 0.7;
       }
 
-      .terminal {
+      .creative-quote {
         display: none;
       }
     }
@@ -1601,7 +1615,7 @@
         width: 150px;
       }
 
-      .tech-code {
+      .creative-code {
         font-size: 0.4rem;
       }
     }
@@ -1625,19 +1639,22 @@
 
     <div class="nebula three"></div>
 
-    <div
-      class="stars"
-      id="stars">
-    </div>
+    <div class="stars" id="stars"></div>
 
     <div class="shooting-star"></div>
 
     <div class="shooting-star"></div>
 
+    <div class="creative-grid"></div>
 
-    <!-- TECH GRID EASTER EGG -->
 
-    <div class="tech-grid"></div>
+    <!-- Technical floating symbols -->
+
+    <div class="creative-symbol symbol-one">✦</div>
+
+    <div class="creative-symbol symbol-two">∞</div>
+
+    <div class="creative-symbol symbol-three">✧</div>
 
   </div>
 
@@ -1658,7 +1675,7 @@
 
     <div class="status">
 
-      ● SYSTEM ONLINE
+      ✦ CREATIVITY UNLIMITED
 
     </div>
 
@@ -1686,65 +1703,42 @@
       >
 
 
-        <!-- =================================================
+           <!-- =================================================
              TECHNICAL EASTER EGGS
-        ================================================= -->
+           ================================================= -->
 
-        <div class="tech-overlay">
+        <div class="creative-overlay">
 
-          <!-- Theme color in hexadecimal -->
-
-          <span class="tech-code code-1">
-            COLOR_CORE // 0x27546B
+          <span class="creative-code art-1">
+            ✦ IMAGINATION // UNBOUNDED
           </span>
 
-
-          <!-- Git -->
-
-          <span class="tech-code code-2">
-            git commit --astro
+          <span class="creative-code art-2">
+            CREATE → EXPLORE → DISCOVER
           </span>
 
-
-          <!-- Coding -->
-
-          <span class="tech-code code-3">
-            &lt;/&gt;
+          <span class="creative-code art-3">
+            ✦
           </span>
 
-
-          <!-- API -->
-
-          <span class="tech-code code-4">
-            API://ONLINE
+          <span class="creative-code art-4">
+            INFINITY://∞
           </span>
 
-
-          <!-- Binary -->
-
-          <span class="tech-code code-5">
-            01001001 01001111
+          <span class="creative-code art-5">
+            CANVAS: THE UNIVERSE
           </span>
 
-
-          <!-- Network -->
-
-          <span class="tech-code code-6">
-            TCP://ORBIT
+          <span class="creative-code art-6">
+            DREAM://BEYOND
           </span>
 
-
-          <!-- Build -->
-
-          <span class="tech-code code-7">
-            BUILD: TCET-TECH-26
+          <span class="creative-code art-7">
+            IDEA: 001 → 002 → ∞
           </span>
 
-
-          <!-- Developer joke -->
-
-          <span class="tech-code code-8">
-            // TODO: TOUCH THE STARS
+          <span class="creative-code art-8">
+            // EVERY STAR TELLS A STORY
           </span>
 
         </div>
@@ -1765,8 +1759,8 @@
           >
 
             <img
-              src="WC/Shinjini Dutta.png"
-              alt="Shinjini Dutta"
+              src="WC/Gloria Singh.png"
+              alt="Gloria Singh"
               class="photo"
             >
 
@@ -1775,7 +1769,7 @@
 
           <div class="click-photo">
 
-            CLICK PROFILE
+            ✦ CLICK TO EXPLORE ✦
 
           </div>
 
@@ -1788,35 +1782,28 @@
 
         <div class="info">
 
-
-          <!-- Technical team label -->
-
           <div class="eyebrow">
 
-            TECHNICAL TEAM  SYSTEM 2026
+            TECHNICAL TEAM • 2026 — 2027
 
           </div>
 
 
-          <!-- Name -->
+          <h2>
+            GLORIA SINGH
+          </h2>
 
-          <h1>
-
-            SHINJINI<br>
-
-            DUTTA
+            
 
           </h1>
 
 
-          <!-- Role -->
-
           <p class="role">
 
-            Building the systems behind
+            Turning imagination into
 
             <span>
-              the stars.
+              stories among the stars.
             </span>
 
           </p>
@@ -1829,12 +1816,10 @@
           <div class="details">
 
 
-            <!-- Domain -->
-
             <div class="detail">
 
               <div class="icon">
-                &lt;/&gt;
+                ✦
               </div>
 
               <div>
@@ -1851,8 +1836,6 @@
 
             </div>
 
-
-            <!-- Domain Head -->
 
             <div class="detail">
 
@@ -1875,12 +1858,10 @@
             </div>
 
 
-            <!-- Organization -->
-
             <div class="detail">
 
               <div class="icon">
-                ◇
+                ∞
               </div>
 
               <div>
@@ -1901,44 +1882,39 @@
 
 
           <!-- =================================================
-               BUILD BADGE
+               YEAR
           ================================================= -->
 
           <div class="year">
 
-            MISSION 2026 — 2027
+            ✦ AC-TCET 2026 — 2027 ✦
 
           </div>
 
 
           <!-- =================================================
-               MINI TERMINAL EASTER EGG
+               TECHNICAL QUOTE
           ================================================= -->
 
-          <div class="terminal">
+          <div class="creative-quote">
 
-            <span>
-              &gt; initializing_astronomy_core...
-            </span>
+            <div>
+              &gt; imagination: ONLINE
+            </div>
 
-            <span class="green">
-              &gt; TECH_TEAM: ONLINE
-            </span>
-
-            <span>
-              &gt; sensors: READY
-            </span>
-
-            <span>
-              &gt; orbit: STABLE
-            </span>
-
-            <span>
+            <div>
               &gt; curiosity: ∞
-            </span>
+            </div>
+
+            <div>
+              &gt; destination: UNKNOWN
+            </div>
+
+            <div>
+              &gt; create something extraordinary.
+            </div>
 
           </div>
-
 
         </div>
 
@@ -1957,11 +1933,13 @@
 
     <div class="hud-item">
 
-      DEEP SPACE  01
+      DEEP SPACE • 01
 
     </div>
 
     <div class="hud-item">
+
+      EXPLORE • CREATE • INSPIRE
 
     </div>
 
@@ -2007,12 +1985,12 @@
     <div class="modal-box">
 
       <h2>
-        TECHNICAL PROFILE
+        Technical PROFILE
       </h2>
 
       <p>
 
-        Shinjini Dutta is a Working Member
+        Gloria Singh is a Working Member
         of the Astronomy Club's Technical Team
         for the 2026–2027 committee.
 
@@ -2020,15 +1998,15 @@
 
         <span
           style="
-            color:#9ed4e3;
+            color:#e09af0;
             font-family:monospace;
             font-size:0.75rem;
           "
         >
 
-          SYSTEM STATUS: ONLINE<br>
-          BUILD: TCET-TECH-26<br>
-          ORBIT: STABLE
+          IMAGINATION: UNLIMITED<br>
+          CURIOSITY: ∞<br>
+          DESTINATION: THE STARS
 
         </span>
 
@@ -2054,14 +2032,12 @@
 
   <script>
 
-
     /* =====================================================
        GENERATE STARS
     ===================================================== */
 
     const stars =
       document.getElementById("stars");
-
 
     for (
       let i = 0;
@@ -2072,42 +2048,33 @@
       const star =
         document.createElement("div");
 
-
       star.className =
         "star";
-
 
       star.style.left =
         Math.random() * 100 + "%";
 
-
       star.style.top =
         Math.random() * 100 + "%";
-
 
       const size =
         Math.random() * 2 + 1;
 
-
       star.style.width =
         size + "px";
 
-
       star.style.height =
         size + "px";
-
 
       star.style.setProperty(
         "--duration",
         (Math.random() * 4 + 2) + "s"
       );
 
-
       star.style.setProperty(
         "--delay",
         (Math.random() * 5) + "s"
       );
-
 
       stars.appendChild(star);
 
@@ -2115,12 +2082,11 @@
 
 
     /* =====================================================
-       SMOOTH CARD PARALLAX
+       CARD PARALLAX
     ===================================================== */
 
     const card =
       document.getElementById("card");
-
 
     let targetX = 0;
 
@@ -2141,7 +2107,6 @@
               window.innerWidth)
             - 0.5
           ) * 3;
-
 
         targetY =
           (
@@ -2171,23 +2136,19 @@
       currentX +=
         (targetX - currentX) * 0.08;
 
-
       currentY +=
         (targetY - currentY) * 0.08;
-
 
       card.style.transform =
         `perspective(1200px)
          rotateY(${currentX}deg)
          rotateX(${currentY}deg)`;
 
-
       requestAnimationFrame(
         animateCard
       );
 
     }
-
 
     animateCard();
 
@@ -2199,10 +2160,8 @@
     const photo =
       document.getElementById("photo");
 
-
     const modal =
       document.getElementById("modal");
-
 
     const closeModal =
       document.getElementById("closeModal");
@@ -2251,14 +2210,13 @@
 
 
     /* =====================================================
-       CLUB LOGO BULLETIN
+       LOGO BULLETIN
     ===================================================== */
 
     const logoButton =
       document.getElementById(
         "logoButton"
       );
-
 
     const bulletin =
       document.getElementById(
