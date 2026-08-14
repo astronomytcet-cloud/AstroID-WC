@@ -2,341 +2,3089 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astronomy Club | Working Committee</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Astronomy Club | Technical Team</title>
+
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    @font-face {
-      font-family: "Meta";
-      src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
-      font-style: normal;
-      font-weight: normal;
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      background: #08151c;
       color: white;
-      overflow-x: hidden;
-      margin: 0;
-      height: 100vh;
-      background: black;
+      font-family: "Space Grotesk", sans-serif;
+      min-height: 100vh;
     }
 
-    .bg-container {
+    /* =====================================================
+       SPACE BACKGROUND
+    ===================================================== */
+
+    .space {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       overflow: hidden;
-      z-index: -1;
+      z-index: -10;
+
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(39, 84, 107, 0.34),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 80% 70%,
+          rgba(39, 84, 107, 0.22),
+          transparent 36%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(74, 150, 176, 0.12),
+          transparent 38%
+        ),
+        #08151c;
+
+      transition: filter 1s ease;
     }
 
-    .bg-image {
+    .nebula {
       position: absolute;
-      width: 100%;
-      height: 200vh;
-      background-image: url('https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg');
-      background-repeat: repeat-y;
-      background-size: cover;
-      animation: moveDown 10s linear infinite;
+
+      width: 800px;
+      height: 800px;
+
+      border-radius: 50%;
+
+      filter: blur(100px);
+
+      opacity: 0.25;
+
+      animation:
+        nebulaMove 18s ease-in-out infinite alternate;
     }
 
-    @keyframes moveDown {
-      0% {
-        top: 0;
+    .nebula.one {
+      background: #27546B;
+
+      top: -300px;
+      left: -250px;
+    }
+
+    .nebula.two {
+      background: #397d98;
+
+      right: -300px;
+      bottom: -300px;
+
+      animation-delay: -7s;
+    }
+
+    .nebula.three {
+      background: #5caec7;
+
+      left: 35%;
+      top: 35%;
+
+      width: 400px;
+      height: 400px;
+
+      opacity: 0.12;
+
+      animation-delay: -3s;
+    }
+
+    @keyframes nebulaMove {
+      from {
+        transform:
+          translate(0, 0)
+          scale(1);
       }
 
+      to {
+        transform:
+          translate(80px, -50px)
+          scale(1.15);
+      }
+    }
+
+
+    /* =====================================================
+       STAR FIELD
+    ===================================================== */
+
+    .stars {
+      position: absolute;
+      inset: 0;
+    }
+
+    .star {
+      position: absolute;
+
+      width: 2px;
+      height: 2px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      animation:
+        twinkle var(--duration)
+        ease-in-out infinite;
+
+      animation-delay: var(--delay);
+
+      transition:
+        transform 1s ease,
+        opacity 1s ease;
+    }
+
+    @keyframes twinkle {
+      0%,
       100% {
-        top: -100vh;
+        opacity: 0.15;
+        transform: scale(0.7);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
       }
     }
 
-    .title {
-      position: fixed;
-      bottom: -100px;
-      width: 100%;
-      text-align: center;
-      animation: riseToTop 3s ease-out forwards;
-      z-index: 1000;
-      padding: 0 5vw;
+
+    /* =====================================================
+       CONSTELLATION DOCUMENTATION LINES
+    ===================================================== */
+
+    .constellation {
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: 0.18;
+
+      transition:
+        opacity 1s ease,
+        transform 2s ease;
     }
 
-    .title h1 {
-      font-family: "Meta", sans-serif;
-      font-size: 10vw;
-      color: transparent;
-      -webkit-text-stroke: 1px #d6f4f4;
-      font-variation-settings: "wght" 900, "ital" 1;
-      text-shadow:
-        3px 3px 0px #0acddf,
-        5px 5px 0px #0c80c4,
-        7px 7px 0px #0b4295,
-        10px 10px 0px #353138,
-        15px 15px 8px #ffffff;
-      cursor: pointer;
-      transition: all 0.5s;
+    .constellation span {
+      position: absolute;
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: #bffaff;
+
+      box-shadow:
+        0 0 12px #7dd8ec;
     }
 
-    .title h1:hover {
-      font-variation-settings: "wght" 100, "ital" 0;
-      text-shadow: none;
+    .constellation::before,
+    .constellation::after {
+      content: "";
+
+      position: absolute;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(160, 230, 245, 0.5),
+          transparent
+        );
+
+      transform-origin: left center;
     }
 
-    .title h3 {
-      font-size: 5vw;
-      margin-top: 1vw;
+    .constellation::before {
+      width: 250px;
+
+      top: 24%;
+      left: 12%;
+
+      transform: rotate(25deg);
     }
 
-    @keyframes riseToTop {
+    .constellation::after {
+      width: 300px;
+
+      top: 67%;
+      right: 8%;
+
+      transform: rotate(-18deg);
+    }
+
+    .constellation span:nth-child(1) {
+      top: 22%;
+      left: 12%;
+    }
+
+    .constellation span:nth-child(2) {
+      top: 31%;
+      left: 24%;
+    }
+
+    .constellation span:nth-child(3) {
+      top: 34%;
+      left: 36%;
+    }
+
+    .constellation span:nth-child(4) {
+      top: 69%;
+      right: 22%;
+    }
+
+    .constellation span:nth-child(5) {
+      top: 60%;
+      right: 12%;
+    }
+
+
+    /* =====================================================
+       SHOOTING STARS
+    ===================================================== */
+
+    .shooting-star {
+      position: absolute;
+
+      width: 120px;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          white
+        );
+
+      transform: rotate(-35deg);
+
+      opacity: 0;
+
+      animation:
+        shooting 7s linear infinite;
+    }
+
+    .shooting-star:nth-child(1) {
+      top: 15%;
+      left: 70%;
+      animation-delay: 1s;
+    }
+
+    .shooting-star:nth-child(2) {
+      top: 35%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes shooting {
       0% {
-        bottom: -100px;
+        transform:
+          translate(0, 0)
+          rotate(-35deg);
+
         opacity: 0;
       }
 
-      40% {
-        opacity: 1;
-      }
-
-      100% {
-        bottom: 85%;
-      }
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 120px 5vw 20px 5vw;
-    }
-
-    .content {
-      opacity: 0;
-      animation: fadeIn 2s ease 3s forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    img {
-      width: 50vw;
-      max-width: 200px;
-      margin-top: 5vh;
-      border-radius: 10px;
-    }
-
-    .name {
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 6.5vw;
-      background-color: #ffffff;
-      color: #208e98;
-      width: 350px;
-      height: 75px;
-      margin-top: 0.5vh;
-      border: #06365a 4px solid;
-      border-radius: 8px;
-      transition: 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .name:hover {
-      background-color: #034e90;
-      border: #ffffff 4px solid !important;
-      border-radius: 0px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .details-box {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      margin-top: 20px;
-      border-radius: 8px;
-      border: 4px solid #03243d;
-      background-color: #054f6cde;
-      color: #d6f4f4;
-      font-weight: bold;
-      width: 350px;
-      max-width: 90vw;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 1vh 0;
-      font-size: 4vw;
-    }
-
-    .year {
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 4vw;
-      margin-top: 1vh;
-      color: #d6f4f4;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-    }
-.logo {
-      position: fixed;
-      bottom: 10px;
-      left: 5px;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      z-index: 1001;
-      border-radius: 50%;
-      transition: transform 0.3s;
-      background-color: thistle;
-    }
-
-    .logo:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgb(255, 255, 255);
-    }
-
-    /* Bulletin */
-    .bulletin {
-      position: fixed;
-      bottom: 15px;
-      height: 25px;
-      white-space: nowrap;
-      font-size: 1rem;
-      background-color: #056988;
-      border:#06bcbc 2px solid ;
-      color: #d6f4f4;
-      padding: 10px 20px;
-      border-radius: 0 5px 5px 0;
-      border-left: 5px solid #00ffff;
-      z-index: 1000;
-      font-weight: bold;
-      visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 1;
-    }
-
-    .bulletin.active {
-      visibility: visible;
-      animation: scrollBulletin 15s linear infinite;
-    }
-
-    @keyframes scrollBulletin {
-      0% {
-        left: 100%;
-        opacity: 1;
-      }
       5% {
         opacity: 1;
       }
-      10% {
-        opacity: 1; /* Fade out behind logo */
+
+      15% {
+        transform:
+          translate(-500px, 350px)
+          rotate(-35deg);
+
+        opacity: 0;
       }
-      20% {
-        opacity: 1;
-      }
+
       100% {
-        left: -100%;
-        opacity: 1;
+        opacity: 0;
       }
     }
-    @media (min-width: 768px) {
-      .title h1 {
-        font-size: 4rem;
+
+
+    /* =====================================================
+       DOCUMENTATION GRID
+    ===================================================== */
+
+    .doc-grid {
+      position: absolute;
+
+      width: 360px;
+      height: 360px;
+
+      right: -120px;
+      top: 30%;
+
+      opacity: 0.10;
+
+      transform:
+        rotate(30deg)
+        perspective(500px)
+        rotateX(55deg);
+
+      background-image:
+        linear-gradient(
+          rgba(120, 210, 230, 0.25) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(120, 210, 230, 0.25) 1px,
+          transparent 1px
+        );
+
+      background-size: 32px 32px;
+
+      mask-image:
+        radial-gradient(
+          circle,
+          black 20%,
+          transparent 70%
+        );
+
+      -webkit-mask-image:
+        radial-gradient(
+          circle,
+          black 20%,
+          transparent 70%
+        );
+
+      pointer-events: none;
+
+      transition:
+        transform 2s ease,
+        opacity 1s ease;
+    }
+
+
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+
+    .topbar {
+      position: fixed;
+
+      top: 20px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: min(1100px, 92%);
+
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 13px 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.45),
+          rgba(255, 255, 255, 0.055)
+        );
+
+      backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+      -webkit-backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.22);
+
+      border-radius: 50px;
+
+      box-shadow:
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.35),
+
+        0 15px 40px
+        rgba(0, 0, 0, 0.3);
+
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      font-family: Orbitron, sans-serif;
+
+      font-size: 0.85rem;
+
+      letter-spacing: 2px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+
+      background: #27546B;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 15px #27546B;
+
+      animation:
+        pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.4);
+
+        box-shadow:
+          0 0 25px #27546B;
+      }
+    }
+
+    .status {
+      color: #b9efff;
+
+      font-size: 0.7rem;
+
+      letter-spacing: 2px;
+    }
+
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    main {
+      min-height: 100vh;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      padding:
+        130px
+        20px
+        100px;
+
+      position: relative;
+    }
+
+    .profile-wrapper {
+      width: min(1100px, 95vw);
+
+      position: relative;
+
+      perspective: 1200px;
+    }
+
+
+    /* =====================================================
+       ORBIT
+    ===================================================== */
+
+    .orbit {
+      position: absolute;
+
+      width: 900px;
+      height: 900px;
+
+      border:
+        1px solid rgba(80, 180, 210, 0.12);
+
+      border-radius: 50%;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%)
+        rotateX(65deg);
+
+      animation:
+        orbitSpin 20s linear infinite;
+
+      pointer-events: none;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+
+      position: absolute;
+
+      width: 12px;
+      height: 12px;
+
+      background: #27546B;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 25px #27546B;
+    }
+
+    .orbit::before {
+      top: 15%;
+      left: 10%;
+    }
+
+    .orbit::after {
+      bottom: 10%;
+      right: 20%;
+
+      background: #5caec7;
+
+      box-shadow:
+        0 0 25px #5caec7;
+    }
+
+    @keyframes orbitSpin {
+      to {
+        transform:
+          translate(-50%, -50%)
+          rotateX(65deg)
+          rotateZ(360deg);
+      }
+    }
+
+
+    /* =====================================================
+       MAIN GLASS CARD
+    ===================================================== */
+
+    .card {
+      position: relative;
+
+      width: 100%;
+
+      min-height: 570px;
+
+      display: grid;
+
+      grid-template-columns:
+        0.95fr 1.05fr;
+
+      border-radius: 35px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.58),
+          rgba(39, 84, 107, 0.30) 45%,
+          rgba(8, 21, 28, 0.42)
+        );
+
+      backdrop-filter:
+        blur(35px)
+        saturate(180%);
+
+      -webkit-backdrop-filter:
+        blur(35px)
+        saturate(180%);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.28);
+
+      box-shadow:
+        0 30px 80px
+        rgba(0, 0, 0, 0.45),
+
+        0 8px 30px
+        rgba(0, 0, 0, 0.25),
+
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.5),
+
+        inset 0 -1px 1px
+        rgba(255, 255, 255, 0.08);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+        box-shadow 0.5s ease;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.22),
+          transparent 25%,
+          transparent 65%,
+          rgba(120, 205, 225, 0.10)
+        );
+
+      opacity: 0.55;
+
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 70%;
+      height: 200%;
+
+      top: -60%;
+      left: -100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.12),
+          transparent
+        );
+
+      transform: rotate(20deg);
+
+      animation:
+        glassReflection 8s
+        ease-in-out infinite;
+
+      pointer-events: none;
+    }
+
+    @keyframes glassReflection {
+      0% {
+        left: -100%;
       }
 
-      .title h3 {
-        margin-top: 1.5rem;
-        font-size: 1.5rem;
+      45% {
+        left: 140%;
       }
 
-      .details-box {
-        min-width: 250px;
-        align-self: center;
-        align-items: center;
-        align-content: center;
+      100% {
+        left: 140%;
+      }
+    }
+
+
+    /* =====================================================
+       DOCUMENTATION EASTER EGGS
+    ===================================================== */
+
+    .documentation-overlay {
+      position: absolute;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      z-index: 10;
+
+      font-family:
+        "Space Grotesk",
+        monospace;
+
+      color:
+        rgba(180, 230, 242, 0.28);
+
+      font-size: 0.55rem;
+
+      letter-spacing: 1.5px;
+    }
+
+    .doc-code {
+      position: absolute;
+
+      white-space: nowrap;
+
+      text-shadow:
+        0 0 10px
+        rgba(39, 84, 107, 0.4);
+
+      opacity: 0.45;
+
+      transition:
+        opacity 0.5s ease,
+        transform 0.7s ease;
+    }
+
+    /* Exploration */
+
+    .doc-1 {
+      top: 22px;
+      left: 30px;
+
+      color:
+        rgba(158, 212, 227, 0.4);
+    }
+
+    /* Adventure */
+
+    .doc-2 {
+      bottom: 24px;
+      left: 30px;
+
+      color:
+        rgba(158, 212, 227, 0.32);
+    }
+
+    /* Infinity */
+
+    .doc-3 {
+      top: 30px;
+      right: 35px;
+
+      font-size: 0.8rem;
+
+      color:
+        rgba(191, 250, 255, 0.35);
+    }
+
+    /* Coordinates */
+
+    .doc-4 {
+      top: 52%;
+      right: 25px;
+
+      transform: rotate(90deg);
+
+      color:
+        rgba(158, 212, 227, 0.25);
+    }
+
+    /* Star catalogue */
+
+    .doc-5 {
+      bottom: 30px;
+      right: 35px;
+
+      font-size: 0.48rem;
+
+      opacity: 0.3;
+    }
+
+    /* Expedition */
+
+    .doc-6 {
+      top: 48%;
+      left: 22px;
+
+      transform: rotate(-90deg);
+
+      color:
+        rgba(158, 212, 227, 0.23);
+    }
+
+    /* Observation */
+
+    .doc-7 {
+      top: 100px;
+      right: 30px;
+
+      font-size: 0.48rem;
+
+      opacity: 0.28;
+    }
+
+    /* Infinity quote */
+
+    .doc-8 {
+      bottom: 85px;
+      left: 30px;
+
+      font-size: 0.48rem;
+
+      opacity: 0.22;
+    }
+
+
+    /* =====================================================
+       DOCUMENTATION TERMINAL
+    ===================================================== */
+
+    .terminal {
+      position: absolute;
+
+      right: 25px;
+      bottom: 25px;
+
+      font-family: monospace;
+
+      font-size: 0.45rem;
+
+      line-height: 1.6;
+
+      letter-spacing: 1px;
+
+      color:
+        rgba(170, 225, 240, 0.25);
+
+      text-align: right;
+
+      pointer-events: none;
+
+      user-select: none;
+    }
+
+    .terminal span {
+      display: block;
+    }
+
+    .terminal .green {
+      color:
+        rgba(150, 240, 210, 0.35);
+    }
+
+
+    /* =====================================================
+       IMAGE SIDE
+    ===================================================== */
+
+    .visual {
+      position: relative;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 4px;
+
+      min-height: 570px;
+
+      padding:
+        20px 35px;
+    }
+
+    .planet-glow {
+      position: absolute;
+
+      width: 360px;
+      height: 360px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(0, 214, 255, 0.18),
+          transparent 65%
+        );
+
+      filter: blur(10px);
+
+      pointer-events: none;
+
+      transition:
+        transform 1s ease,
+        opacity 1s ease;
+    }
+
+    .photo-ring {
+      position: relative;
+
+      width:
+        clamp(280px, 29vw, 430px);
+
+      height:
+        clamp(280px, 29vw, 430px);
+
+      border-radius: 28px;
+
+      padding: 8px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.22),
+          rgba(39, 84, 107, 0.38)
+        );
+
+      box-shadow:
+        0 20px 55px
+        rgba(0, 0, 0, 0.35),
+
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.35);
+
+      cursor: pointer;
+
+      overflow: hidden;
+
+      z-index: 2;
+
+      transition:
+        transform 0.7s
+        cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .photo-ring:hover {
+      transform:
+        scale(1.025);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      object-position:
+        top center;
+
+      border-radius: 22px;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+      display: block;
+    }
+
+    .click-photo {
+      position: static;
+
+      margin-top: 0;
+
+      font-size: 0.85rem;
+
+      letter-spacing: 2px;
+
+      color: #bfe7ef;
+
+      opacity: 0.95;
+
+      text-align: center;
+
+      user-select: none;
+
+      z-index: 3;
+    }
+
+
+    /* =====================================================
+       INFORMATION SIDE
+    ===================================================== */
+
+    .info {
+      padding:
+        20px 65px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: Orbitron, sans-serif;
+
+      color: #b9efff;
+
+      font-size: 0.75rem;
+
+      letter-spacing: 4px;
+
+      margin-bottom: 5px;
+    }
+
+    .info h1 {
+      font-family: Orbitron, sans-serif;
+
+      font-size:
+        clamp(2.5rem, 6vw, 5rem);
+
+      line-height: 0.95;
+
+      letter-spacing: -2px;
+
+      margin-top: 0;
+
+      margin-bottom: 18px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #dff6ff,
+          #9ed4e3
+        );
+
+      background-clip: text;
+
+      -webkit-background-clip: text;
+
+      color: transparent;
+    }
+
+    .role {
+      color: #d8eaf0;
+
+      font-size: 1rem;
+
+      margin-bottom: 27px;
+    }
+
+    .role span {
+      color: #9ed4e3;
+    }
+
+
+    /* =====================================================
+       DETAIL CARDS
+    ===================================================== */
+
+    .details {
+      display: grid;
+
+      gap: 12px;
+
+      margin-bottom: 30px;
+    }
+
+    .detail {
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+      padding:
+        16px 18px;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.34),
+          rgba(255, 255, 255, 0.045)
+        );
+
+      backdrop-filter:
+        blur(20px)
+        saturate(160%);
+
+      -webkit-backdrop-filter:
+        blur(20px)
+        saturate(160%);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+      box-shadow:
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.25),
+
+        0 8px 25px
+        rgba(0, 0, 0, 0.15);
+
+      transition:
+        all 0.35s ease;
+
+      cursor: default;
+    }
+
+    .detail:hover {
+      transform:
+        translateY(-2px)
+        scale(1.008);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(55, 111, 136, 0.48),
+          rgba(255, 255, 255, 0.07)
+        );
+
+      border-color:
+        rgba(255, 255, 255, 0.4);
+
+      box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.25),
+
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.4),
+
+        0 0 25px
+        rgba(39, 84, 107, 0.08);
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 12px;
+
+      background:
+        rgba(39, 84, 107, 0.25);
+
+      color: #b9efff;
+
+      font-size: 1.2rem;
+
+      flex-shrink: 0;
+    }
+
+    .detail small {
+      display: block;
+
+      color: #b7d0d9;
+
+      font-size: 0.65rem;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 3px;
+
+      text-transform: uppercase;
+    }
+
+    .detail strong {
+      font-size: 0.95rem;
+
+      color: #f4fcff;
+    }
+
+
+    /* =====================================================
+       YEAR BADGE
+    ===================================================== */
+
+    .year {
+      display: inline-flex;
+
+      width: fit-content;
+
+      padding:
+        11px 20px;
+
+      border-radius: 50px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.35),
+          rgba(255, 255, 255, 0.05)
+        );
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+      color: #e8faff;
+
+      font-family: Orbitron, sans-serif;
+
+      font-size: 0.7rem;
+
+      letter-spacing: 2px;
+
+      box-shadow:
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.35),
+
+        0 8px 25px
+        rgba(0, 0, 0, 0.15);
+    }
+
+
+    /* =====================================================
+       EXPLORATION MESSAGE
+    ===================================================== */
+
+    .exploration-message {
+      position: fixed;
+
+      top: 95px;
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        translateY(-15px);
+
+      padding:
+        10px 20px;
+
+      border-radius: 50px;
+
+      background:
+        rgba(4, 18, 28, 0.78);
+
+      border:
+        1px solid
+        rgba(120, 210, 235, 0.25);
+
+      backdrop-filter:
+        blur(18px);
+
+      color: #bffaff;
+
+      font-family: monospace;
+
+      font-size: 0.65rem;
+
+      letter-spacing: 1.5px;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      z-index: 200;
+
+      transition:
+        0.5s ease;
+    }
+
+    .exploration-message.active {
+      opacity: 1;
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+    }
+
+
+    /* =====================================================
+       MOON
+    ===================================================== */
+
+    .moon-container {
+      position: fixed;
+
+      bottom: -25px;
+
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      width: 100%;
+
+      height: 180px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: flex-end;
+
+      pointer-events: none;
+
+      z-index: 10;
+    }
+
+    .moon {
+      width: 300px;
+      height: 180px;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(
+          0 0 30px
+          rgba(255, 255, 255, 0.4)
+        )
+        drop-shadow(
+          0 0 70px
+          rgba(90, 180, 255, 0.25)
+        );
+
+      opacity: 0.95;
+
+      cursor: pointer;
+
+      pointer-events: auto;
+
+      transition:
+        transform 1s ease,
+        filter 1s ease;
+    }
+
+    .moon:hover {
+      transform:
+        scale(1.05);
+
+      filter:
+        drop-shadow(
+          0 0 45px
+          rgba(255, 255, 255, 0.55)
+        )
+        drop-shadow(
+          0 0 90px
+          rgba(90, 180, 255, 0.35)
+        );
+    }
+
+
+    /* =====================================================
+       HUD
+    ===================================================== */
+
+    .hud {
+      position: fixed;
+
+      bottom: 18px;
+
+      left: 20px;
+      right: 20px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      z-index: 50;
+
+      pointer-events: none;
+    }
+
+    .hud-item {
+      padding:
+        8px 13px;
+
+      border-radius: 8px;
+
+      background:
+        rgba(3, 15, 22, 0.65);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+      backdrop-filter:
+        blur(10px);
+
+      color: #a9c5cf;
+
+      font-size: 0.6rem;
+
+      letter-spacing: 2px;
+    }
+
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .logo-button {
+      position: fixed;
+
+      right: 25px;
+
+      bottom: 25px;
+
+      width: 68px;
+      height: 68px;
+
+      border-radius: 12px;
+
+      object-fit: contain;
+
+      padding: 6px;
+
+      background:
+        rgba(2, 6, 12, 0.65);
+
+      z-index: 100;
+
+      cursor: pointer;
+
+      border:
+        2px solid
+        rgba(39, 84, 107, 0.6);
+
+      box-shadow:
+        0 0 20px
+        rgba(39, 84, 107, 0.25);
+
+      transition:
+        0.3s;
+    }
+
+    .logo-button:hover {
+      transform:
+        scale(1.15)
+        rotate(10deg);
+
+      box-shadow:
+        0 0 20px #27546B,
+        0 0 50px
+        rgba(39, 84, 107, 0.3);
+    }
+
+
+    /* =====================================================
+       BULLETIN
+    ===================================================== */
+
+    .bulletin {
+      position: fixed;
+
+      bottom: 95px;
+
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        translateY(20px);
+
+      padding:
+        14px 25px;
+
+      border-radius: 50px;
+
+      background:
+        rgba(4, 18, 28, 0.85);
+
+      border:
+        1px solid
+        rgba(120, 210, 235, 0.35);
+
+      backdrop-filter:
+        blur(15px);
+
+      color: #bffaff;
+
+      font-size: 0.75rem;
+
+      letter-spacing: 1px;
+
+      z-index: 99;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        0.4s ease;
+
+      box-shadow:
+        0 0 30px
+        rgba(0, 200, 255, 0.1);
+
+      text-align: center;
+    }
+
+    .bulletin.active {
+      opacity: 1;
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+    }
+
+
+    /* =====================================================
+       MODAL
+    ===================================================== */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(0, 8, 12, 0.8);
+
+      backdrop-filter:
+        blur(15px);
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      z-index: 500;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        0.4s;
+    }
+
+    .modal.active {
+      opacity: 1;
+
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width:
+        min(450px, 90%);
+
+      padding: 40px;
+
+      text-align: center;
+
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 58, 74, 0.95),
+          rgba(4, 15, 21, 0.98)
+        );
+
+      border:
+        1px solid
+        rgba(120, 210, 235, 0.35);
+
+      box-shadow:
+        0 0 80px
+        rgba(0, 180, 255, 0.15);
+    }
+
+    .modal-box h2 {
+      font-family: Orbitron;
+
+      color: #b9efff;
+
+      margin-bottom: 15px;
+    }
+
+    .modal-box p {
+      color: #d8eaf0;
+
+      line-height: 1.7;
+    }
+
+    .close {
+      margin-top: 25px;
+
+      padding:
+        10px 25px;
+
+      border-radius: 30px;
+
+      border:
+        1px solid #27546B;
+
+      background:
+        transparent;
+
+      color: #b9efff;
+
+      cursor: pointer;
+
+      transition:
+        0.3s;
+    }
+
+    .close:hover {
+      background: #27546B;
+
+      color: white;
+
+      box-shadow:
+        0 0 25px #27546B;
+    }
+
+
+    /* =====================================================
+       INFINITY MODE
+    ===================================================== */
+
+    body.infinity-mode .space {
+      filter:
+        saturate(1.35)
+        brightness(1.08);
+    }
+
+    body.infinity-mode .orbit {
+      animation-duration: 7s;
+
+      border-color:
+        rgba(150, 230, 255, 0.28);
+    }
+
+    body.infinity-mode .doc-grid {
+      opacity: 0.18;
+
+      transform:
+        rotate(30deg)
+        perspective(500px)
+        rotateX(55deg)
+        scale(1.35);
+    }
+
+    body.infinity-mode .constellation {
+      opacity: 0.4;
+
+      transform:
+        scale(1.08);
+    }
+
+    body.infinity-mode .planet-glow {
+      opacity: 1.7;
+
+      transform:
+        scale(1.15);
+    }
+
+    body.infinity-mode .card {
+      box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.55),
+
+        0 0 80px
+        rgba(60, 180, 220, 0.13),
+
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.5);
+    }
+
+
+    /* =====================================================
+       ADVENTURE MODE
+    ===================================================== */
+
+    body.adventure-mode .orbit {
+      animation-duration: 10s;
+    }
+
+    body.adventure-mode .shooting-star {
+      animation-duration: 4s;
+    }
+
+    body.adventure-mode .constellation {
+      opacity: 0.35;
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 800px) {
+
+      .topbar {
+        top: 10px;
       }
 
-      .name {
-        font-size: 2rem;
-        width: 350px;
+      .brand {
+        font-size: 0.65rem;
       }
 
-      li {
-        font-size: 1rem;
+      .status {
+        font-size: 0.55rem;
+      }
+
+      main {
+        padding-top: 100px;
+
+        padding-bottom: 150px;
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        border-radius: 25px;
+      }
+
+      .visual {
+        min-height: 330px;
+
+        padding:
+          25px 20px 5px;
+
+        gap: 4px;
+      }
+
+      .photo-ring {
+        width: 230px;
+
+        height: 230px;
+
+        border-radius: 24px;
+      }
+
+      .planet-glow {
+        width: 280px;
+
+        height: 280px;
+      }
+
+      .info {
+        padding:
+          20px
+          25px
+          45px;
+
+        text-align: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 3px;
+
+        margin-bottom: 5px;
+      }
+
+      .info h1 {
+        font-size: 2.8rem;
+
+        margin-bottom: 15px;
+      }
+
+      .role {
+        font-size: 0.85rem;
+
+        margin-bottom: 25px;
+      }
+
+      .details {
+        text-align: left;
       }
 
       .year {
-        font-size: 1rem;
+        margin: auto;
       }
 
-      img {
-        width: 200px;
+      .orbit {
+        width: 500px;
+        height: 500px;
       }
 
-      .bulletin {
-        font-size: 1.1rem;
-        bottom: 50px;
+      .moon-container {
+        height: 100px;
+      }
+
+      .moon {
+        width: 180px;
+        height: 110px;
+      }
+
+      .hud {
+        display: none;
+      }
+
+      .doc-grid {
+        opacity: 0.07;
+      }
+
+      .documentation-overlay {
+        opacity: 0.7;
+      }
+
+      .terminal {
+        display: none;
       }
     }
+
+
+    /* =====================================================
+       TOUCH DEVICES
+    ===================================================== */
+
+    @media (hover: none) and (pointer: coarse) {
+
+      .card {
+        transform: none !important;
+      }
+    }
+
+
+    /* =====================================================
+       SMALL MOBILE
+    ===================================================== */
+
+    @media (max-width: 450px) {
+
+      .info h1 {
+        font-size: 2.3rem;
+      }
+
+      .photo-ring {
+        width: 200px;
+
+        height: 200px;
+
+        border-radius: 22px;
+      }
+
+      .visual {
+        min-height: 290px;
+      }
+
+      .moon {
+        width: 150px;
+      }
+
+      .doc-code {
+        font-size: 0.4rem;
+      }
+
+      .exploration-message {
+        max-width: 90%;
+        text-align: center;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
-  <div class="bg-container">
-    <div class="bg-image"></div>
-  </div>
 
-  <div class="title">
-    <h1>Astronomy Club</h1>
-    <h3>Working Member</h3>
-  </div>
 
-  <div class="container">
-    <div class="content">
-      <img src="W SHUBHANGI.png" alt="Working Member image without background" />
-      <h3 class="name">SHUBHANGI VATS</h3>
-      <div class="details-box">
-        <ul>
-          <li>Domain: Documentation Team</li>
-          <li>Domain Head: Snehaal Vishwakarma</li>
-        </ul>
-      </div>
-      <div class="year" style="background-color: #07bccc; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-        AC-TCET 2025–2026
-      </div>
+  <!-- =====================================================
+       SPACE
+  ===================================================== -->
+
+  <div class="space">
+
+    <div class="nebula one"></div>
+
+    <div class="nebula two"></div>
+
+    <div class="nebula three"></div>
+
+    <div
+      class="stars"
+      id="stars">
     </div>
+
+    <div class="shooting-star"></div>
+
+    <div class="shooting-star"></div>
+
+
+    <!-- CONSTELLATION DOCUMENTATION -->
+
+    <div class="constellation">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+
+    <!-- DOCUMENTATION GRID -->
+
+    <div class="doc-grid"></div>
+
   </div>
 
-  <!-- Bulletin Text -->
-  <div class="bulletin" id="bulletinText">
-    Astronomy Club of Thakur College of Engineering and Technology
+
+  <!-- =====================================================
+       TOP BAR
+  ===================================================== -->
+
+  <header class="topbar">
+
+    <div class="brand">
+
+      <span class="brand-dot"></span>
+
+      ASTRONOMY CLUB
+
+    </div>
+
+    <div
+      class="status"
+      id="status"
+    >
+
+      ● SYSTEM ONLINE
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       EXPLORATION MESSAGE
+  ===================================================== -->
+
+  <div
+    class="exploration-message"
+    id="explorationMessage"
+  >
+
+    EXPEDITION LOG // READY
+
   </div>
 
-  <!-- Logo -->
-  <img src="logo-removebg-preview.png" alt="Astronomy Club Logo" class="logo" id="logoButton" />
+
+  <!-- =====================================================
+       MAIN
+  ===================================================== -->
+
+  <main>
+
+    <div class="profile-wrapper">
+
+      <div class="orbit"></div>
+
+
+      <!-- =================================================
+           PROFILE CARD
+      ================================================= -->
+
+      <section
+        class="card"
+        id="card"
+      >
+
+
+        <!-- =================================================
+             DOCUMENTATION EASTER EGGS
+        ================================================= -->
+
+        <div class="documentation-overlay">
+
+          <!-- Exploration -->
+
+          <span class="doc-code doc-1">
+
+            DOC://EXPLORATION
+
+          </span>
+
+
+          <!-- Adventure -->
+
+          <span class="doc-code doc-2">
+
+            LOG://ADVENTURE
+
+          </span>
+
+
+          <!-- Infinity -->
+
+          <span class="doc-code doc-3">
+
+            ∞://UNKNOWN
+
+          </span>
+
+
+          <!-- Coordinates -->
+
+          <span class="doc-code doc-4">
+
+            COORD://18.99°N 73.10°E
+
+          </span>
+
+
+          <!-- Star catalogue -->
+
+          <span class="doc-code doc-5">
+
+            CATALOGUE: [ORION] [LYRA] [ANDROMEDA]
+
+          </span>
+
+
+          <!-- Expedition -->
+
+          <span class="doc-code doc-6">
+
+            EXPEDITION://BEYOND
+
+          </span>
+
+
+          <!-- Observation -->
+
+          <span class="doc-code doc-7">
+
+            OBSERVATION: 001 // UNCHARTED
+
+          </span>
+
+
+          <!-- Infinity -->
+
+          <span class="doc-code doc-8">
+
+            // THE UNIVERSE HAS NO FINAL PAGE
+
+          </span>
+
+        </div>
+
+
+        <!-- =================================================
+             IMAGE SIDE
+        ================================================= -->
+
+        <div class="visual">
+
+          <div class="planet-glow"></div>
+
+
+          <div
+            class="photo-ring"
+            id="photo"
+          >
+
+            <img
+              src="WC/Abhishek Negi.png"
+              alt="Abhishek Negi"
+              class="photo"
+            >
+
+          </div>
+
+
+          <div class="click-photo">
+
+            CLICK PROFILE
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             INFORMATION
+        ================================================= -->
+
+        <div class="info">
+
+
+          <div class="eyebrow">
+
+            DOCUMENTATION TEAM · SYSTEM 2026
+
+          </div>
+
+
+          <h1>
+
+            Abhishek<br>
+
+            Negi
+
+          </h1>
+
+
+          <p class="role">
+
+            Building the systems behind
+
+            <span>
+              the stars.
+            </span>
+
+          </p>
+
+
+          <!-- =================================================
+               DETAILS
+          ================================================= -->
+
+          <div class="details">
+
+
+            <div class="detail">
+
+              <div class="icon">
+                ✦
+              </div>
+
+              <div>
+
+                <small>
+                  Domain
+                </small>
+
+                <strong>
+                  Documentation Team
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="detail">
+
+              <div class="icon">
+                ◉
+              </div>
+
+              <div>
+
+                <small>
+                  Domain Head
+                </small>
+
+                <strong>
+                 Shubhangi Vats
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="detail">
+
+              <div class="icon">
+                ∞
+              </div>
+
+              <div>
+
+                <small>
+                  Organization
+                </small>
+
+                <strong>
+                  AC-TCET
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               MISSION
+          ================================================= -->
+
+          <div class="year">
+
+            MISSION 2026 — 2027
+
+          </div>
+
+
+          <!-- =================================================
+               DOCUMENTATION TERMINAL
+          ================================================= -->
+
+          <div class="terminal">
+
+            <span>
+              &gt; opening_expedition_log...
+            </span>
+
+            <span class="green">
+              &gt; exploration: ACTIVE
+            </span>
+
+            <span>
+              &gt; destination: UNKNOWN
+            </span>
+
+            <span>
+              &gt; adventure: READY
+            </span>
+
+            <span>
+              &gt; horizon: ∞
+            </span>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       HUD
+  ===================================================== -->
+
+  <div class="hud">
+
+    <div class="hud-item">
+
+      DEEP SPACE · 01
+
+    </div>
+
+    <div
+      class="hud-item"
+      id="hudMode"
+    >
+
+      EXPLORATION MODE
+
+    </div>
+
+  </div>
+
+
+
+ 
+
+
+  <!-- =====================================================
+       LOGO
+  ===================================================== -->
+
+  <img
+    src="logo-removebg-preview.png"
+    alt="Astronomy Club"
+    class="logo-button"
+    id="logoButton"
+  >
+
+
+  <!-- =====================================================
+       BULLETIN
+  ===================================================== -->
+
+  <div
+    class="bulletin"
+    id="bulletin"
+  >
+
+    ✦ ASTRONOMY CLUB OF THAKUR COLLEGE
+    OF ENGINEERING AND TECHNOLOGY ✦
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL
+  ===================================================== -->
+
+  <div
+    class="modal"
+    id="modal"
+  >
+
+    <div class="modal-box">
+
+      <h2>
+        EXPLORATION PROFILE
+      </h2>
+
+      <p>
+
+        Abhishek Negi is a Working Member
+        of the Astronomy Club's Documentation Team
+        for the 2026–2027 committee.
+
+        <br><br>
+
+        This profile is part of the club's
+        exploration archive.
+
+        <br><br>
+
+        <span
+          style="
+            color:#9ed4e3;
+            font-family:monospace;
+            font-size:0.75rem;
+          "
+        >
+
+          EXPEDITION: ACTIVE<br>
+          DESTINATION: UNKNOWN<br>
+          HORIZON: ∞
+
+        </span>
+
+      </p>
+
+      <button
+        class="close"
+        id="closeModal"
+      >
+
+        CLOSE
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
 
   <script>
-      const logo = document.getElementById("logoButton");
-    const bulletin = document.getElementById("bulletinText");
 
-    logo.addEventListener("click", () => {
-      bulletin.classList.toggle("active");
-    });
+
+    /* =====================================================
+       GENERATE STARS
+    ===================================================== */
+
+    const stars =
+      document.getElementById("stars");
+
+
+    for (
+      let i = 0;
+      i < 180;
+      i++
+    ) {
+
+      const star =
+        document.createElement("div");
+
+
+      star.className =
+        "star";
+
+
+      star.style.left =
+        Math.random() * 100 + "%";
+
+
+      star.style.top =
+        Math.random() * 100 + "%";
+
+
+      const size =
+        Math.random() * 2 + 1;
+
+
+      star.style.width =
+        size + "px";
+
+
+      star.style.height =
+        size + "px";
+
+
+      star.style.setProperty(
+        "--duration",
+        (Math.random() * 4 + 2) + "s"
+      );
+
+
+      star.style.setProperty(
+        "--delay",
+        (Math.random() * 5) + "s"
+      );
+
+
+      stars.appendChild(star);
+
+    }
+
+
+    /* =====================================================
+       SMOOTH CARD PARALLAX
+    ===================================================== */
+
+    const card =
+      document.getElementById("card");
+
+
+    let targetX = 0;
+
+    let targetY = 0;
+
+    let currentX = 0;
+
+    let currentY = 0;
+
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+
+        targetX =
+          (
+            (e.clientX /
+              window.innerWidth)
+            - 0.5
+          ) * 3;
+
+
+        targetY =
+          (
+            (e.clientY /
+              window.innerHeight)
+            - 0.5
+          ) * -2.5;
+
+      }
+    );
+
+
+    window.addEventListener(
+      "pointerleave",
+      () => {
+
+        targetX = 0;
+
+        targetY = 0;
+
+      }
+    );
+
+
+    function animateCard() {
+
+      currentX +=
+        (targetX - currentX) * 0.08;
+
+
+      currentY +=
+        (targetY - currentY) * 0.08;
+
+
+      if (
+        !document.body.classList.contains(
+          "infinity-mode"
+        )
+      ) {
+
+        card.style.transform =
+          `perspective(1200px)
+           rotateY(${currentX}deg)
+           rotateX(${currentY}deg)`;
+
+      }
+
+
+      requestAnimationFrame(
+        animateCard
+      );
+
+    }
+
+
+    animateCard();
+
+
+    /* =====================================================
+       PROFILE MODAL
+    ===================================================== */
+
+    const photo =
+      document.getElementById("photo");
+
+
+    const modal =
+      document.getElementById("modal");
+
+
+    const closeModal =
+      document.getElementById("closeModal");
+
+
+    photo.addEventListener(
+      "click",
+      () => {
+
+        modal.classList.add(
+          "active"
+        );
+
+      }
+    );
+
+
+    closeModal.addEventListener(
+      "click",
+      () => {
+
+        modal.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
+
+    modal.addEventListener(
+      "click",
+      (e) => {
+
+        if (
+          e.target === modal
+        ) {
+
+          modal.classList.remove(
+            "active"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       CLUB LOGO BULLETIN
+    ===================================================== */
+
+    const logoButton =
+      document.getElementById(
+        "logoButton"
+      );
+
+
+    const bulletin =
+      document.getElementById(
+        "bulletin"
+      );
+
+
+    const bulletins = [
+
+      "✦ ASTRONOMY CLUB OF THAKUR COLLEGE OF ENGINEERING AND TECHNOLOGY ✦",
+
+      "✦ EXPLORE · DISCOVER · DOCUMENT ✦",
+
+      "✦ EVERY STAR IS AN INVITATION ✦",
+
+      "✦ THE NEXT ADVENTURE IS SOMEWHERE OUT THERE ✦",
+
+      "✦ LOOK UP. THERE IS ALWAYS MORE. ✦"
+
+    ];
+
+
+    let bulletinIndex = 0;
+
+
+    logoButton.addEventListener(
+      "click",
+      () => {
+
+        bulletinIndex =
+          (bulletinIndex + 1)
+          % bulletins.length;
+
+
+        bulletin.textContent =
+          bulletins[bulletinIndex];
+
+
+        bulletin.classList.toggle(
+          "active"
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       EXPLORATION MESSAGE SYSTEM
+    ===================================================== */
+
+    const explorationMessage =
+      document.getElementById(
+        "explorationMessage"
+      );
+
+
+    const status =
+      document.getElementById(
+        "status"
+      );
+
+
+    const hudMode =
+      document.getElementById(
+        "hudMode"
+      );
+
+
+    const explorationLogs = [
+
+      "EXPEDITION LOG // NEW STAR DETECTED",
+
+      "EXPLORATION // HORIZON EXTENDED",
+
+      "ADVENTURE // COURSE SET TO UNKNOWN",
+
+      "OBSERVATION // SOMETHING IS OUT THERE",
+
+      "STAR MAP // PATH FOUND",
+
+      "ARCHIVE // NEW PAGE DISCOVERED",
+
+      "MISSION // KEEP LOOKING UP",
+
+      "INFINITY // NO FINAL DESTINATION"
+
+    ];
+
+
+    function showExplorationMessage(
+      message
+    ) {
+
+      explorationMessage.textContent =
+        message;
+
+
+      explorationMessage.classList.add(
+        "active"
+      );
+
+
+      clearTimeout(
+        window.explorationTimeout
+      );
+
+
+      window.explorationTimeout =
+        setTimeout(
+          () => {
+
+            explorationMessage.classList.remove(
+              "active"
+            );
+
+          },
+          2800
+        );
+
+    }
+
+
+    function randomExploration() {
+
+      const message =
+        explorationLogs[
+          Math.floor(
+            Math.random()
+            * explorationLogs.length
+          )
+        ];
+
+
+      showExplorationMessage(
+        message
+      );
+
+    }
+
+
+    /* =====================================================
+       EXPLORATION MODE
+    ===================================================== */
+
+    function explorationMode() {
+
+      document.body.classList.remove(
+        "adventure-mode",
+        "infinity-mode"
+      );
+
+
+      hudMode.textContent =
+        "EXPLORATION MODE";
+
+
+      status.textContent =
+        "● EXPLORATION ACTIVE";
+
+
+      randomExploration();
+
+    }
+
+
+    /* =====================================================
+       ADVENTURE MODE
+    ===================================================== */
+
+    function adventureMode() {
+
+      document.body.classList.remove(
+        "infinity-mode"
+      );
+
+
+      document.body.classList.add(
+        "adventure-mode"
+      );
+
+
+      hudMode.textContent =
+        "ADVENTURE MODE";
+
+
+      status.textContent =
+        "● EXPEDITION ACTIVE";
+
+
+      showExplorationMessage(
+        "ADVENTURE LOG // LEAVE THE MAP BEHIND"
+      );
+
+    }
+
+
+    /* =====================================================
+       INFINITY MODE
+    ===================================================== */
+
+    function infinityMode() {
+
+      document.body.classList.remove(
+        "adventure-mode"
+      );
+
+
+      document.body.classList.add(
+        "infinity-mode"
+      );
+
+
+      hudMode.textContent =
+        "∞ INFINITY MODE";
+
+
+      status.textContent =
+        "● HORIZON: ∞";
+
+
+      showExplorationMessage(
+        "∞ THERE IS NO EDGE TO THE UNIVERSE OF CURIOSITY"
+      );
+
+    }
+
+
+    /* =====================================================
+       CARD DOUBLE CLICK
+       SECRET INFINITY TRIGGER
+    ===================================================== */
+
+    card.addEventListener(
+      "dblclick",
+      () => {
+
+        infinityMode();
+
+      }
+    );
+
+
+    /* =====================================================
+       RANDOM STAR CLICK
+    ===================================================== */
+
+    stars.addEventListener(
+      "click",
+      () => {
+
+        explorationMode();
+
+      }
+    );
+
+
+    /* =====================================================
+       MOON SECRET
+    ===================================================== */
+
+    const moon = document.getElementById("moon");
+
+    if (moon) {
+      moon.addEventListener("click", () => {
+        infinityMode();
+
+        showExplorationMessage(
+          "MOON LOG // THE JOURNEY CONTINUES BEYOND THE HORIZON"
+        );
+      });
+    } else {
+      console.warn("moon element not found — skipping moon click handler");
+    }
+
+
+    /* =====================================================
+       KEYBOARD EASTER EGGS
+    ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+
+        console.log('keyboard event:', e.key, 'target=', e.target && e.target.tagName);
+
+        // ignore keys when user is typing in form fields or editable areas
+        if (
+          e.target &&
+          (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable)
+        ) {
+          return;
+        }
+
+        const key =
+          e.key.toLowerCase();
+
+
+        /* E = Exploration */
+
+        if (key === "e") {
+
+          explorationMode();
+
+        }
+
+
+        /* A = Adventure */
+
+        if (key === "a") {
+
+          adventureMode();
+
+        }
+
+
+        /* I = Infinity */
+
+        if (key === "i") {
+
+          infinityMode();
+
+        }
+
+
+        /* D = Documentation */
+
+        if (key === "d") {
+
+          showExplorationMessage(
+            "DOCUMENTATION // EVERY ADVENTURE DESERVES A STORY"
+          );
+
+        }
+
+
+        /* Escape = Reset */
+
+        if (e.key === "Escape") {
+
+          document.body.classList.remove(
+            "adventure-mode",
+            "infinity-mode"
+          );
+
+
+          hudMode.textContent =
+            "EXPLORATION MODE";
+
+
+          status.textContent =
+            "● SYSTEM ONLINE";
+
+
+          explorationMessage.classList.remove(
+            "active"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SECRET CLICK SEQUENCE
+       CLICK CARD 3 TIMES
+    ===================================================== */
+
+    let clickCount = 0;
+
+    let clickTimer;
+
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        clickCount++;
+
+
+        clearTimeout(
+          clickTimer
+        );
+
+
+        clickTimer =
+          setTimeout(
+            () => {
+
+              clickCount = 0;
+
+            },
+            900
+          );
+
+
+        if (
+          clickCount === 3
+        ) {
+
+          adventureMode();
+
+          clickCount = 0;
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       RANDOM EXPEDITION LOG
+    ===================================================== */
+
+    setInterval(
+      () => {
+
+        if (
+          Math.random() > 0.72
+        ) {
+
+          randomExploration();
+
+        }
+
+      },
+      12000
+    );
+
+
+    /* =====================================================
+       ESCAPE CLOSE MODAL
+    ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+
+        if (
+          e.key === "Escape"
+        ) {
+
+          modal.classList.remove(
+            "active"
+          );
+
+        }
+
+      }
+    );
+
   </script>
+
+<!-- Mobile controls for touch devices -->
+<div id="mobileControls" class="mobile-controls" aria-hidden="false" role="toolbar">
+  <button data-key="e" class="mc-btn" aria-label="Exploration">E</button>
+  <button data-key="a" class="mc-btn" aria-label="Adventure">A</button>
+  <button data-key="i" class="mc-btn" aria-label="Infinity">I</button>
+  <button data-key="d" class="mc-btn" aria-label="Docs">D</button>
+  <button id="mobileEscape" class="mc-btn" aria-label="Reset">⎋</button>
+</div>
+
+<style>
+@media (max-width:800px){
+  .mobile-controls{position:fixed;bottom:12px;left:12px;display:flex;gap:8px;z-index:999}
+  .mobile-controls .mc-btn{padding:8px 10px;border-radius:8px;background:#111;color:#fff;border:0;font-weight:bold}
+}
+@media (min-width:801px){ .mobile-controls{display:none} }
+</style>
+
+<script>
+(function(){
+  const mc = document.getElementById('mobileControls');
+  if(!mc) return;
+  mc.addEventListener('click', (ev)=>{
+    const btn = ev.target;
+    if(!btn || !btn.dataset) return;
+    const k = btn.dataset.key;
+    if(k === 'e' && typeof explorationMode === 'function') explorationMode();
+    if(k === 'a' && typeof adventureMode === 'function') adventureMode();
+    if(k === 'i' && typeof infinityMode === 'function') infinityMode();
+    if(k === 'd' && typeof showExplorationMessage === 'function') showExplorationMessage('DOCUMENTATION // EVERY ADVENTURE DESERVES A STORY');
+  });
+  const esc = document.getElementById('mobileEscape');
+  if(esc){
+    esc.addEventListener('click', ()=>{
+      document.body.classList.remove('adventure-mode','infinity-mode');
+      const hudMode = document.getElementById('hudMode');
+      if(hudMode) hudMode.textContent = 'EXPLORATION MODE';
+      const status = document.getElementById('status');
+      if(status) status.textContent = '● SYSTEM ONLINE';
+      const explorationMessage = document.querySelector('.exploration-message');
+      if(explorationMessage) explorationMessage.classList.remove('active');
+    });
+  }
+})();
+</script>
+
 </body>
 
 </html>
