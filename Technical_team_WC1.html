@@ -1177,7 +1177,7 @@
     .moon-container {
       position: fixed;
 
-      top: 20px;
+      bottom: 25px;
       left: 20px;
 
       transform: none;
@@ -1192,13 +1192,29 @@
 
       align-items: flex-start;
 
-      pointer-events: none;
+      pointer-events: auto;
 
       z-index: 220;
     }
 
+    .moon-container::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -6px;
+      width: 160px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.45), rgba(0,0,0,0) 60%);
+      filter: blur(6px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 210;
+    }
+
     .moon {
-      width: 140px;
+      width: 130px;
       height: auto;
 
       object-fit: contain;
@@ -1653,13 +1669,16 @@
       }
 
       .moon-container {
-        top: 12px;
+        position: fixed;
+        bottom: 25px;
         left: 12px;
         height: auto;
+        transform: none !important;
+        pointer-events: auto;
       }
 
       .moon {
-        width: 120px;
+        width: 110px;
         height: auto;
       }
 
@@ -2082,26 +2101,6 @@
   </main>
 
 
-  <!-- =====================================================
-       HUD
-  ===================================================== -->
-
-  <div class="hud">
-
-    <div class="hud-item">
-
-      DEEP SPACE 01
-
-    </div>
-
-    <div
-      class="hud-item"
-      id="hudTime"
-    >
-
-    </div>
-
-  </div>
 
 
   <!-- =====================================================
@@ -2109,15 +2108,18 @@
        PARADOX EASTER EGG
   ===================================================== -->
 
-<div class="moon-container">
+<div class="moon-container" aria-hidden="false" aria-label="Moon container">
 
   <img
       src="mooooon.png"
       alt="Moon"
+      title="Moon — click 5 times"
+      loading="lazy"
+      decoding="async"
       class="moon"
       id="moonEgg"
+      aria-label="Moon image"
   >
-
 </div>
 
   <!-- =====================================================

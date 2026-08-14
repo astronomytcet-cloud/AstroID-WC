@@ -1237,8 +1237,8 @@
     .logo-button {
       position: fixed;
 
-      right: 25px;
-      bottom: 25px;
+      right: 22px;
+      bottom: 30px;
 
       width: 68px;
       height: 68px;
@@ -1509,10 +1509,11 @@
 ===================================================== */
 
 .black-hole {
+
   position: fixed;
 
-  top: 28px;
-  left: 28px;
+  bottom: 30px;
+  left: 22px;
 
   width: 85px;
   height: 85px;
@@ -1522,6 +1523,8 @@
   z-index: 200;
 
   cursor: pointer;
+
+  pointer-events: auto;
 
   filter:
     drop-shadow(0 0 12px rgba(120, 170, 255, 0.35))
@@ -1704,6 +1707,31 @@
         display: none;
       }
 
+      /* Keep the black hole fixed at bottom-left on mobile */
+      .black-hole {
+        position: fixed;
+        bottom: 78px;
+        left: 16px;
+        width: 72px;
+        height: 72px;
+        transform: none !important;
+      }
+
+      .sun {
+        position: fixed;
+        bottom: 78px;
+        left: 110px;
+        width: 60px;
+        height: 60px;
+      }
+      
+
+      /* Keep logo aligned with black hole on mobile */
+      .logo-button {
+        right: 16px;
+        bottom: 78px;
+      }
+
       .tech-grid {
         opacity: 0.07;
       }
@@ -1776,6 +1804,8 @@
   class="black-hole"
   id="blackHole"
 >
+
+<!-- sun removed -->
 
 <div
   class="nothingness"
@@ -2122,27 +2152,7 @@
     </div>
 
   </main>
-
-
-  <!-- =====================================================
-       HUD
-  ===================================================== -->
-
-  <div class="hud">
-
-    <div class="hud-item">
-
-      DEEP SPACE  01
-
-    </div>
-
-    <div class="hud-item">
-
-    </div>
-
-  </div>
-
-
+  
   <!-- =====================================================
        LOGO
   ===================================================== -->
