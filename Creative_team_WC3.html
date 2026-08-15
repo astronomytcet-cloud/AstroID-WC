@@ -2,339 +2,1310 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astronomy Club | Working Committee</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AC-TCET | Creative & Celestial Discovery</title>
+
   <style>
+    /* =====================================================
+       FONTS
+    ===================================================== */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+    /* =====================================================
+       RESET & BASE
+    ===================================================== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    @font-face {
-      font-family: "Meta";
-      src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
-      font-style: normal;
-      font-weight: normal;
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      background: #050e14;
       color: white;
-      overflow-x: hidden;
-      margin: 0;
-      height: 100vh;
-      background: black;
+      font-family: "Space Grotesk", sans-serif;
+      min-height: 100vh;
+      position: relative;
+      transition: background 0.8s ease, filter 0.5s ease;
     }
 
-    .bg-container {
+    /* =====================================================
+       CELESTIAL & DISCOVERY ATMOSPHERE
+    ===================================================== */
+    body::before {
+      content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      overflow: hidden;
-      z-index: -1;
+      width: 650px;
+      height: 650px;
+      left: -250px;
+      top: -250px;
+      background: radial-gradient(
+        circle,
+        rgba(39, 84, 107, 0.40),
+        rgba(25, 118, 155, 0.15) 50%,
+        transparent 70%
+      );
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: -3;
+      animation: celestialAura 16s ease-in-out infinite alternate;
     }
 
-    .bg-image {
-      position: absolute;
-      width: 100%;
-      height: 200vh;
-      background-image: url('https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg');
-      background-repeat: repeat-y;
-      background-size: cover;
-      animation: moveDown 10s linear infinite;
-    }
-
-    @keyframes moveDown {
-      0% {
-        top: 0;
-      }
-
-      100% {
-        top: -100vh;
-      }
-    }
-
-    .title {
+    body::after {
+      content: "";
       position: fixed;
-      bottom: -100px;
-      width: 100%;
-      text-align: center;
-      animation: riseToTop 3s ease-out forwards;
-      z-index: 1000;
-      padding: 0 5vw;
+      width: 600px;
+      height: 600px;
+      right: -220px;
+      bottom: -220px;
+      background: radial-gradient(
+        circle,
+        rgba(74, 150, 176, 0.30),
+        rgba(39, 84, 107, 0.15) 50%,
+        transparent 70%
+      );
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: -3;
+      animation: celestialAura 18s ease-in-out infinite alternate-reverse;
     }
 
-    .title h1 {
-      font-family: "Meta", sans-serif;
-      font-size: 10vw;
-      color: transparent;
-      -webkit-text-stroke: 1px #d6f4f4;
-      font-variation-settings: "wght" 900, "ital" 1;
-      text-shadow:
-        3px 3px 0px #0acddf,
-        5px 5px 0px #0c80c4,
-        7px 7px 0px #0b4295,
-        10px 10px 0px #353138,
-        15px 15px 8px #ffffff;
+    @keyframes celestialAura {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(80px, -60px) scale(1.18); }
+    }
+
+    /* Dynamic Astronomical Coordinate Grid */
+    .celestial-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(130, 220, 245, 0.05) 1px, transparent 1px),
+        linear-gradient(rgba(39, 84, 107, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(39, 84, 107, 0.06) 1px, transparent 1px);
+      background-size: 80px 80px, 40px 40px, 40px 40px;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    /* Orbital Trajectory Lines */
+    .orbit-ring {
+      position: fixed;
+      border: 1px dashed rgba(185, 239, 255, 0.08);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .orbit-1 { width: 700px; height: 700px; animation: orbitRotate 90s linear infinite; }
+    .orbit-2 { width: 1100px; height: 1100px; animation: orbitRotate 140s linear infinite reverse; }
+
+    @keyframes orbitRotate {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+    .topbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 24px;
+      background: linear-gradient(
+        135deg,
+        rgba(39, 84, 107, 0.45),
+        rgba(255, 255, 255, 0.055)
+      );
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 15px 40px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Orbitron, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      background: #5ce6b0;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #5ce6b0;
+      animation: pulseDiscovery 2.4s infinite;
+    }
+
+    @keyframes pulseDiscovery {
+      50% {
+        transform: scale(1.4);
+        box-shadow: 0 0 25px #5ce6b0;
+      }
+    }
+
+    .status {
+      color: #b9efff;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
       cursor: pointer;
-      transition: all 0.5s;
+      user-select: none;
+      transition: 0.3s;
     }
 
-    .title h1:hover {
-      font-variation-settings: "wght" 100, "ital" 0;
-      text-shadow: none;
+    .status:hover {
+      text-shadow: 0 0 15px #9ed4e3;
+      transform: translateY(-1px);
     }
 
-    .title h3 {
-      font-size: 5vw;
-      margin-top: 1vw;
+    /* =====================================================
+       MAIN & CARD
+    ===================================================== */
+    main {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 130px 20px 110px;
+      position: relative;
     }
 
-    @keyframes riseToTop {
-      0% {
-        bottom: -100px;
-        opacity: 0;
-      }
-
-      40% {
-        opacity: 1;
-      }
-
-      100% {
-        bottom: 85%;
-      }
+    .profile-wrapper {
+      width: min(1100px, 95vw);
+      position: relative;
+      perspective: 1200px;
     }
 
-    .container {
+    .card {
+      position: relative;
+      width: 100%;
+      min-height: 570px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      border-radius: 35px;
+      background: linear-gradient(
+        135deg,
+        rgba(39, 84, 107, 0.58),
+        rgba(39, 84, 107, 0.30) 45%,
+        rgba(8, 21, 28, 0.42)
+      );
+      backdrop-filter: blur(35px) saturate(180%);
+      -webkit-backdrop-filter: blur(35px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.22),
+        transparent 25%,
+        transparent 65%,
+        rgba(120, 205, 225, 0.10)
+      );
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 200%;
+      top: -60%;
+      left: -100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.12),
+        transparent
+      );
+      transform: rotate(20deg);
+      animation: glassReflection 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes glassReflection {
+      0% { left: -100%; }
+      45% { left: 140%; }
+      100% { left: 140%; }
+    }
+
+    /* =====================================================
+       VISUAL & IMAGE SIDE
+    ===================================================== */
+    .visual {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 570px;
+      padding: 20px 35px;
+    }
+
+    .photo-ring {
+      position: relative;
+      width: clamp(280px, 29vw, 430px);
+      height: clamp(280px, 29vw, 430px);
+      border-radius: 28px;
+      padding: 8px;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.22),
+        rgba(39, 84, 107, 0.38)
+      );
+      box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 2;
+      transition:
+        transform 0.4s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.4s ease;
+    }
+
+    .photo-ring:hover {
+      transform: translateY(-5px) scale(1.015);
+      box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(39, 84, 107, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: block;
+    }
+
+    .click-photo {
+      margin-top: 3px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #bfe7ef;
+      opacity: 0.85;
       text-align: center;
-      padding: 120px 5vw 20px 5vw;
+      user-select: none;
+      z-index: 3;
+      transition: 0.3s;
     }
 
-    .content {
+    .visual:hover .click-photo {
+      opacity: 1;
+      letter-spacing: 3px;
+    }
+
+    /* =====================================================
+       INFORMATION SIDE
+    ===================================================== */
+    .info {
+      padding: 20px 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: Orbitron, sans-serif;
+      color: #b9efff;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      margin-bottom: 5px;
+    }
+
+    .info h1 {
+      font-family: Orbitron, sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      margin-top: 0;
+      margin-bottom: 18px;
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #dff6ff,
+        #9ed4e3
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .info h1:hover {
+      transform: translateX(4px);
+      filter: drop-shadow(0 0 18px rgba(158, 212, 227, 0.25));
+    }
+
+    .role {
+      color: #d8eaf0;
+      font-size: 1rem;
+      margin-bottom: 27px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .role span {
+      color: #9ed4e3;
+    }
+
+    .role:hover {
+      color: #f4fcff;
+    }
+
+    /* =====================================================
+       DETAIL CARDS
+    ===================================================== */
+    .details {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .detail {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(
+        135deg,
+        rgba(39, 84, 107, 0.34),
+        rgba(255, 255, 255, 0.045)
+      );
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.35s ease;
+      cursor: default;
+    }
+
+    .detail:hover {
+      transform: translateY(-2px) scale(1.008);
+      background: linear-gradient(
+        135deg,
+        rgba(55, 111, 136, 0.48),
+        rgba(255, 255, 255, 0.07)
+      );
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(39, 84, 107, 0.08);
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(39, 84, 107, 0.25);
+      color: #b9efff;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: 0.3s;
+    }
+
+    .detail:hover .icon {
+      transform: rotate(-5deg) scale(1.08);
+      box-shadow: 0 0 18px rgba(39, 84, 107, 0.3);
+    }
+
+    .detail small {
+      display: block;
+      color: #b7d0d9;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    .detail strong {
+      font-size: 0.95rem;
+      color: #f4fcff;
+    }
+
+    /* =====================================================
+       CELESTIAL DISCOVERY ARCHIVE BADGE
+    ===================================================== */
+    .year {
+      display: inline-flex;
+      width: fit-content;
+      padding: 11px 20px;
+      border-radius: 50px;
+      background: linear-gradient(
+        135deg,
+        rgba(39, 84, 107, 0.35),
+        rgba(255, 255, 255, 0.05)
+      );
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #e8faff;
+      font-family: Orbitron, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 8px 25px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .year:hover {
+      transform: scale(1.03) translateY(-2px);
+      box-shadow: 0 0 25px rgba(92, 174, 199, 0.3);
+      border-color: rgba(185, 239, 255, 0.6);
+    }
+
+    /* =====================================================
+       CELESTIAL DISCOVERY TERMINAL
+    ===================================================== */
+    .terminal {
+      position: absolute;
+      right: 25px;
+      bottom: 25px;
+      font-family: monospace;
+      font-size: 0.45rem;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      color: rgba(170, 225, 240, 0.25);
+      text-align: right;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .terminal span {
+      display: block;
+    }
+
+    .terminal .cyan {
+      color: rgba(150, 240, 230, 0.45);
+    }
+
+    /* =====================================================
+       CELESTIAL DISCOVERY ARTIFACT PNG (BOTTOM-LEFT)
+    ===================================================== */
+    .discovery-dock {
+      position: fixed;
+      left: 25px;
+      bottom: 25px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .discovery-button {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      object-fit: contain;
+      padding: 10px;
+      background: linear-gradient(
+        145deg,
+        rgba(39, 84, 107, 0.55),
+        rgba(4, 18, 28, 0.85)
+      );
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1.5px solid rgba(185, 239, 255, 0.45);
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(39, 84, 107, 0.3);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.4s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .discovery-button:hover {
+      transform: scale(1.15) rotate(12deg);
+      border-color: rgba(185, 239, 255, 0.9);
+      box-shadow:
+        0 0 25px rgba(0, 225, 255, 0.6),
+        0 0 50px rgba(39, 84, 107, 0.55),
+        inset 0 1px 1px rgba(255, 255, 255, 0.7);
+    }
+
+    .discovery-button.pulse-anim {
+      animation: discoveryPulse 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes discoveryPulse {
+      0% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+      50% { transform: scale(1.3) rotate(180deg); filter: brightness(2) drop-shadow(0 0 25px #00ffff); }
+      100% { transform: scale(1) rotate(360deg); filter: brightness(1); }
+    }
+
+    .discovery-hint {
+      font-family: Orbitron, sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 2px;
+      color: rgba(185, 239, 255, 0.7);
+      text-transform: uppercase;
+      pointer-events: none;
+      animation: hintGaze 2.2s infinite alternate;
+    }
+
+    @keyframes hintGaze {
+      from { opacity: 0.35; }
+      to { opacity: 0.95; }
+    }
+
+    /* =====================================================
+       CELESTIAL DISCOVERY PARTICLES FIELD
+    ===================================================== */
+    .celestial-particle-field {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .celestial-glyph {
+      position: absolute;
+      font-size: 1.4rem;
+      color: #9eedff;
+      text-shadow: 0 0 15px #00e1ff, 0 0 30px #27546b;
       opacity: 0;
-      animation: fadeIn 2s ease 3s forwards;
+      user-select: none;
+      animation: floatDiscoveryGlyph 2.4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
     }
 
-    @keyframes fadeIn {
-      to {
+    @keyframes floatDiscoveryGlyph {
+      0% {
         opacity: 1;
+        transform: translate(0, 0) scale(0.5) rotate(0deg);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translate(var(--tx), var(--ty)) scale(1.35) rotate(180deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(var(--tx) * 1.4), calc(var(--ty) * 1.6)) scale(0.2) rotate(360deg);
       }
     }
 
-    img {
-      width: 50vw;
-      max-width: 200px;
-      margin-top: 5vh;
-      border-radius: 10px;
+    /* =====================================================
+       DISCOVERY DEEP-SPACE MODE
+    ===================================================== */
+    body.discovery-mode {
+      background: radial-gradient(circle at center, #0b222e 0%, #02070a 100%) !important;
     }
 
-    .name {
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 6.5vw;
-      background-color: #ffffff;
-      color: #208e98;
-      width: 350px;
-      height: 75px;
-      margin-top: 0.5vh;
-      border: #06365a 4px solid;
-      border-radius: 8px;
-      transition: 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    body.discovery-mode .card {
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(0, 225, 255, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      border-color: rgba(185, 239, 255, 0.6);
     }
 
-    .name:hover {
-      background-color: #034e90;
-      border: #ffffff 4px solid !important;
-      border-radius: 0px;
-      color: white;
-      cursor: pointer;
+    body.discovery-mode .orbit-ring {
+      border-color: rgba(185, 239, 255, 0.25);
     }
 
-    .details-box {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      margin-top: 20px;
-      border-radius: 8px;
-      border: 4px solid #03243d;
-      background-color: #054f6cde;
-      color: #d6f4f4;
-      font-weight: bold;
-      width: 350px;
-      max-width: 90vw;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 1vh 0;
-      font-size: 4vw;
-    }
-
-    .year {
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 4vw;
-      margin-top: 1vh;
-      color: #d6f4f4;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-    }
-.logo {
+    /* =====================================================
+       LOGO BUTTON (BOTTOM-RIGHT)
+    ===================================================== */
+    .logo-button {
       position: fixed;
-      bottom: 10px;
-      left: 5px;
-      width: 40px;
-      height: 40px;
+      right: 25px;
+      bottom: 25px;
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
+      object-fit: contain;
+      padding: 6px;
+      background: rgba(2, 6, 12, 0.65);
+      z-index: 100;
       cursor: pointer;
-      z-index: 1001;
-      border-radius: 50%;
-      transition: transform 0.3s;
-      background-color: thistle;
+      border: 2px solid rgba(39, 84, 107, 0.6);
+      box-shadow: 0 0 20px rgba(39, 84, 107, 0.25);
+      transition: 0.3s;
     }
 
-    .logo:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgb(255, 255, 255);
+    .logo-button:hover {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow:
+        0 0 20px #27546B,
+        0 0 50px rgba(39, 84, 107, 0.3);
     }
 
-    /* Bulletin */
+    /* =====================================================
+       BULLETIN & TOASTS
+    ===================================================== */
     .bulletin {
       position: fixed;
-      bottom: 15px;
-      height: 25px;
-      white-space: nowrap;
-      font-size: 1rem;
-      background-color: #056988;
-      border:#06bcbc 2px solid ;
-      color: #d6f4f4;
-      padding: 10px 20px;
-      border-radius: 0 5px 5px 0;
-      border-left: 5px solid #00ffff;
-      z-index: 1000;
-      font-weight: bold;
-      visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 1;
+      bottom: 105px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      width: max-content;
+      max-width: 90vw;
+      padding: 14px 28px;
+      border-radius: 50px;
+      background: rgba(4, 18, 28, 0.9);
+      border: 1px solid rgba(120, 210, 235, 0.35);
+      backdrop-filter: blur(15px);
+      color: #bffaff;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-align: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s ease;
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.15);
     }
 
     .bulletin.active {
-      visibility: visible;
-      animation: scrollBulletin 15s linear infinite;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
-    @keyframes scrollBulletin {
-      0% {
-        left: 100%;
-        opacity: 1;
+    /* =====================================================
+       MODAL
+    ===================================================== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 8, 12, 0.85);
+      backdrop-filter: blur(15px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: min(450px, 90%);
+      padding: 40px;
+      text-align: center;
+      border-radius: 25px;
+      background: linear-gradient(
+        145deg,
+        rgba(20, 58, 74, 0.95),
+        rgba(4, 15, 21, 0.98)
+      );
+      border: 1px solid rgba(120, 210, 235, 0.35);
+      box-shadow: 0 0 80px rgba(0, 180, 255, 0.15);
+      animation: modalIn 0.4s ease;
+    }
+
+    @keyframes modalIn {
+      from {
+        transform: translateY(20px) scale(0.96);
+        opacity: 0;
       }
-      5% {
-        opacity: 1;
-      }
-      10% {
-        opacity: 1; /* Fade out behind logo */
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        left: -100%;
+      to {
+        transform: translateY(0) scale(1);
         opacity: 1;
       }
     }
-    @media (min-width: 768px) {
-      .title h1 {
-        font-size: 4rem;
+
+    .modal-box h2 {
+      font-family: Orbitron, sans-serif;
+      color: #b9efff;
+      margin-bottom: 15px;
+    }
+
+    .modal-box p {
+      color: #d8eaf0;
+      line-height: 1.7;
+    }
+
+    .close {
+      margin-top: 25px;
+      padding: 10px 25px;
+      border-radius: 30px;
+      border: 1px solid #27546B;
+      background: transparent;
+      color: #b9efff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close:hover {
+      background: #27546B;
+      color: white;
+      box-shadow: 0 0 25px #27546B;
+    }
+
+    /* =====================================================
+       MOBILE RESPONSIVE
+    ===================================================== */
+    @media (max-width: 800px) {
+      .topbar {
+        top: 10px;
       }
 
-      .title h3 {
-        margin-top: 1.5rem;
-        font-size: 1.5rem;
+      .brand {
+        font-size: 0.65rem;
       }
 
-      .details-box {
-        min-width: 250px;
-        align-self: center;
-        align-items: center;
-        align-content: center;
+      .status {
+        font-size: 0.55rem;
       }
 
-      .name {
-        font-size: 2rem;
-        width: 350px;
+      main {
+        padding-top: 100px;
+        padding-bottom: 150px;
       }
 
-      li {
-        font-size: 1rem;
+      .card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        border-radius: 25px;
+      }
+
+      .visual {
+        min-height: 330px;
+        padding: 25px 20px 5px;
+        gap: 8px;
+      }
+
+      .photo-ring {
+        width: 230px;
+        height: 230px;
+        border-radius: 24px;
+      }
+
+      .info {
+        padding: 20px 25px 45px;
+        text-align: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 3px;
+        margin-bottom: 5px;
+      }
+
+      .info h1 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+      }
+
+      .role {
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+      }
+
+      .details {
+        text-align: left;
       }
 
       .year {
-        font-size: 1rem;
+        margin: auto;
       }
 
-      img {
+      .logo-button {
+        width: 58px;
+        height: 58px;
+        right: 15px;
+        bottom: 15px;
+      }
+
+      .discovery-dock {
+        left: 15px;
+        bottom: 15px;
+      }
+
+      .discovery-button {
+        width: 58px;
+        height: 58px;
+      }
+
+      .terminal {
+        display: none;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .card {
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .info h1 {
+        font-size: 2.3rem;
+      }
+
+      .photo-ring {
         width: 200px;
+        height: 200px;
+        border-radius: 22px;
+      }
+
+      .visual {
+        min-height: 290px;
+      }
+
+      .topbar {
+        padding: 11px 15px;
+      }
+
+      .status {
+        letter-spacing: 1px;
       }
 
       .bulletin {
-        font-size: 1.1rem;
-        bottom: 50px;
+        font-size: 0.65rem;
+        padding: 12px 16px;
+        white-space: normal;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg-container">
-    <div class="bg-image"></div>
+
+  <!-- Particle Container for Discovery Bursts -->
+  <div class="celestial-particle-field" id="discoveryField"></div>
+
+  <!-- Celestial Coordinate Grid & Orbital Vectors -->
+  <div class="celestial-grid"></div>
+  <div class="orbit-ring orbit-1"></div>
+  <div class="orbit-ring orbit-2"></div>
+
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      AC-TCET
+    </div>
+
+    <div
+      class="status"
+      id="statusEgg"
+      title="Tap to synchronize celestial telemetry"
+    >
+      ✦ CELESTIAL DISCOVERY
+    </div>
+  </header>
+
+  <!-- Main Profile Section -->
+  <main>
+    <div class="profile-wrapper">
+
+      <section class="card" id="card">
+
+        <!-- Visual Side -->
+        <div class="visual">
+          <div
+            class="photo-ring"
+            id="photo"
+            title="Double-click five times..."
+          >
+            <img
+              src="WC/Kimaya Jain.png"
+              alt="Kimaya Jain"
+              class="photo"
+            >
+          </div>
+
+          <div class="click-photo">
+            CLICK TO EXPLORE
+          </div>
+        </div>
+
+        <!-- Information Side -->
+        <div class="info">
+          <div class="eyebrow">
+            CREATIVE TEAM &nbsp; 2026
+          </div>
+
+          <h1 id="nameEgg">
+            KIMAYA<br>
+            JAIN
+          </h1>
+
+          <p class="role" id="roleEgg">
+            Charting unknown horizons into <span>visible wonder.</span>
+          </p>
+
+          <!-- Detail Metrics -->
+          <div class="details">
+            <div class="detail">
+              <div class="icon">🔭</div>
+              <div>
+                <small>Domain </small>
+                <strong>Creative</strong>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="icon">◉</div>
+              <div>
+                <small>Domain Head</small>
+                <strong>Ashika Gupta</strong>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="icon">◇</div>
+              <div>
+                <small>Organization</small>
+                <strong>AC-TCET &bull; Deep Sky Initiative</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Celestial Discovery Terminal -->
+          <div class="terminal">
+            <span>&gt; scanning_deep_sky_survey...</span>
+            <span class="cyan">&gt; CELESTIAL_OBSERVATORY: ONLINE</span>
+            <span>&gt; coordinates: RA 18h 36m / DEC +38°47′</span>
+            <span>&gt; magnitude: MAXIMUM_WONDER</span>
+            <span>&gt; spectrum: UNEXPLORED</span>
+          </div>
+
+          <!-- Discovery Archive Badge -->
+          <div
+            class="year"
+            id="timeEgg"
+            title="Access Discovery Telemetry Archive"
+          >
+            DISCOVERY LOG — 2026 — 2027
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Single Discovery Artifact PNG (Bottom-Left) -->
+  <div class="discovery-dock">
+    <img
+      src="discovery.png"
+      alt="Celestial Discovery"
+      class="discovery-button"
+      id="discoveryButton"
+      title="Engage Deep-Sky Discovery"
+      onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%239eedff\' stroke-width=\'1.8\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z\'/></svg>'"
+    >
+    <span class="discovery-hint">DISCOVER</span>
   </div>
 
-  <div class="title">
-    <h1>Astronomy Club</h1>
-    <h3>Working Member</h3>
+  <!-- AC-TCET Club Logo (Bottom-Right) -->
+  <img
+    src="logo-removebg-preview.png"
+    alt="AC-TCET"
+    class="logo-button"
+    id="logoButton"
+    title="AC-TCET"
+  >
+
+  <!-- Bulletin Popups -->
+  <div class="bulletin" id="bulletin">
+    ✦ AC-TCET OF THAKUR COLLEGE OF ENGINEERING AND TECHNOLOGY ✦
   </div>
 
-  <div class="container">
-    <div class="content">
-      <img src="W NIKHIL.png" alt="Working Member image without background" />
-      <h3 class="name">NIKHIL YADAV</h3>
-      <div class="details-box">
-        <ul>
-          <li>Domain: Technical Team</li>
-          <li>Domain Head: Tanmay Walunj</li>
-        </ul>
-      </div>
-      <div class="year" style="background-color: #07bccc; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-        AC-TCET 2025–2026
-      </div>
+  <div class="bulletin" id="eggMessage">
+    ...
+  </div>
+
+  <!-- Profile Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <h2>DISCOVERY PROFILE</h2>
+      <p>
+        Kimaya Jain is a Working Member of AC-TCET's Creative &amp; Discovery Team for the 2026–2027 committee.
+        <br><br>
+        <span
+          style="
+            color:#9ed4e3;
+            font-family:monospace;
+            font-size:0.75rem;
+          "
+        >
+          OBSERVATION STATUS: ACTIVE<br>
+          FIELD OF VIEW: CELESTIAL HORIZONS<br>
+          DISCOVERY POTENTIAL: UNBOUNDED
+        </span>
+      </p>
+
+      <button class="close" id="closeModal">
+        CLOSE
+      </button>
     </div>
   </div>
 
-  <!-- Bulletin Text -->
-  <div class="bulletin" id="bulletinText">
-    Astronomy Club of Thakur College of Engineering and Technology
-  </div>
-
-  <!-- Logo -->
-  <img src="logo-removebg-preview.png" alt="Astronomy Club Logo" class="logo" id="logoButton" />
-
   <script>
-      const logo = document.getElementById("logoButton");
-    const bulletin = document.getElementById("bulletinText");
+    /* =====================================================
+       CARD PARALLAX
+    ===================================================== */
+    const card = document.getElementById("card");
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
 
-    logo.addEventListener("click", () => {
+    window.addEventListener("pointermove", (e) => {
+      if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
+      targetX = ((e.clientX / window.innerWidth) - 0.5) * 3;
+      targetY = ((e.clientY / window.innerHeight) - 0.5) * -2.5;
+    });
+
+    window.addEventListener("pointerleave", () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    function animateCard() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      card.style.transform = `perspective(1200px) rotateY(${currentX}deg) rotateX(${currentY}deg)`;
+      requestAnimationFrame(animateCard);
+    }
+    animateCard();
+
+    /* =====================================================
+       PROFILE MODAL
+    ===================================================== */
+    const photo = document.getElementById("photo");
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementById("closeModal");
+
+    photo.addEventListener("click", () => modal.classList.add("active"));
+    closeModal.addEventListener("click", () => modal.classList.remove("active"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("active");
+    });
+
+    /* =====================================================
+       LOGO BULLETIN
+    ===================================================== */
+    const logoButton = document.getElementById("logoButton");
+    const bulletin = document.getElementById("bulletin");
+
+    logoButton.addEventListener("click", () => {
       bulletin.classList.toggle("active");
+    });
+
+    /* =====================================================
+       TOAST SYSTEM
+    ===================================================== */
+    const eggMessage = document.getElementById("eggMessage");
+    let eggTimeout;
+
+    function showToast(message) {
+      clearTimeout(eggTimeout);
+      eggMessage.textContent = "✦ " + message + " ✦";
+      eggMessage.classList.add("active");
+      eggTimeout = setTimeout(() => {
+        eggMessage.classList.remove("active");
+      }, 4500);
+    }
+
+    /* =====================================================
+       DISCOVERY ARTIFACT BURST & DEEP-SPACE TOGGLE
+    ===================================================== */
+    const discoveryButton = document.getElementById("discoveryButton");
+    const discoveryField = document.getElementById("discoveryField");
+
+    function createDiscoveryBurst(x, y) {
+      const glyphs = ["🔭", "🪐", "✦", "☄️", "✧", "🛸", "◈", "◇"];
+      for (let i = 0; i < 14; i++) {
+        const span = document.createElement("span");
+        span.className = "celestial-glyph";
+        span.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+        
+        span.style.left = `${x}px`;
+        span.style.top = `${y}px`;
+
+        const angle = (Math.PI * 2 / 14) * i + (Math.random() * 0.4);
+        const dist = 90 + Math.random() * 110;
+        span.style.setProperty("--tx", `${Math.cos(angle) * dist}px`);
+        span.style.setProperty("--ty", `${Math.sin(angle) * dist}px`);
+
+        discoveryField.appendChild(span);
+        setTimeout(() => span.remove(), 2400);
+      }
+    }
+
+    discoveryButton.addEventListener("click", () => {
+      discoveryButton.classList.remove("pulse-anim");
+      void discoveryButton.offsetWidth;
+      discoveryButton.classList.add("pulse-anim");
+
+      const rect = discoveryButton.getBoundingClientRect();
+      createDiscoveryBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+      document.body.classList.toggle("discovery-mode");
+
+      const discoveryQuotes = [
+        "DISCOVERY PROTOCOL // UNVEILING CELESTIAL STRUCTURES BEYOND PERCEPTION.",
+        "ASTRONOMICAL WONDER // THE UNIVERSE IS UNDER NO OBLIGATION TO BE SMALL.",
+        "DEEP SKY TELEMETRY // OBSERVING DISTANT PHENOMENA WITH CLARITY.",
+        "CELESTIAL HORIZONS // EVERY APERTURE REVEALS A NEW REALITY."
+      ];
+
+      showToast(discoveryQuotes[Math.floor(Math.random() * discoveryQuotes.length)]);
+    });
+
+    /* =====================================================
+       DISCOVERY LOG EASTER EGG
+    ===================================================== */
+    const timeEgg = document.getElementById("timeEgg");
+    timeEgg.addEventListener("click", () => {
+      const logs = [
+        "DISCOVERY LOG // M31 ANDROMEDA CORE RESOLVED WITH EXTRAORDINARY CLARITY.",
+        "DISCOVERY LOG // SOLAR WINDS AND CORONAL MASS EJECTIONS MAPPED.",
+        "DISCOVERY LOG // STELLAR INCUBATORS DETECTED IN DEEP EMISSION NEBULAE.",
+        "DISCOVERY LOG // GRAVITATIONAL LENSING REVEALS BACKGROUND GALAXY CLUSTERS.",
+        "DISCOVERY LOG // FOCAL LENGTH CALIBRATED: DISCOVERING BEAUTY IN THE UNSEEN."
+      ];
+      showToast(logs[Math.floor(Math.random() * logs.length)]);
+    });
+
+    /* =====================================================
+       STATUS TELEMETRY CLICK
+    ===================================================== */
+    const statusEgg = document.getElementById("statusEgg");
+    let statusClicks = 0;
+    statusEgg.addEventListener("click", () => {
+      statusClicks++;
+      if (statusClicks >= 3) {
+        showToast("CELESTIAL SURVEY CALIBRATED // APERTURE OPTIMIZED FOR WONDER.");
+        statusClicks = 0;
+      }
+    });
+
+    /* =====================================================
+       NAME TOGGLE EASTER EGG
+    ===================================================== */
+    const nameEgg = document.getElementById("nameEgg");
+    let nameState = false;
+    nameEgg.addEventListener("click", () => {
+      nameState = !nameState;
+      if (nameState) {
+        nameEgg.innerHTML = "SEEK<br>WONDER";
+        showToast("CELESTIAL AXIOM // LOOK UP AND NEVER CEASE EXPLORING.");
+      } else {
+        nameEgg.innerHTML = "KIMAYA<br>JAIN";
+      }
+    });
+
+    /* =====================================================
+       ROLE CLICK EASTER EGG
+    ===================================================== */
+    const roleEgg = document.getElementById("roleEgg");
+    const roleMessages = [
+      "Charting unknown horizons into <span>visible wonder.</span>",
+      "Translating astronomical depth into <span>graphic reality.</span>",
+      "Making cosmic beauty <span>tangible and unforgettable.</span>",
+      "Transforming raw observation into <span>striking visual stories.</span>"
+    ];
+    let roleIdx = 0;
+    roleEgg.addEventListener("click", () => {
+      roleIdx = (roleIdx + 1) % roleMessages.length;
+      roleEgg.innerHTML = roleMessages[roleIdx];
+      showToast("OBSERVATIONAL VECTOR REALIGNED.");
+    });
+
+    /* =====================================================
+       TYPING DISCOVERY KEYWORDS
+    ===================================================== */
+    let keyBuffer = "";
+    document.addEventListener("keydown", (e) => {
+      if (e.key.length !== 1) return;
+      keyBuffer += e.key.toUpperCase();
+      if (keyBuffer.length > 25) keyBuffer = keyBuffer.slice(-25);
+
+      if (keyBuffer.includes("DISCOVERY")) {
+        discoveryButton.click();
+        keyBuffer = "";
+      } else if (keyBuffer.includes("CELESTIAL")) {
+        document.body.style.filter = "hue-rotate(90deg)";
+        showToast("CELESTIAL SPECTRA SHIFT ACTIVATED.");
+        setTimeout(() => { document.body.style.filter = ""; }, 3500);
+        keyBuffer = "";
+      } else if (keyBuffer.includes("WONDER")) {
+        showToast("WONDER // THE ENGINE THAT DRIVES EVERY EXPLORATION.");
+        keyBuffer = "";
+      }
+    });
+
+    /* =====================================================
+       ESCAPE HANDLER
+    ===================================================== */
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        modal.classList.remove("active");
+        eggMessage.classList.remove("active");
+        bulletin.classList.remove("active");
+        document.body.classList.remove("discovery-mode");
+      }
+    });
+
+    /* =====================================================
+       RESIZE
+    ===================================================== */
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 800) {
+        card.style.transform = "none";
+      }
     });
   </script>
 </body>

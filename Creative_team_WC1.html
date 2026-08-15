@@ -5,11 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Astronomy Club | Technical Team</title>
+  <title>AC-TCET | Creative Team</title>
 
   <style>
 
+    /* =====================================================
+       FONTS
+    ===================================================== */
+
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
       margin: 0;
@@ -29,259 +38,136 @@
       color: white;
       font-family: "Space Grotesk", sans-serif;
       min-height: 100vh;
+      position: relative;
     }
 
 
     /* =====================================================
-       SPACE BACKGROUND
+       CREATIVE BACKGROUND
     ===================================================== */
 
-    .space {
+    body::before {
+      content: "";
       position: fixed;
-      inset: 0;
-      overflow: hidden;
-      z-index: -10;
-
-      background:
-        radial-gradient(
-          circle at 20% 20%,
-          rgba(39, 84, 107, 0.34),
-          transparent 32%
-        ),
-
-        radial-gradient(
-          circle at 80% 70%,
-          rgba(39, 84, 107, 0.22),
-          transparent 36%
-        ),
-
-        radial-gradient(
-          circle at 50% 100%,
-          rgba(74, 150, 176, 0.12),
-          transparent 38%
-        ),
-
-        #08151c;
-    }
-
-    .nebula {
-      position: absolute;
-
-      width: 800px;
-      height: 800px;
-
-      border-radius: 50%;
-
-      filter: blur(100px);
-
-      opacity: 0.25;
-
-      animation:
-        nebulaMove 18s ease-in-out infinite alternate;
-    }
-
-    .nebula.one {
-      background: #27546B;
-
-      top: -300px;
+      width: 600px;
+      height: 600px;
       left: -250px;
+      top: -250px;
+
+      background: radial-gradient(
+        circle,
+        rgba(39, 84, 107, 0.30),
+        transparent 70%
+      );
+
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: -3;
+
+      animation: creativeGlow 12s ease-in-out infinite alternate;
     }
 
-    .nebula.two {
-      background: #397d98;
+    body::after {
+      content: "";
+      position: fixed;
+      width: 550px;
+      height: 550px;
+      right: -220px;
+      bottom: -220px;
 
-      right: -300px;
-      bottom: -300px;
+      background: radial-gradient(
+        circle,
+        rgba(39, 84, 107, 0.25),
+        transparent 70%
+      );
 
-      animation-delay: -7s;
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: -3;
+
+      animation: creativeGlow 15s ease-in-out infinite alternate-reverse;
     }
 
-    .nebula.three {
-      background: #5caec7;
-
-      left: 35%;
-      top: 35%;
-
-      width: 400px;
-      height: 400px;
-
-      opacity: 0.12;
-
-      animation-delay: -3s;
-    }
-
-    @keyframes nebulaMove {
-
+    @keyframes creativeGlow {
       from {
-        transform:
-          translate(0, 0)
-          scale(1);
+        transform: translate(0, 0) scale(1);
       }
 
       to {
-        transform:
-          translate(80px, -50px)
-          scale(1.15);
+        transform: translate(80px, -50px) scale(1.15);
       }
     }
 
 
     /* =====================================================
-       STAR FIELD
+       SUBTLE CREATIVE DOTS
     ===================================================== */
 
-    .stars {
-      position: absolute;
+    .creative-background {
+      position: fixed;
       inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -2;
     }
 
-    .star {
+    .creative-dot {
       position: absolute;
+      width: 4px;
+      height: 4px;
 
-      width: 2px;
-      height: 2px;
-
+      background: #27546B;
       border-radius: 50%;
 
-      background: white;
+      box-shadow: 0 0 12px #27546B;
 
-      animation:
-        twinkle var(--duration)
-        ease-in-out infinite;
+      opacity: 0.35;
 
-      animation-delay: var(--delay);
+      animation: floatDot 8s ease-in-out infinite;
     }
 
-    @keyframes twinkle {
-
-      0%,
-      100% {
-        opacity: 0.15;
-        transform: scale(0.7);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.5);
-      }
+    .creative-dot:nth-child(1) {
+      left: 12%;
+      top: 22%;
+      animation-delay: 0s;
     }
 
-
-    /* =====================================================
-       SHOOTING STARS
-    ===================================================== */
-
-    .shooting-star {
-      position: absolute;
-
-      width: 120px;
-      height: 2px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          white
-        );
-
-      transform: rotate(-35deg);
-
-      opacity: 0;
-
-      animation:
-        shooting 7s linear infinite;
+    .creative-dot:nth-child(2) {
+      left: 82%;
+      top: 18%;
+      animation-delay: 2s;
     }
 
-    .shooting-star:nth-child(1) {
-      top: 15%;
-      left: 70%;
-      animation-delay: 1s;
-    }
-
-    .shooting-star:nth-child(2) {
-      top: 35%;
-      left: 20%;
+    .creative-dot:nth-child(3) {
+      left: 18%;
+      top: 78%;
       animation-delay: 4s;
     }
 
-    @keyframes shooting {
-
-      0% {
-        transform:
-          translate(0, 0)
-          rotate(-35deg);
-
-        opacity: 0;
-      }
-
-      5% {
-        opacity: 1;
-      }
-
-      15% {
-        transform:
-          translate(-500px, 350px)
-          rotate(-35deg);
-
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 0;
-      }
+    .creative-dot:nth-child(4) {
+      left: 74%;
+      top: 76%;
+      animation-delay: 1s;
     }
 
+    .creative-dot:nth-child(5) {
+      left: 48%;
+      top: 12%;
+      animation-delay: 3s;
+    }
 
-    /* =====================================================
-       TECH GRID
-    ===================================================== */
+    @keyframes floatDot {
 
-    .tech-grid {
-      position: absolute;
+      0%,
+      100% {
+        transform: translate(0, 0);
+        opacity: 0.25;
+      }
 
-      width: 320px;
-      height: 320px;
-
-      right: -100px;
-      top: 35%;
-
-      opacity: 0.12;
-
-      transform:
-        rotate(30deg)
-        perspective(500px)
-        rotateX(55deg);
-
-      background-image:
-
-        linear-gradient(
-          rgba(120, 210, 230, 0.25) 1px,
-          transparent 1px
-        ),
-
-        linear-gradient(
-          90deg,
-          rgba(120, 210, 230, 0.25) 1px,
-          transparent 1px
-        );
-
-      background-size: 32px 32px;
-
-      mask-image:
-        radial-gradient(
-          circle,
-          black 20%,
-          transparent 70%
-        );
-
-      -webkit-mask-image:
-        radial-gradient(
-          circle,
-          black 20%,
-          transparent 70%
-        );
-
-      pointer-events: none;
+      50% {
+        transform: translate(12px, -18px);
+        opacity: 0.65;
+      }
     }
 
 
@@ -337,19 +223,17 @@
       z-index: 100;
     }
 
+
     .brand {
       display: flex;
-
       align-items: center;
-
       gap: 10px;
 
       font-family: Orbitron, sans-serif;
-
       font-size: 0.85rem;
-
       letter-spacing: 2px;
     }
+
 
     .brand-dot {
       width: 10px;
@@ -362,9 +246,9 @@
       box-shadow:
         0 0 15px #27546B;
 
-      animation:
-        pulse 2s infinite;
+      animation: pulse 2s infinite;
     }
+
 
     @keyframes pulse {
 
@@ -375,6 +259,7 @@
           0 0 25px #27546B;
       }
     }
+
 
     .status {
       color: #b9efff;
@@ -390,9 +275,12 @@
       transition: 0.3s;
     }
 
+
     .status:hover {
       text-shadow:
         0 0 15px #9ed4e3;
+
+      transform: translateY(-1px);
     }
 
 
@@ -416,83 +304,13 @@
       position: relative;
     }
 
+
     .profile-wrapper {
       width: min(1100px, 95vw);
 
       position: relative;
 
       perspective: 1200px;
-    }
-
-
-    /* =====================================================
-       ORBIT
-    ===================================================== */
-
-    .orbit {
-      position: absolute;
-
-      width: 900px;
-      height: 900px;
-
-      border:
-        1px solid rgba(80, 180, 210, 0.12);
-
-      border-radius: 50%;
-
-      left: 50%;
-      top: 50%;
-
-      transform:
-        translate(-50%, -50%)
-        rotateX(65deg);
-
-      animation:
-        orbitSpin 20s linear infinite;
-
-      pointer-events: none;
-    }
-
-    .orbit::before,
-    .orbit::after {
-      content: "";
-
-      position: absolute;
-
-      width: 12px;
-      height: 12px;
-
-      background: #27546B;
-
-      border-radius: 50%;
-
-      box-shadow:
-        0 0 25px #27546B;
-    }
-
-    .orbit::before {
-      top: 15%;
-      left: 10%;
-    }
-
-    .orbit::after {
-      bottom: 10%;
-      right: 20%;
-
-      background: #5caec7;
-
-      box-shadow:
-        0 0 25px #5caec7;
-    }
-
-    @keyframes orbitSpin {
-
-      to {
-        transform:
-          translate(-50%, -50%)
-          rotateX(65deg)
-          rotateZ(360deg);
-      }
     }
 
 
@@ -556,6 +374,7 @@
         box-shadow 0.5s ease;
     }
 
+
     .card::before {
       content: "";
 
@@ -576,6 +395,7 @@
 
       pointer-events: none;
     }
+
 
     .card::after {
       content: "";
@@ -605,6 +425,7 @@
       pointer-events: none;
     }
 
+
     @keyframes glassReflection {
 
       0% {
@@ -618,141 +439,6 @@
       100% {
         left: 140%;
       }
-    }
-
-
-    /* =====================================================
-       MYSTERY / TIME / PARADOX EASTER EGGS
-    ===================================================== */
-
-    .tech-overlay {
-      position: absolute;
-
-      inset: 0;
-
-      pointer-events: none;
-
-      z-index: 10;
-
-      font-family:
-        "Space Grotesk",
-        monospace;
-
-      color:
-        rgba(180, 230, 242, 0.28);
-
-      font-size: 0.55rem;
-
-      letter-spacing: 1.5px;
-    }
-
-    .tech-code {
-      position: absolute;
-
-      white-space: nowrap;
-
-      text-shadow:
-        0 0 10px
-        rgba(39, 84, 107, 0.4);
-
-      opacity: 0.45;
-    }
-
-
-    /* MYSTERY */
-
-    .code-1 {
-      top: 22px;
-      left: 30px;
-
-      color:
-        rgba(158, 212, 227, 0.4);
-    }
-
-
-    /* TIME */
-
-    .code-2 {
-      bottom: 24px;
-      left: 30px;
-
-      color:
-        rgba(158, 212, 227, 0.32);
-    }
-
-
-    /* PARADOX */
-
-    .code-3 {
-      top: 30px;
-      right: 35px;
-
-      font-size: 0.55rem;
-
-      color:
-        rgba(191, 250, 255, 0.35);
-    }
-
-
-    /* Hidden astronomical coordinates */
-
-    .code-4 {
-      top: 52%;
-      right: 25px;
-
-      transform: rotate(90deg);
-
-      color:
-        rgba(158, 212, 227, 0.25);
-    }
-
-
-    /* Strange binary */
-
-    .code-5 {
-      bottom: 30px;
-      right: 35px;
-
-      font-size: 0.48rem;
-
-      opacity: 0.3;
-    }
-
-
-    /* Space-time */
-
-    .code-6 {
-      top: 48%;
-      left: 22px;
-
-      transform: rotate(-90deg);
-
-      color:
-        rgba(158, 212, 227, 0.23);
-    }
-
-
-    /* Unknown */
-
-    .code-7 {
-      top: 100px;
-      right: 30px;
-
-      font-size: 0.48rem;
-
-      opacity: 0.28;
-    }
-
-
-    /* Developer mystery */
-
-    .code-8 {
-      bottom: 85px;
-      left: 30px;
-
-      font-size: 0.48rem;
-
-      opacity: 0.22;
     }
 
 
@@ -771,7 +457,7 @@
 
       justify-content: center;
 
-      gap: 4px;
+      gap: 10px;
 
       min-height: 570px;
 
@@ -779,25 +465,6 @@
         20px 35px;
     }
 
-    .planet-glow {
-      position: absolute;
-
-      width: 360px;
-      height: 360px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(0, 214, 255, 0.18),
-          transparent 65%
-        );
-
-      filter: blur(10px);
-
-      pointer-events: none;
-    }
 
     .photo-ring {
       position: relative;
@@ -832,7 +499,24 @@
       overflow: hidden;
 
       z-index: 2;
+
+      transition:
+        transform 0.4s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.4s ease;
     }
+
+
+    .photo-ring:hover {
+      transform:
+        translateY(-5px)
+        scale(1.015);
+
+      box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(39, 84, 107, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
 
     .photo {
       width: 100%;
@@ -852,24 +536,31 @@
       display: block;
     }
 
+
     .click-photo {
-      position: static;
+      margin-top: 3px;
 
-      margin-top: 0;
-
-      font-size: 0.85rem;
+      font-size: 0.75rem;
 
       letter-spacing: 2px;
 
       color: #bfe7ef;
 
-      opacity: 0.95;
+      opacity: 0.85;
 
       text-align: center;
 
       user-select: none;
 
       z-index: 3;
+
+      transition: 0.3s;
+    }
+
+
+    .visual:hover .click-photo {
+      opacity: 1;
+      letter-spacing: 3px;
     }
 
 
@@ -892,6 +583,7 @@
       z-index: 2;
     }
 
+
     .eyebrow {
       font-family: Orbitron, sans-serif;
 
@@ -903,6 +595,7 @@
 
       margin-bottom: 5px;
     }
+
 
     .info h1 {
       font-family: Orbitron, sans-serif;
@@ -931,7 +624,20 @@
       -webkit-background-clip: text;
 
       color: transparent;
+
+      cursor: pointer;
+
+      transition: 0.3s;
     }
+
+
+    .info h1:hover {
+      transform: translateX(4px);
+
+      filter:
+        drop-shadow(0 0 18px rgba(158, 212, 227, 0.25));
+    }
+
 
     .role {
       color: #d8eaf0;
@@ -939,10 +645,20 @@
       font-size: 1rem;
 
       margin-bottom: 27px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
     }
+
 
     .role span {
       color: #9ed4e3;
+    }
+
+
+    .role:hover {
+      color: #f4fcff;
     }
 
 
@@ -957,6 +673,7 @@
 
       margin-bottom: 30px;
     }
+
 
     .detail {
       display: flex;
@@ -1003,6 +720,7 @@
       cursor: default;
     }
 
+
     .detail:hover {
       transform:
         translateY(-2px)
@@ -1030,6 +748,7 @@
         rgba(39, 84, 107, 0.08);
     }
 
+
     .icon {
       width: 40px;
       height: 40px;
@@ -1048,7 +767,20 @@
       font-size: 1.2rem;
 
       flex-shrink: 0;
+
+      transition: 0.3s;
     }
+
+
+    .detail:hover .icon {
+      transform:
+        rotate(-5deg)
+        scale(1.08);
+
+      box-shadow:
+        0 0 18px rgba(39, 84, 107, 0.3);
+    }
+
 
     .detail small {
       display: block;
@@ -1064,6 +796,7 @@
       text-transform: uppercase;
     }
 
+
     .detail strong {
       font-size: 0.95rem;
 
@@ -1072,7 +805,7 @@
 
 
     /* =====================================================
-       YEAR / TIME EASTER EGG
+       IDEA ARCHIVE EASTER EGG
     ===================================================== */
 
     .year {
@@ -1123,8 +856,11 @@
       transition: 0.3s;
     }
 
+
     .year:hover {
-      transform: scale(1.03);
+      transform:
+        scale(1.03)
+        translateY(-2px);
 
       box-shadow:
         0 0 25px
@@ -1133,7 +869,7 @@
 
 
     /* =====================================================
-       TECH TERMINAL
+       CREATIVE TERMINAL
     ===================================================== */
 
     .terminal {
@@ -1171,138 +907,6 @@
 
 
     /* =====================================================
-       MOON
-    ===================================================== */
-
-    .moon-container {
-      position: fixed;
-
-      bottom: 25px;
-      left: 20px;
-
-      transform: none;
-
-      width: auto;
-
-      height: auto;
-
-      display: flex;
-
-      justify-content: flex-start;
-
-      align-items: flex-start;
-
-      pointer-events: auto;
-
-      z-index: 220;
-    }
-
-    .moon-container::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -6px;
-      width: 160px;
-      height: 28px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.45), rgba(0,0,0,0) 60%);
-      filter: blur(6px);
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 210;
-    }
-
-    .moon {
-      width: 130px;
-      height: auto;
-
-      object-fit: contain;
-
-      filter:
-        drop-shadow(
-          0 0 18px
-          rgba(255, 255, 255, 0.35)
-        )
-
-        drop-shadow(
-          0 0 40px
-          rgba(90, 180, 255, 0.22)
-        );
-
-      opacity: 0.95;
-
-      cursor: pointer;
-
-      pointer-events: auto;
-
-      transition: transform 0.25s ease, filter 0.25s ease;
-    }
-    .moon:hover {
-      transform: scale(1.06);
-    }
-    .moon:hover {
-      filter:
-        drop-shadow(
-          0 0 40px
-          rgba(255, 255, 255, 0.7)
-        )
-
-        drop-shadow(
-          0 0 90px
-          rgba(90, 180, 255, 0.4)
-        );
-    }
-
-
-    /* =====================================================
-       HUD
-    ===================================================== */
-
-    .hud {
-      position: fixed;
-
-      bottom: 18px;
-
-      left: 20px;
-      right: 20px;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      z-index: 50;
-
-      pointer-events: none;
-    }
-
-    .hud-item {
-      padding:
-        8px 13px;
-
-      border-radius: 8px;
-
-      background:
-        rgba(3, 15, 22, 0.65);
-
-      border:
-        1px solid
-        rgba(255, 255, 255, 0.1);
-
-      backdrop-filter:
-        blur(10px);
-
-      color: #a9c5cf;
-
-      font-size: 0.6rem;
-
-      letter-spacing: 2px;
-    }
-
-
-    /* =====================================================
        LOGO
     ===================================================== */
 
@@ -1318,15 +922,19 @@
       border-radius: 12px;
 
       object-fit: contain;
+
       padding: 6px;
 
-      background: rgba(2, 6, 12, 0.65);
+      background:
+        rgba(2, 6, 12, 0.65);
 
       z-index: 100;
 
       cursor: pointer;
 
-      border: 2px solid rgba(39, 84, 107, 0.6);
+      border:
+        2px solid
+        rgba(39, 84, 107, 0.6);
 
       box-shadow:
         0 0 20px
@@ -1334,6 +942,7 @@
 
       transition: 0.3s;
     }
+
 
     .logo-button:hover {
       transform:
@@ -1364,6 +973,9 @@
         translateX(-50%)
         translateY(20px);
 
+      width: max-content;
+      max-width: 90vw;
+
       padding:
         14px 25px;
 
@@ -1385,7 +997,9 @@
 
       letter-spacing: 1px;
 
-      z-index: 99;
+      text-align: center;
+
+      z-index: 200;
 
       opacity: 0;
 
@@ -1398,6 +1012,7 @@
         0 0 30px
         rgba(0, 200, 255, 0.1);
     }
+
 
     .bulletin.active {
       opacity: 1;
@@ -1439,11 +1054,13 @@
         0.4s;
     }
 
+
     .modal.active {
       opacity: 1;
 
       pointer-events: auto;
     }
+
 
     .modal-box {
       width:
@@ -1469,7 +1086,31 @@
       box-shadow:
         0 0 80px
         rgba(0, 180, 255, 0.15);
+
+      animation:
+        modalIn 0.4s ease;
     }
+
+
+    @keyframes modalIn {
+
+      from {
+        transform:
+          translateY(20px)
+          scale(0.96);
+
+        opacity: 0;
+      }
+
+      to {
+        transform:
+          translateY(0)
+          scale(1);
+
+        opacity: 1;
+      }
+    }
+
 
     .modal-box h2 {
       font-family: Orbitron;
@@ -1479,11 +1120,13 @@
       margin-bottom: 15px;
     }
 
+
     .modal-box p {
       color: #d8eaf0;
 
       line-height: 1.7;
     }
+
 
     .close {
       margin-top: 25px;
@@ -1507,6 +1150,7 @@
         0.3s;
     }
 
+
     .close:hover {
       background: #27546B;
 
@@ -1518,21 +1162,22 @@
 
 
     /* =====================================================
-       PARADOX EFFECT
+       CREATIVE GLITCH
     ===================================================== */
 
-    body.paradox {
+    body.creative-glitch {
       animation:
-        paradoxFlash 0.15s linear 5;
-
+        creativeFlash 0.12s linear 6;
     }
 
-    body.paradox .card {
+
+    body.creative-glitch .card {
       animation:
-        paradoxGlitch 0.12s linear 8;
+        creativeGlitch 0.12s linear 8;
     }
 
-    @keyframes paradoxFlash {
+
+    @keyframes creativeFlash {
 
       0% {
         filter: none;
@@ -1540,8 +1185,8 @@
 
       50% {
         filter:
-          hue-rotate(80deg)
-          contrast(1.25);
+          contrast(1.2)
+          brightness(1.1);
       }
 
       100% {
@@ -1549,7 +1194,8 @@
       }
     }
 
-    @keyframes paradoxGlitch {
+
+    @keyframes creativeGlitch {
 
       0% {
         transform: translateX(0);
@@ -1574,6 +1220,393 @@
 
 
     /* =====================================================
+       SECRET CANVAS MODE
+    ===================================================== */
+
+    body.canvas-mode .creative-background {
+      opacity: 1;
+    }
+
+
+    body.canvas-mode .creative-dot {
+      animation:
+        canvasDot 1.5s ease-in-out infinite alternate;
+    }
+
+
+    @keyframes canvasDot {
+
+      from {
+        transform:
+          translate(0, 0)
+          scale(1);
+      }
+
+      to {
+        transform:
+          translate(25px, -25px)
+          scale(1.8);
+      }
+    }
+
+
+    /* =====================================================
+       THE ABYSS — EYE
+    ===================================================== */
+
+    .abyss-eye {
+
+      position: fixed;
+
+      left: 28px;
+      bottom: 28px;
+
+      width: 62px;
+      height: 44px;
+
+      cursor: pointer;
+
+      z-index: 400;
+
+      opacity: 0.38;
+
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s cubic-bezier(.2,.8,.2,1),
+        filter 0.4s ease;
+
+      user-select: none;
+    }
+
+
+    .abyss-eye:hover {
+
+      opacity: 0.85;
+
+      transform:
+        scale(1.08);
+    }
+
+
+    /* Eye outline */
+
+    .eye-white {
+
+      position: absolute;
+
+      inset: 4px 0;
+
+      background:
+        rgba(220, 247, 255, 0.10);
+
+      border:
+        1px solid
+        rgba(185, 239, 255, 0.48);
+
+      border-radius:
+        70% 10% 70% 10%;
+
+      transform:
+        rotate(45deg);
+
+      overflow: hidden;
+
+      backdrop-filter:
+        blur(8px);
+
+      box-shadow:
+
+        inset 0 0 12px
+        rgba(158, 212, 227, 0.12),
+
+        0 0 15px
+        rgba(39, 84, 107, 0.15);
+    }
+
+
+    /* Iris */
+
+    .iris {
+
+      position: absolute;
+
+      width: 23px;
+      height: 23px;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%)
+        rotate(-45deg);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #08151c 0 27%,
+          #27546B 30% 52%,
+          #9ed4e3 55%,
+          #27546B 69%,
+          transparent 72%
+        );
+
+      box-shadow:
+        0 0 15px
+        rgba(158, 212, 227, 0.5);
+
+      transition:
+        transform 0.08s linear;
+    }
+
+
+    /* Pupil */
+
+    .pupil {
+
+      position: absolute;
+
+      width: 8px;
+      height: 8px;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        #02080c;
+
+      box-shadow:
+        0 0 8px
+        rgba(158, 212, 227, 0.5);
+    }
+
+
+    /* Glow */
+
+    .eye-glow {
+
+      position: absolute;
+
+      inset: -18px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(39, 84, 107, 0.22),
+          transparent 65%
+        );
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 0.5s ease;
+    }
+
+
+    /* Lid */
+
+    .eye-lid {
+
+      position: absolute;
+
+      left: -5px;
+      right: -5px;
+
+      top: 50%;
+
+      height: 3px;
+
+      background:
+        rgba(158, 212, 227, 0.45);
+
+      border-radius: 50%;
+
+      z-index: 5;
+
+      transform:
+        translateY(-50%)
+        scaleX(0.75);
+
+      transition:
+        transform 0.5s cubic-bezier(.2,.8,.2,1);
+    }
+
+
+    /* =====================================================
+       ABYSS AWAKE
+    ===================================================== */
+
+    .abyss-eye.awake {
+
+      opacity: 1;
+
+      transform:
+        scale(1.25);
+
+      filter:
+        drop-shadow(
+          0 0 18px
+          rgba(39, 84, 107, 0.65)
+        );
+    }
+
+
+    .abyss-eye.awake:hover {
+
+      transform:
+        scale(1.3);
+    }
+
+
+    .abyss-eye.awake .eye-lid {
+
+      transform:
+        translateY(-50%)
+        scaleX(0);
+    }
+
+
+    .abyss-eye.awake .eye-glow {
+
+      opacity: 1;
+
+      animation:
+        abyssPulse 2s ease-in-out infinite;
+    }
+
+
+    @keyframes abyssPulse {
+
+      0%,
+      100% {
+
+        transform: scale(0.9);
+
+        opacity: 0.35;
+      }
+
+      50% {
+
+        transform: scale(1.15);
+
+        opacity: 0.8;
+      }
+    }
+
+
+    /* =====================================================
+       ABYSS MESSAGE
+    ===================================================== */
+
+    .abyss-message {
+
+      position: fixed;
+
+      left: 28px;
+      bottom: 100px;
+
+      max-width: 330px;
+
+      padding:
+        13px 18px;
+
+      border-radius: 14px;
+
+      background:
+        rgba(4, 18, 28, 0.90);
+
+      border:
+        1px solid
+        rgba(120, 210, 235, 0.28);
+
+      backdrop-filter:
+        blur(18px);
+
+      color:
+        #bffaff;
+
+      font-family:
+        monospace;
+
+      font-size:
+        0.68rem;
+
+      letter-spacing:
+        1.4px;
+
+      line-height:
+        1.5;
+
+      opacity: 0;
+
+      transform:
+        translateY(10px);
+
+      pointer-events: none;
+
+      z-index: 399;
+
+      transition:
+        0.4s ease;
+
+      box-shadow:
+        0 0 30px
+        rgba(0, 200, 255, 0.08);
+    }
+
+
+    .abyss-message.active {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================================
+       ABYSS MODE
+    ===================================================== */
+
+    body.abyss-mode .card {
+
+      box-shadow:
+
+        0 30px 80px
+        rgba(0, 0, 0, 0.6),
+
+        0 0 80px
+        rgba(39, 84, 107, 0.12),
+
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.5);
+    }
+
+
+    body.abyss-mode .creative-background {
+
+      opacity: 0.65;
+    }
+
+
+    body.abyss-mode .creative-dot {
+
+      animation-duration:
+        3s;
+    }
+
+
+    /* =====================================================
        MOBILE
     ===================================================== */
 
@@ -1583,19 +1616,22 @@
         top: 10px;
       }
 
+
       .brand {
         font-size: 0.65rem;
       }
+
 
       .status {
         font-size: 0.55rem;
       }
 
+
       main {
         padding-top: 100px;
-
         padding-bottom: 150px;
       }
+
 
       .card {
         grid-template-columns: 1fr;
@@ -1605,28 +1641,24 @@
         border-radius: 25px;
       }
 
+
       .visual {
         min-height: 330px;
 
         padding:
           25px 20px 5px;
 
-        gap: 4px;
+        gap: 8px;
       }
+
 
       .photo-ring {
         width: 230px;
-
         height: 230px;
 
         border-radius: 24px;
       }
 
-      .planet-glow {
-        width: 280px;
-
-        height: 280px;
-      }
 
       .info {
         padding:
@@ -1637,11 +1669,13 @@
         text-align: center;
       }
 
+
       .eyebrow {
         letter-spacing: 3px;
 
         margin-bottom: 5px;
       }
+
 
       .info h1 {
         font-size: 2.8rem;
@@ -1649,53 +1683,72 @@
         margin-bottom: 15px;
       }
 
+
       .role {
         font-size: 0.85rem;
 
         margin-bottom: 25px;
       }
 
+
       .details {
         text-align: left;
       }
+
 
       .year {
         margin: auto;
       }
 
-      .orbit {
-        width: 500px;
-        height: 500px;
+
+      .logo-button {
+        width: 58px;
+        height: 58px;
+
+        right: 15px;
+        bottom: 15px;
       }
 
-      .moon-container {
-        position: fixed;
-        bottom: 25px;
-        left: 12px;
-        height: auto;
-        transform: none !important;
-        pointer-events: auto;
-      }
-
-      .moon {
-        width: 110px;
-        height: auto;
-      }
-
-      .hud {
-        display: none;
-      }
-
-      .tech-grid {
-        opacity: 0.07;
-      }
-
-      .tech-overlay {
-        opacity: 0.7;
-      }
 
       .terminal {
         display: none;
+      }
+
+
+      .abyss-eye {
+
+        left: 18px;
+        bottom: 18px;
+
+        transform:
+          scale(0.9);
+      }
+
+
+      .abyss-eye.awake {
+
+        transform:
+          scale(1.1);
+      }
+
+
+      .abyss-eye.awake:hover {
+
+        transform:
+          scale(1.15);
+      }
+
+
+      .abyss-message {
+
+        left: 18px;
+        bottom: 82px;
+
+        max-width:
+          calc(100vw - 36px);
+
+        font-size:
+          0.62rem;
       }
     }
 
@@ -1722,24 +1775,41 @@
         font-size: 2.3rem;
       }
 
+
       .photo-ring {
         width: 200px;
-
         height: 200px;
 
         border-radius: 22px;
       }
 
+
       .visual {
         min-height: 290px;
       }
 
-      .moon {
-        width: 110px;
+
+      .topbar {
+        padding:
+          11px 15px;
       }
 
-      .tech-code {
-        font-size: 0.4rem;
+
+      .status {
+        letter-spacing: 1px;
+      }
+
+
+      .bulletin {
+        font-size: 0.65rem;
+        padding: 12px 16px;
+      }
+
+
+      .abyss-eye {
+
+        left: 15px;
+        bottom: 15px;
       }
     }
 
@@ -1752,27 +1822,16 @@
 
 
   <!-- =====================================================
-       SPACE
+       CREATIVE BACKGROUND
   ===================================================== -->
 
-  <div class="space">
+  <div class="creative-background">
 
-    <div class="nebula one"></div>
-
-    <div class="nebula two"></div>
-
-    <div class="nebula three"></div>
-
-    <div
-      class="stars"
-      id="stars">
-    </div>
-
-    <div class="shooting-star"></div>
-
-    <div class="shooting-star"></div>
-
-    <div class="tech-grid"></div>
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
 
   </div>
 
@@ -1787,19 +1846,18 @@
 
       <span class="brand-dot"></span>
 
-      ASTRONOMY CLUB
+      AC-TCET
 
     </div>
 
-    <!-- MYSTERY EASTER EGG -->
 
     <div
       class="status"
       id="statusEgg"
-      title="..."
+      title="There is something hidden here..."
     >
 
-      ● SYSTEM ONLINE
+      ✦ CREATIVE MODE
 
     </div>
 
@@ -1814,8 +1872,6 @@
 
     <div class="profile-wrapper">
 
-      <div class="orbit"></div>
-
 
       <!-- =================================================
            PROFILE CARD
@@ -1828,104 +1884,21 @@
 
 
         <!-- =================================================
-             MYSTERY / TIME / PARADOX CODES
-        ================================================= -->
-
-        <div class="tech-overlay">
-
-
-          <!-- MYSTERY -->
-
-          <span class="tech-code code-1">
-
-            MYSTERY://UNKNOWN
-
-          </span>
-
-
-          <!-- TIME -->
-
-          <span class="tech-code code-2">
-
-            TIME://RELATIVE
-
-          </span>
-
-
-          <!-- PARADOX -->
-
-          <span class="tech-code code-3">
-
-            PARADOX://OBSERVED
-
-          </span>
-
-
-          <!-- Hidden coordinates -->
-
-          <span class="tech-code code-4">
-
-            RA://19:42:07
-
-          </span>
-
-
-          <!-- Binary -->
-
-          <span class="tech-code code-5">
-
-            01010100 01001001 01001101 01000101
-
-          </span>
-
-
-          <!-- Space-time -->
-
-          <span class="tech-code code-6">
-
-            SPACE_TIME://UNDEFINED
-
-          </span>
-
-
-          <!-- Unknown -->
-
-          <span class="tech-code code-7">
-
-            ORIGIN: UNKNOWN
-
-          </span>
-
-
-          <!-- Developer mystery -->
-
-          <span class="tech-code code-8">
-
-            // WHAT HAPPENED BEFORE THE BEGINNING?
-
-          </span>
-
-
-        </div>
-
-
-        <!-- =================================================
              IMAGE SIDE
         ================================================= -->
 
         <div class="visual">
 
-          <div class="planet-glow"></div>
-
 
           <div
             class="photo-ring"
             id="photo"
+            title="Double-click five times..."
           >
 
             <img
-              src="WC/Shinjini Dutta.png"
-              alt="Shinjini Dutta"
+              src="WC/Abhay Singh.png"
+              alt="Abhay Singh"
               class="photo"
             >
 
@@ -1934,9 +1907,10 @@
 
           <div class="click-photo">
 
-            CLICK PROFILE
+            CLICK TO EXPLORE
 
           </div>
+
 
         </div>
 
@@ -1950,28 +1924,29 @@
 
           <div class="eyebrow">
 
-            TECHNICAL TEAM &nbsp; SYSTEM 2026
+            CREATIVE TEAM &nbsp; 2026
 
           </div>
 
 
-          <h1>
+          <h1 id="nameEgg">
 
-            SHINJINI<br>
+            ABHAY<br>
 
-            DUTTA
+            SINGH
 
           </h1>
 
 
-          <p class="role">
+          <p
+            class="role"
+            id="roleEgg"
+          >
 
-            Building the systems behind
+            Turning ideas into
 
             <span>
-
-              the stars.
-
+              something unforgettable.
             </span>
 
           </p>
@@ -1987,7 +1962,7 @@
             <div class="detail">
 
               <div class="icon">
-                &lt;/&gt;
+                ✎
               </div>
 
               <div>
@@ -1997,7 +1972,7 @@
                 </small>
 
                 <strong>
-                  Technical Team
+                  Creative Team
                 </strong>
 
               </div>
@@ -2018,7 +1993,7 @@
                 </small>
 
                 <strong>
-                  Krrish Joshi
+                  Ashika Gupta
                 </strong>
 
               </div>
@@ -2046,48 +2021,50 @@
 
             </div>
 
-          </div>
-
-
-          <!-- =================================================
-               TIME EASTER EGG
-          ================================================= -->
-
-          <div
-            class="year"
-            id="timeEgg"
-          >
-
-            MISSION 2026 — 2027
 
           </div>
 
 
           <!-- =================================================
-               TERMINAL
+               CREATIVE TERMINAL
           ================================================= -->
 
           <div class="terminal">
 
             <span>
-              &gt; initializing_astronomy_core...
+              &gt; opening_creative_canvas...
             </span>
 
             <span class="green">
-              &gt; TECH_TEAM: ONLINE
+              &gt; CREATIVE_TEAM: ONLINE
             </span>
 
             <span>
-              &gt; sensors: READY
+              &gt; imagination: ACTIVE
             </span>
 
             <span>
-              &gt; orbit: STABLE
+              &gt; ideas: INFINITE
             </span>
 
             <span>
-              &gt; curiosity: ∞
+              &gt; creativity: UNLIMITED
             </span>
+
+          </div>
+
+
+          <!-- =================================================
+               IDEA EASTER EGG
+          ================================================= -->
+
+          <div
+            class="year"
+            id="timeEgg"
+            title="Click me. Maybe there's an idea inside."
+          >
+
+            IDEA ARCHIVE — 2026 — 2027
 
           </div>
 
@@ -2101,41 +2078,21 @@
   </main>
 
 
-
-
-  <!-- =====================================================
-       MOON
-       PARADOX EASTER EGG
-  ===================================================== -->
-
-<div class="moon-container" aria-hidden="false" aria-label="Moon container">
-
-  <img
-      src="mooooon.png"
-      alt="Moon"
-      title="Moon — click 5 times"
-      loading="lazy"
-      decoding="async"
-      class="moon"
-      id="moonEgg"
-      aria-label="Moon image"
-  >
-</div>
-
   <!-- =====================================================
        LOGO
   ===================================================== -->
 
   <img
     src="logo-removebg-preview.png"
-    alt="Astronomy Club"
+    alt="AC-TCET"
     class="logo-button"
     id="logoButton"
+    title="AC-TCET"
   >
 
 
   <!-- =====================================================
-       BULLETIN
+       NORMAL BULLETIN
   ===================================================== -->
 
   <div
@@ -2143,7 +2100,7 @@
     id="bulletin"
   >
 
-    ✦ ASTRONOMY CLUB OF THAKUR COLLEGE
+    ✦ AC-TCET OF THAKUR COLLEGE
     OF ENGINEERING AND TECHNOLOGY ✦
 
   </div>
@@ -2164,6 +2121,50 @@
 
 
   <!-- =====================================================
+       ABYSS EYE
+  ===================================================== -->
+
+  <div
+    class="abyss-eye"
+    id="abyssEye"
+    title="..."
+    aria-label="Something is watching"
+  >
+
+    <div class="eye-lid"></div>
+
+    <div class="eye-white">
+
+      <div class="iris">
+
+        <div class="pupil"></div>
+
+      </div>
+
+    </div>
+
+    <div class="eye-glow"></div>
+
+  </div>
+
+
+  <!-- =====================================================
+       ABYSS MESSAGE
+  ===================================================== -->
+
+  <div
+    class="abyss-message"
+    id="abyssMessage"
+  >
+
+    <span id="abyssText">
+      ...
+    </span>
+
+  </div>
+
+
+  <!-- =====================================================
        PROFILE MODAL
   ===================================================== -->
 
@@ -2175,13 +2176,14 @@
     <div class="modal-box">
 
       <h2>
-        TECHNICAL PROFILE
+        CREATIVE PROFILE
       </h2>
+
 
       <p>
 
         Shinjini Dutta is a Working Member
-        of the Astronomy Club's Technical Team
+        of the AC-TCET's Creative Team
         for the 2026–2027 committee.
 
         <br><br>
@@ -2194,13 +2196,14 @@
           "
         >
 
-          SYSTEM STATUS: ONLINE<br>
-          BUILD: TCET-TECH-26<br>
-          ORBIT: STABLE
+          CREATIVE MODE: ACTIVE<br>
+          IDEAS: ALWAYS IN PROGRESS<br>
+          IMAGINATION: UNLIMITED
 
         </span>
 
       </p>
+
 
       <button
         class="close"
@@ -2224,66 +2227,7 @@
 
 
     /* =====================================================
-       GENERATE STARS
-    ===================================================== */
-
-    const stars =
-      document.getElementById("stars");
-
-
-    for (
-      let i = 0;
-      i < 180;
-      i++
-    ) {
-
-      const star =
-        document.createElement("div");
-
-
-      star.className =
-        "star";
-
-
-      star.style.left =
-        Math.random() * 100 + "%";
-
-
-      star.style.top =
-        Math.random() * 100 + "%";
-
-
-      const size =
-        Math.random() * 2 + 1;
-
-
-      star.style.width =
-        size + "px";
-
-
-      star.style.height =
-        size + "px";
-
-
-      star.style.setProperty(
-        "--duration",
-        (Math.random() * 4 + 2) + "s"
-      );
-
-
-      star.style.setProperty(
-        "--delay",
-        (Math.random() * 5) + "s"
-      );
-
-
-      stars.appendChild(star);
-
-    }
-
-
-    /* =====================================================
-       SMOOTH CARD PARALLAX
+       CARD PARALLAX
     ===================================================== */
 
     const card =
@@ -2291,17 +2235,24 @@
 
 
     let targetX = 0;
-
     let targetY = 0;
 
     let currentX = 0;
-
     let currentY = 0;
 
 
     window.addEventListener(
       "pointermove",
       (e) => {
+
+        if (
+          window.matchMedia(
+            "(hover: none) and (pointer: coarse)"
+          ).matches
+        ) {
+          return;
+        }
+
 
         targetX =
           (
@@ -2327,7 +2278,6 @@
       () => {
 
         targetX = 0;
-
         targetY = 0;
 
       }
@@ -2419,7 +2369,7 @@
 
 
     /* =====================================================
-       CLUB LOGO BULLETIN
+       LOGO BULLETIN
     ===================================================== */
 
     const logoButton =
@@ -2447,9 +2397,49 @@
 
 
     /* =====================================================
-       MYSTERY EASTER EGG
-       
-       Click SYSTEM ONLINE 3 times
+       EASTER EGG MESSAGE SYSTEM
+    ===================================================== */
+
+    const eggMessage =
+      document.getElementById(
+        "eggMessage"
+      );
+
+
+    let eggTimeout;
+
+
+    function showEgg(message) {
+
+      clearTimeout(eggTimeout);
+
+      eggMessage.textContent =
+        "✦ " + message + " ✦";
+
+
+      eggMessage.classList.add(
+        "active"
+      );
+
+
+      eggTimeout =
+        setTimeout(
+          () => {
+
+            eggMessage.classList.remove(
+              "active"
+            );
+
+          },
+          4500
+        );
+
+    }
+
+
+    /* =====================================================
+       EASTER EGG 1
+       CREATIVE MODE ×3
     ===================================================== */
 
     const statusEgg =
@@ -2457,32 +2447,27 @@
         "statusEgg"
       );
 
-    const eggMessage =
-      document.getElementById(
-        "eggMessage"
-      );
 
-    let mysteryClicks = 0;
-
-    let mysteryTimer;
+    let creativeClicks = 0;
+    let creativeTimer;
 
 
     statusEgg.addEventListener(
       "click",
       () => {
 
-        mysteryClicks++;
+        creativeClicks++;
 
         clearTimeout(
-          mysteryTimer
+          creativeTimer
         );
 
 
-        mysteryTimer =
+        creativeTimer =
           setTimeout(
             () => {
 
-              mysteryClicks = 0;
+              creativeClicks = 0;
 
             },
             1000
@@ -2490,14 +2475,14 @@
 
 
         if (
-          mysteryClicks === 3
+          creativeClicks === 3
         ) {
 
           showEgg(
-            "MYSTERY FOUND // SOME QUESTIONS ARE BETTER LEFT UNANSWERED."
+            "CREATIVE MODE UNLOCKED // CURIOSITY IS PART OF THE PROCESS."
           );
 
-          mysteryClicks = 0;
+          creativeClicks = 0;
 
         }
 
@@ -2506,9 +2491,8 @@
 
 
     /* =====================================================
-       TIME EASTER EGG
-       
-       Click mission badge
+       EASTER EGG 2
+       IDEA ARCHIVE
     ===================================================== */
 
     const timeEgg =
@@ -2521,39 +2505,36 @@
       "click",
       () => {
 
-        const now =
-          new Date();
+        const ideas = [
 
+          "IDEA FOUND // START WITH A THOUGHT. END WITH SOMETHING PEOPLE REMEMBER.",
 
-        const hours =
-          String(
-            now.getHours()
-          ).padStart(
-            2,
-            "0"
-          );
+          "IDEA FOUND // ROUGH SKETCHES CAN BECOME GREAT STORIES.",
 
+          "IDEA FOUND // DON'T WAIT FOR PERFECT. MAKE SOMETHING.",
 
-        const minutes =
-          String(
-            now.getMinutes()
-          ).padStart(
-            2,
-            "0"
-          );
+          "IDEA FOUND // CREATIVITY GROWS WHEN YOU KEEP PLAYING.",
 
+          "IDEA FOUND // THE BEST CONCEPTS ARE THE ONES YOU DARE TO TRY.",
 
-        const seconds =
-          String(
-            now.getSeconds()
-          ).padStart(
-            2,
-            "0"
-          );
+          "IDEA FOUND // EVERY EMPTY SPACE IS AN INVITATION.",
+
+          "IDEA FOUND // MAKE THEM FEEL SOMETHING.",
+
+          "IDEA FOUND // SOMETIMES THE WEIRD IDEA IS THE RIGHT ONE.",
+
+          "IDEA FOUND // DESIGN IS THINKING MADE VISIBLE."
+
+        ];
 
 
         showEgg(
-          `TIME DETECTED // ${hours}:${minutes}:${seconds} // TIME IS RELATIVE.`
+          ideas[
+            Math.floor(
+              Math.random() *
+              ideas.length
+            )
+          ]
         );
 
       }
@@ -2561,38 +2542,49 @@
 
 
     /* =====================================================
-       PARADOX EASTER EGG
-       
-       Click moon 5 times
+       EASTER EGG 3
+       PHOTO DOUBLE-CLICK ×5
     ===================================================== */
 
-    const moonEgg =
-      document.getElementById(
-        "moonEgg"
-      );
+    let creativePhotoClicks = 0;
+    let creativePhotoTimer;
 
 
-    let moonClicks = 0;
+    photo.addEventListener(
+      "dblclick",
+      (e) => {
+
+        e.preventDefault();
+
+        creativePhotoClicks++;
+
+        clearTimeout(
+          creativePhotoTimer
+        );
 
 
-    moonEgg.addEventListener(
-      "click",
-      () => {
+        creativePhotoTimer =
+          setTimeout(
+            () => {
 
-        moonClicks++;
+              creativePhotoClicks = 0;
+
+            },
+            1200
+          );
 
 
         if (
-          moonClicks === 5
+          creativePhotoClicks === 5
         ) {
 
           document.body.classList.add(
-            "paradox"
+            "creative-glitch"
           );
 
 
           showEgg(
-            "PARADOX DETECTED // YOU WERE HERE BEFORE YOU ARRIVED."
+            "CREATIVITY DETECTED // THERE ARE NO WRONG SKETCHES, ONLY DIRECTIONS."
           );
 
 
@@ -2600,7 +2592,7 @@
             () => {
 
               document.body.classList.remove(
-                "paradox"
+                "creative-glitch"
               );
 
             },
@@ -2608,7 +2600,7 @@
           );
 
 
-          moonClicks = 0;
+          creativePhotoClicks = 0;
 
         }
 
@@ -2617,69 +2609,859 @@
 
 
     /* =====================================================
-       EASTER EGG MESSAGE
+       EASTER EGG 4
+       LOGO ×5
     ===================================================== */
 
-    function showEgg(
-      message
-    ) {
-
-      eggMessage.textContent =
-        "✦ " + message + " ✦";
+    let logoClicks = 0;
+    let logoClickTimer;
 
 
-      eggMessage.classList.add(
-        "active"
-      );
+    logoButton.addEventListener(
+      "click",
+      () => {
+
+        logoClicks++;
+
+        clearTimeout(
+          logoClickTimer
+        );
 
 
-      setTimeout(
-        () => {
+        logoClickTimer =
+          setTimeout(
+            () => {
 
-          eggMessage.classList.remove(
-            "active"
+              logoClicks = 0;
+
+            },
+            1000
           );
 
-        },
-        4500
-      );
 
-    }
+        if (
+          logoClicks === 5
+        ) {
+
+          showEgg(
+            "YOU FOUND THE LOGO LAYER // EVERY GOOD DESIGN HAS SOMETHING HIDING IN PLAIN SIGHT."
+          );
+
+          logoClicks = 0;
+
+        }
+
+      }
+    );
 
 
     /* =====================================================
-       LIVE UTC HUD
+       EASTER EGG 5
+       CLICK THE NAME
     ===================================================== */
 
-    const hudTime =
+    const nameEgg =
       document.getElementById(
-        "hudTime"
+        "nameEgg"
       );
 
 
-    function updateTime() {
-
-      const now =
-        new Date();
+    let nameEggState = false;
 
 
-      const time =
-        now.toUTCString()
-          .split(" ")[4];
+    nameEgg.addEventListener(
+      "click",
+      () => {
+
+        nameEggState =
+          !nameEggState;
 
 
-      hudTime.textContent =
-        "UTC :" + time;
+        if (
+          nameEggState
+        ) {
 
-    }
+          nameEgg.innerHTML =
+            "IDEAS<br>FIRST";
+
+          showEgg(
+            "CREATIVE RULE #01 // START WITH THE IDEA."
+          );
+
+        } else {
+
+          nameEgg.innerHTML =
+            "SHINJINI<br>DUTTA";
+
+        }
+
+      }
+    );
 
 
-    updateTime();
+    /* =====================================================
+       EASTER EGG 6
+       CLICK ROLE
+    ===================================================== */
+
+    const roleEgg =
+      document.getElementById(
+        "roleEgg"
+      );
 
 
-    setInterval(
-      updateTime,
-      1000
+    const roleMessages = [
+
+      "Turning ideas into <span>something unforgettable.</span>",
+
+      "Making imagination <span>look intentional.</span>",
+
+      "Turning blank spaces into <span>possibilities.</span>",
+
+      "Giving good ideas <span>a visual voice.</span>",
+
+      "Making people stop, look & <span>feel something.</span>"
+
+    ];
+
+
+    let roleIndex = 0;
+
+
+    roleEgg.addEventListener(
+      "click",
+      () => {
+
+        roleIndex++;
+
+        if (
+          roleIndex >=
+          roleMessages.length
+        ) {
+
+          roleIndex = 0;
+
+        }
+
+
+        roleEgg.innerHTML =
+          roleMessages[
+            roleIndex
+          ];
+
+
+        showEgg(
+          "CREATIVE DIRECTION UPDATED."
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 7
+       TYPE CREATE / IDEA / DESIGN
+    ===================================================== */
+
+    let secretInput = "";
+
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+
+        if (
+          e.key.length !== 1
+        ) {
+          return;
+        }
+
+
+        secretInput +=
+          e.key.toUpperCase();
+
+
+        if (
+          secretInput.length > 30
+        ) {
+
+          secretInput =
+            secretInput.slice(-30);
+
+        }
+
+
+        if (
+          secretInput.includes(
+            "CREATE"
+          )
+        ) {
+
+          showEgg(
+            "CREATE // THE IDEA WAS ALWAYS THERE. YOU JUST HAD TO LOOK DIFFERENTLY."
+          );
+
+
+          secretInput = "";
+
+          return;
+
+        }
+
+
+        if (
+          secretInput.includes(
+            "IDEA"
+          )
+        ) {
+
+          showEgg(
+            "IDEA // SMALL THOUGHTS CAN BECOME BIG THINGS."
+          );
+
+
+          secretInput = "";
+
+          return;
+
+        }
+
+
+        if (
+          secretInput.includes(
+            "DESIGN"
+          )
+        ) {
+
+          showEgg(
+            "DESIGN // MAKE IT CLEAR. MAKE IT BEAUTIFUL. MAKE IT MATTER."
+          );
+
+
+          secretInput = "";
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 8
+       C ×3
+    ===================================================== */
+
+    let cPresses = 0;
+    let cTimer;
+
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+
+        if (
+          e.key.toLowerCase() !== "c"
+        ) {
+          return;
+        }
+
+
+        cPresses++;
+
+        clearTimeout(
+          cTimer
+        );
+
+
+        cTimer =
+          setTimeout(
+            () => {
+
+              cPresses = 0;
+
+            },
+            800
+          );
+
+
+        if (
+          cPresses === 3
+        ) {
+
+          document.body.classList.toggle(
+            "canvas-mode"
+          );
+
+
+          showEgg(
+            "CANVAS MODE // THE SCREEN IS YOUR SKETCHBOOK."
+          );
+
+
+          cPresses = 0;
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 9
+       TEAM KEYBOARD SHORTCUT
+    ===================================================== */
+
+    let teamSequence = "";
+
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+
+        if (
+          e.key.length !== 1
+        ) {
+          return;
+        }
+
+
+        teamSequence +=
+          e.key.toUpperCase();
+
+
+        if (
+          teamSequence.length > 30
+        ) {
+
+          teamSequence =
+            teamSequence.slice(-30);
+
+        }
+
+
+        if (
+          teamSequence.includes(
+            "CREATIVE"
+          )
+        ) {
+
+          const creativeQuotes = [
+
+            "CREATIVE // WE PAINT WITH PIXELS AND IDEAS.",
+
+            "CREATIVE // EVERY PIXEL TELLS A STORY.",
+
+            "CREATIVE // MAKING THE INVISIBLE VISIBLE.",
+
+            "CREATIVE // BREAKING RULES BEAUTIFULLY.",
+
+            "CREATIVE // WHERE IMAGINATION MEETS EXECUTION."
+
+          ];
+
+
+          showEgg(
+            creativeQuotes[
+              Math.floor(
+                Math.random() *
+                creativeQuotes.length
+              )
+            ]
+          );
+
+
+          teamSequence = "";
+
+          return;
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 10
+       TRIPLE CARD CLICK
+    ===================================================== */
+
+    let cardClicks = 0;
+    let cardClickTimer;
+
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        cardClicks++;
+
+        clearTimeout(
+          cardClickTimer
+        );
+
+
+        cardClickTimer =
+          setTimeout(
+            () => {
+
+              cardClicks = 0;
+
+            },
+            1200
+          );
+
+
+        if (
+          cardClicks === 3
+        ) {
+
+          card.style.animation =
+            "glassReflection 1.5s ease-in-out 3";
+
+
+          showEgg(
+            "GLASS BREAK // SOMETIMES YOU NEED TO SHATTER EXPECTATIONS."
+          );
+
+
+          cardClicks = 0;
+
+          setTimeout(
+            () => {
+
+              card.style.animation = "";
+
+            },
+            1500
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 11
+       KONAMI CODE
+    ===================================================== */
+
+    let konamiSequence = [];
+
+    const konamiCode = [
+      "ArrowUp",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowDown"
+    ];
+
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+
+        konamiSequence.push(
+          e.key
+        );
+
+
+        if (
+          konamiSequence.length > 4
+        ) {
+
+          konamiSequence.shift();
+
+        }
+
+
+        let isKonami =
+          konamiSequence.length === 4 &&
+          konamiSequence[0] ===
+            konamiCode[0] &&
+          konamiSequence[1] ===
+            konamiCode[1] &&
+          konamiSequence[2] ===
+            konamiCode[2] &&
+          konamiSequence[3] ===
+            konamiCode[3];
+
+
+        if (
+          isKonami
+        ) {
+
+          document.body.style.filter =
+            "hue-rotate(180deg)";
+
+
+          showEgg(
+            "PALETTE SHIFT // SEEING THINGS FROM A DIFFERENT ANGLE."
+          );
+
+
+          konamiSequence = [];
+
+
+          setTimeout(
+            () => {
+
+              document.body.style.filter =
+                "";
+
+            },
+            3000
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 12
+       HIDDEN TEAM MESSAGE
+    ===================================================== */
+
+    let boldSequence = 0;
+
+
+    document.addEventListener(
+      "dblclick",
+      () => {
+
+        boldSequence++;
+
+
+        if (
+          boldSequence === 1
+        ) {
+
+          setTimeout(
+            () => {
+
+              boldSequence = 0;
+
+            },
+            2000
+          );
+
+        }
+
+
+        if (
+          boldSequence === 3
+        ) {
+
+          const teamMessages = [
+
+            "THE CREATIVE TEAM BELIEVES: EVERY PROJECT IS A CANVAS.",
+
+            "THE CREATIVE TEAM THINKS: INNOVATION IS JUST CURIOSITY WITH PURPOSE.",
+
+            "THE CREATIVE TEAM KNOWS: GREAT IDEAS START WITH 'WHAT IF?'",
+
+            "THE CREATIVE TEAM SAYS: MAKE IT BOLD, MAKE IT REAL, MAKE IT COUNT.",
+
+            "THE CREATIVE TEAM CREATES: MOMENTS THAT STICK WITH PEOPLE."
+
+          ];
+
+
+          showEgg(
+            teamMessages[
+              Math.floor(
+                Math.random() *
+                teamMessages.length
+              )
+            ]
+          );
+
+
+          boldSequence = 0;
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 13
+       STATUS HOVER COMBO
+    ===================================================== */
+
+    let statusHovers = 0;
+    let statusHoverTimer;
+
+
+    statusEgg.addEventListener(
+      "mouseenter",
+      () => {
+
+        statusHovers++;
+
+        clearTimeout(
+          statusHoverTimer
+        );
+
+
+        statusHoverTimer =
+          setTimeout(
+            () => {
+
+              statusHovers = 0;
+
+            },
+            2000
+          );
+
+
+        if (
+          statusHovers === 7
+        ) {
+
+          const statusModes = [
+
+            "✦ IDEATION MODE",
+
+            "✦ INSPIRATION MODE",
+
+            "✦ EXECUTION MODE",
+
+            "✦ EVOLUTION MODE",
+
+            "✦ EXPERIMENTATION MODE"
+
+          ];
+
+
+          statusEgg.textContent =
+            statusModes[
+              Math.floor(
+                Math.random() *
+                statusModes.length
+              )
+            ];
+
+
+          showEgg(
+            "MODE ACTIVATED // THE CREATIVE MIND NEVER STOPS."
+          );
+
+
+          statusHovers = 0;
+
+
+          setTimeout(
+            () => {
+
+              statusEgg.textContent =
+                "✦ CREATIVE MODE";
+
+            },
+            3000
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EASTER EGG 14
+       THE ABYSS
+    ===================================================== */
+
+    const abyssEye =
+      document.getElementById(
+        "abyssEye"
+      );
+
+
+    const abyssMessage =
+      document.getElementById(
+        "abyssMessage"
+      );
+
+
+    const abyssText =
+      document.getElementById(
+        "abyssText"
+      );
+
+
+    const abyssIris =
+      abyssEye.querySelector(
+        ".iris"
+      );
+
+
+    let abyssAwake = false;
+
+
+    /* =====================================================
+       CLICK THE EYE
+    ===================================================== */
+
+    abyssEye.addEventListener(
+      "click",
+      (e) => {
+
+        e.stopPropagation();
+
+
+        abyssAwake =
+          !abyssAwake;
+
+
+        abyssEye.classList.toggle(
+          "awake",
+          abyssAwake
+        );
+
+
+        document.body.classList.toggle(
+          "abyss-mode",
+          abyssAwake
+        );
+
+
+        if (
+          abyssAwake
+        ) {
+
+          abyssText.textContent =
+            "YOU STARED INTO THE ABYSS. NOW IT'S STARING BACK.";
+
+
+          abyssMessage.classList.add(
+            "active"
+          );
+
+
+          showEgg(
+            "THE ABYSS HAS NOTICED YOU."
+          );
+
+        } else {
+
+          abyssText.textContent =
+            "...";
+
+
+          abyssMessage.classList.remove(
+            "active"
+          );
+
+
+          showEgg(
+            "THE ABYSS LOOKED AWAY."
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       THE EYE FOLLOWS YOUR CURSOR
+    ===================================================== */
+
+    document.addEventListener(
+      "pointermove",
+      (e) => {
+
+        if (
+          !abyssAwake
+        ) {
+          return;
+        }
+
+
+        const rect =
+          abyssEye.getBoundingClientRect();
+
+
+        const eyeX =
+          rect.left +
+          rect.width / 2;
+
+
+        const eyeY =
+          rect.top +
+          rect.height / 2;
+
+
+        const dx =
+          e.clientX - eyeX;
+
+
+        const dy =
+          e.clientY - eyeY;
+
+
+        const angle =
+          Math.atan2(
+            dy,
+            dx
+          );
+
+
+        const distance =
+          Math.min(
+            Math.hypot(
+              dx,
+              dy
+            ) / 18,
+            5
+          );
+
+
+        const x =
+          Math.cos(angle) *
+          distance;
+
+
+        const y =
+          Math.sin(angle) *
+          distance;
+
+
+        abyssIris.style.transform =
+          `translate(
+            calc(-50% + ${x}px),
+            calc(-50% + ${y}px)
+          ) rotate(-45deg)`;
+
+      }
+    );
+
+
+    /* =====================================================
+       MOBILE TOUCH
+    ===================================================== */
+
+    abyssEye.addEventListener(
+      "touchstart",
+      () => {
+
+        if (
+          !abyssAwake
+        ) {
+          return;
+        }
+
+
+        abyssText.textContent =
+          "IT KNOWS YOU ARE STILL THERE.";
+
+      },
+      {
+        passive: true
+      }
     );
 
 
@@ -2699,6 +3481,32 @@
             "active"
           );
 
+
+          eggMessage.classList.remove(
+            "active"
+          );
+
+
+          if (
+            abyssAwake
+          ) {
+
+            abyssAwake = false;
+
+            abyssEye.classList.remove(
+              "awake"
+            );
+
+            document.body.classList.remove(
+              "abyss-mode"
+            );
+
+            abyssMessage.classList.remove(
+              "active"
+            );
+
+          }
+
         }
 
       }
@@ -2706,58 +3514,28 @@
 
 
     /* =====================================================
-       SECRET KEYBOARD EASTER EGG
-       
-       Type:
-       MYSTERY
+       DISABLE PARALLAX ON TOUCH
     ===================================================== */
 
-    let secretInput = "";
-
-
-    document.addEventListener(
-      "keydown",
-      (e) => {
+    window.addEventListener(
+      "resize",
+      () => {
 
         if (
-          e.key.length === 1
+          window.innerWidth <= 800
         ) {
 
-          secretInput +=
-            e.key.toUpperCase();
-
-        }
-
-
-        if (
-          secretInput.length > 20
-        ) {
-
-          secretInput =
-            secretInput.slice(-20);
-
-        }
-
-
-        if (
-          secretInput.includes(
-            "MYSTERY"
-          )
-        ) {
-
-          showEgg(
-            "THE MYSTERY WAS NEVER HIDDEN. YOU JUST WEREN'T LOOKING."
-          );
-
-
-          secretInput = "";
+          card.style.transform =
+            "none";
 
         }
 
       }
     );
 
+
   </script>
+
 
 </body>
 

@@ -2,341 +2,1682 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astronomy Club | Working Committee</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AC-TCET | Creative Team</title>
+
   <style>
+
+    /* =====================================================
+       FONTS
+    ===================================================== */
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    @font-face {
-      font-family: "Meta";
-      src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
-      font-style: normal;
-      font-weight: normal;
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      background: #08151c;
       color: white;
-      overflow-x: hidden;
-      margin: 0;
-      height: 100vh;
-      background: black;
+      font-family: "Space Grotesk", sans-serif;
+      min-height: 100vh;
+      position: relative;
     }
 
-    .bg-container {
+
+    /* =====================================================
+       CREATIVE BACKGROUND
+    ===================================================== */
+
+    body::before {
+      content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      width: 600px;
+      height: 600px;
+      left: -250px;
+      top: -250px;
+
+      background: radial-gradient(
+        circle,
+        rgba(39, 84, 107, 0.30),
+        transparent 70%
+      );
+
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: -3;
+
+      animation: creativeGlow 12s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 550px;
+      height: 550px;
+      right: -220px;
+      bottom: -220px;
+
+      background: radial-gradient(
+        circle,
+        rgba(39, 84, 107, 0.25),
+        transparent 70%
+      );
+
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: -3;
+
+      animation: creativeGlow 15s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes creativeGlow {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(80px, -50px) scale(1.15);
+      }
+    }
+
+
+    /* =====================================================
+       SUBTLE CREATIVE DOTS
+    ===================================================== */
+
+    .creative-background {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
       overflow: hidden;
-      z-index: -1;
+      z-index: -2;
     }
 
-    .bg-image {
+    .creative-dot {
       position: absolute;
-      width: 100%;
-      height: 200vh;
-      background-image: url('https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg');
-      background-repeat: repeat-y;
-      background-size: cover;
-      animation: moveDown 10s linear infinite;
+      width: 4px;
+      height: 4px;
+
+      background: #27546B;
+      border-radius: 50%;
+
+      box-shadow: 0 0 12px #27546B;
+
+      opacity: 0.35;
+
+      animation: floatDot 8s ease-in-out infinite;
     }
 
-    @keyframes moveDown {
-      0% {
-        top: 0;
-      }
+    .creative-dot:nth-child(1) {
+      left: 12%;
+      top: 22%;
+      animation-delay: 0s;
+    }
 
+    .creative-dot:nth-child(2) {
+      left: 82%;
+      top: 18%;
+      animation-delay: 2s;
+    }
+
+    .creative-dot:nth-child(3) {
+      left: 18%;
+      top: 78%;
+      animation-delay: 4s;
+    }
+
+    .creative-dot:nth-child(4) {
+      left: 74%;
+      top: 76%;
+      animation-delay: 1s;
+    }
+
+    .creative-dot:nth-child(5) {
+      left: 48%;
+      top: 12%;
+      animation-delay: 3s;
+    }
+
+    @keyframes floatDot {
+      0%,
       100% {
-        top: -100vh;
+        transform: translate(0, 0);
+        opacity: 0.25;
+      }
+
+      50% {
+        transform: translate(12px, -18px);
+        opacity: 0.65;
       }
     }
 
-    .title {
+
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+
+    .topbar {
       position: fixed;
-      bottom: -100px;
-      width: 100%;
-      text-align: center;
-      animation: riseToTop 3s ease-out forwards;
-      z-index: 1000;
-      padding: 0 5vw;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 20px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.45),
+          rgba(255, 255, 255, 0.055)
+        );
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50px;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 15px 40px rgba(0, 0, 0, 0.3);
+      z-index: 100;
     }
 
-    .title h1 {
-      font-family: "Meta", sans-serif;
-      font-size: 10vw;
-      color: transparent;
-      -webkit-text-stroke: 1px #d6f4f4;
-      font-variation-settings: "wght" 900, "ital" 1;
-      text-shadow:
-        3px 3px 0px #0acddf,
-        5px 5px 0px #0c80c4,
-        7px 7px 0px #0b4295,
-        10px 10px 0px #353138,
-        15px 15px 8px #ffffff;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Orbitron, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      background: #27546B;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #27546B;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.4);
+        box-shadow: 0 0 25px #27546B;
+      }
+    }
+
+    .status {
+      color: #b9efff;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
       cursor: pointer;
-      transition: all 0.5s;
+      user-select: none;
+      transition: 0.3s;
     }
 
-    .title h1:hover {
-      font-variation-settings: "wght" 100, "ital" 0;
-      text-shadow: none;
+    .status:hover {
+      text-shadow: 0 0 15px #9ed4e3;
+      transform: translateY(-1px);
     }
 
-    .title h3 {
-      font-size: 5vw;
-      margin-top: 1vw;
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    main {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 130px 20px 100px;
+      position: relative;
     }
 
-    @keyframes riseToTop {
-      0% {
-        bottom: -100px;
-        opacity: 0;
-      }
-
-      40% {
-        opacity: 1;
-      }
-
-      100% {
-        bottom: 85%;
-      }
+    .profile-wrapper {
+      width: min(1100px, 95vw);
+      position: relative;
+      perspective: 1200px;
     }
 
-    .container {
+
+    /* =====================================================
+       MAIN GLASS CARD
+    ===================================================== */
+
+    .card {
+      position: relative;
+      width: 100%;
+      min-height: 570px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      border-radius: 35px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.58),
+          rgba(39, 84, 107, 0.30) 45%,
+          rgba(8, 21, 28, 0.42)
+        );
+      backdrop-filter: blur(35px) saturate(180%);
+      -webkit-backdrop-filter: blur(35px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.22),
+          transparent 25%,
+          transparent 65%,
+          rgba(120, 205, 225, 0.10)
+        );
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 200%;
+      top: -60%;
+      left: -100%;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.12),
+          transparent
+        );
+      transform: rotate(20deg);
+      animation: glassReflection 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes glassReflection {
+      0% { left: -100%; }
+      45% { left: 140%; }
+      100% { left: 140%; }
+    }
+
+
+    /* =====================================================
+       IMAGE SIDE
+    ===================================================== */
+
+    .visual {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 120px 5vw 20px 5vw;
-    }
-
-    .content {
-      opacity: 0;
-      animation: fadeIn 2s ease 3s forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    img {
-      width: 50vw;
-      max-width: 200px;
-      margin-top: 5vh;
-      border-radius: 10px;
-    }
-
-    .name {
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 6.5vw;
-      background-color: #ffffff;
-      color: #208e98;
-      width: 350px;
-      height: 75px;
-      margin-top: 0.5vh;
-      border: #06365a 4px solid;
-      border-radius: 8px;
-      transition: 0.3s ease;
-      display: flex;
       justify-content: center;
-      align-items: center;
-      text-align: center;
+      gap: 10px;
+      min-height: 570px;
+      padding: 20px 35px;
     }
 
-    .name:hover {
-      background-color: #034e90;
-      border: #ffffff 4px solid !important;
-      border-radius: 0px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .details-box {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      margin-top: 20px;
-      border-radius: 8px;
-      border: 4px solid #03243d;
-      background-color: #054f6cde;
-      color: #d6f4f4;
-      font-weight: bold;
-      width: 350px;
-      max-width: 90vw;
-    }
-
-    ul {
-      list-style: none;
+    .photo-ring {
+      position: relative;
+      width: clamp(350px, 40vw, 550px);
+      height: clamp(350px, 40vw, 550px);
+      border-radius: 28px;
       padding: 0;
+      background: transparent;
+      box-shadow: none;
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 2;
+      transition:
+        transform 0.4s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.4s ease;
     }
 
-    li {
-      margin: 1vh 0;
-      font-size: 4vw;
+    .photo-ring:hover {
+      transform: translateY(-5px) scale(1.015);
+      box-shadow: none;
     }
 
-    .year {
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 4vw;
-      margin-top: 1vh;
-      color: #d6f4f4;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 22px;
+      border: none;
+      display: block;
     }
-.logo {
-      position: fixed;
-      bottom: 10px;
-      left: 5px;
+
+    .click-photo {
+      margin-top: 3px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #bfe7ef;
+      opacity: 0.85;
+      text-align: center;
+      user-select: none;
+      z-index: 3;
+      transition: 0.3s;
+    }
+
+    .visual:hover .click-photo {
+      opacity: 1;
+      letter-spacing: 3px;
+    }
+
+
+    /* =====================================================
+       INFORMATION SIDE
+    ===================================================== */
+
+    .info {
+      padding: 20px 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: Orbitron, sans-serif;
+      color: #b9efff;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      margin-bottom: 5px;
+    }
+
+    .info h1 {
+      font-family: Orbitron, sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      margin-top: 0;
+      margin-bottom: 18px;
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #dff6ff,
+          #9ed4e3
+        );
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .info h1:hover {
+      transform: translateX(4px);
+      filter: drop-shadow(0 0 18px rgba(158, 212, 227, 0.25));
+    }
+
+    .role {
+      color: #d8eaf0;
+      font-size: 1rem;
+      margin-bottom: 27px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .role span {
+      color: #9ed4e3;
+    }
+
+    .role:hover {
+      color: #f4fcff;
+    }
+
+
+    /* =====================================================
+       DETAIL CARDS
+    ===================================================== */
+
+    .details {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .detail {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.34),
+          rgba(255, 255, 255, 0.045)
+        );
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.35s ease;
+      cursor: default;
+    }
+
+    .detail:hover {
+      transform: translateY(-2px) scale(1.008);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(55, 111, 136, 0.48),
+          rgba(255, 255, 255, 0.07)
+        );
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(39, 84, 107, 0.08);
+    }
+
+    .icon {
       width: 40px;
       height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(39, 84, 107, 0.25);
+      color: #b9efff;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: 0.3s;
+    }
+
+    .detail:hover .icon {
+      transform: rotate(-5deg) scale(1.08);
+      box-shadow: 0 0 18px rgba(39, 84, 107, 0.3);
+    }
+
+    .detail small {
+      display: block;
+      color: #b7d0d9;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    .detail strong {
+      font-size: 0.95rem;
+      color: #f4fcff;
+    }
+
+
+    /* =====================================================
+       IDEA ARCHIVE EASTER EGG
+    ===================================================== */
+
+    .year {
+      display: inline-flex;
+      width: fit-content;
+      padding: 11px 20px;
+      border-radius: 50px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39, 84, 107, 0.35),
+          rgba(255, 255, 255, 0.05)
+        );
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #e8faff;
+      font-family: Orbitron, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        0 8px 25px rgba(0, 0, 0, 0.15);
       cursor: pointer;
-      z-index: 1001;
-      border-radius: 50%;
-      transition: transform 0.3s;
-      background-color: thistle;
+      transition: 0.3s;
     }
 
-    .logo:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgb(255, 255, 255);
+    .year:hover {
+      transform: scale(1.03) translateY(-2px);
+      box-shadow: 0 0 25px rgba(92, 174, 199, 0.2);
     }
 
-    /* Bulletin */
+
+    /* =====================================================
+       CREATIVE TERMINAL
+    ===================================================== */
+
+    .terminal {
+      position: absolute;
+      right: 25px;
+      bottom: 25px;
+      font-family: monospace;
+      font-size: 0.45rem;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      color: rgba(170, 225, 240, 0.25);
+      text-align: right;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .terminal span {
+      display: block;
+    }
+
+    .terminal .green {
+      color: rgba(150, 240, 210, 0.35);
+    }
+
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .logo-button {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 68px;
+      height: 68px;
+      border-radius: 12px;
+      object-fit: contain;
+      padding: 6px;
+      background: rgba(2, 6, 12, 0.65);
+      z-index: 100;
+      cursor: pointer;
+      border: 2px solid rgba(39, 84, 107, 0.6);
+      box-shadow: 0 0 20px rgba(39, 84, 107, 0.25);
+      transition: 0.3s;
+    }
+
+    .logo-button:hover {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow:
+        0 0 20px #27546B,
+        0 0 50px rgba(39, 84, 107, 0.3);
+    }
+
+
+    /* =====================================================
+       BULLETIN
+    ===================================================== */
+
     .bulletin {
       position: fixed;
-      bottom: 15px;
-      height: 25px;
-      white-space: nowrap;
-      font-size: 1rem;
-      background-color: #056988;
-      border:#06bcbc 2px solid ;
-      color: #d6f4f4;
-      padding: 10px 20px;
-      border-radius: 0 5px 5px 0;
-      border-left: 5px solid #00ffff;
-      z-index: 1000;
-      font-weight: bold;
-      visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 1;
+      bottom: 95px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      width: max-content;
+      max-width: 90vw;
+      padding: 14px 25px;
+      border-radius: 50px;
+      background: rgba(4, 18, 28, 0.85);
+      border: 1px solid rgba(120, 210, 235, 0.35);
+      backdrop-filter: blur(15px);
+      color: #bffaff;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-align: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s ease;
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.1);
     }
 
     .bulletin.active {
-      visibility: visible;
-      animation: scrollBulletin 15s linear infinite;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
-    @keyframes scrollBulletin {
-      0% {
-        left: 100%;
-        opacity: 1;
+
+    /* =====================================================
+       MODAL
+    ===================================================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 8, 12, 0.8);
+      backdrop-filter: blur(15px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: min(450px, 90%);
+      padding: 40px;
+      text-align: center;
+      border-radius: 25px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 58, 74, 0.95),
+          rgba(4, 15, 21, 0.98)
+        );
+      border: 1px solid rgba(120, 210, 235, 0.35);
+      box-shadow: 0 0 80px rgba(0, 180, 255, 0.15);
+      animation: modalIn 0.4s ease;
+    }
+
+    @keyframes modalIn {
+      from {
+        transform: translateY(20px) scale(0.96);
+        opacity: 0;
       }
-      5% {
-        opacity: 1;
-      }
-      10% {
-        opacity: 1; /* Fade out behind logo */
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        left: -100%;
+      to {
+        transform: translateY(0) scale(1);
         opacity: 1;
       }
     }
-    @media (min-width: 768px) {
-      .title h1 {
-        font-size: 4rem;
+
+    .modal-box h2 {
+      font-family: Orbitron, sans-serif;
+      color: #b9efff;
+      margin-bottom: 15px;
+    }
+
+    .modal-box p {
+      color: #d8eaf0;
+      line-height: 1.7;
+    }
+
+    .close {
+      margin-top: 25px;
+      padding: 10px 25px;
+      border-radius: 30px;
+      border: 1px solid #27546B;
+      background: transparent;
+      color: #b9efff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close:hover {
+      background: #27546B;
+      color: white;
+      box-shadow: 0 0 25px #27546B;
+    }
+
+
+    /* =====================================================
+       CREATIVE GLITCH
+    ===================================================== */
+
+    body.creative-glitch {
+      animation: creativeFlash 0.12s linear 6;
+    }
+
+    body.creative-glitch .card {
+      animation: creativeGlitch 0.12s linear 8;
+    }
+
+    @keyframes creativeFlash {
+      0% { filter: none; }
+      50% { filter: contrast(1.2) brightness(1.1); }
+      100% { filter: none; }
+    }
+
+    @keyframes creativeGlitch {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      50% { transform: translateX(4px); }
+      75% { transform: translateX(-2px); }
+      100% { transform: translateX(0); }
+    }
+
+
+    /* =====================================================
+       SECRET MODES (CANVAS, INFINITY, MYSTERY, EXPLORE)
+    ===================================================== */
+
+    body.canvas-mode .creative-background {
+      opacity: 1;
+    }
+
+    body.canvas-mode .creative-dot {
+      animation: canvasDot 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes canvasDot {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+      to {
+        transform: translate(25px, -25px) scale(1.8);
+      }
+    }
+
+    body.infinity-mode .creative-background {
+      opacity: 0.9;
+    }
+
+    body.infinity-mode .creative-dot {
+      animation: infinityFloat 3s ease-in-out infinite alternate;
+      box-shadow: 0 0 20px #00ffff;
+      background: #a5f3fc;
+    }
+
+    @keyframes infinityFloat {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(3) translate(50px, -30px); }
+      100% { transform: scale(1) translate(-40px, 40px); }
+    }
+
+    body.mystery-mode {
+      filter: invert(0.9) hue-rotate(240deg) contrast(1.2);
+      transition: filter 0.8s ease;
+    }
+
+    body.explore-mode {
+      background: radial-gradient(circle at center, #0d324d 0%, #030a0e 100%) !important;
+      transition: background 1s ease;
+    }
+
+
+    /* =====================================================
+       CAMERA PNG EASTER EGG BUTTON & EFFECTS
+    ===================================================== */
+
+    .camera-button {
+      position: fixed;
+      left: 28px;
+      bottom: 28px;
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+      object-fit: contain;
+      padding: 0;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      z-index: 100;
+      cursor: pointer;
+      border: none;
+      box-shadow: none;
+      transition: all 0.35s cubic-bezier(.2,.8,.2,1);
+      user-select: none;
+    }
+
+    .camera-button:hover {
+      transform: scale(1.15) rotate(-8deg);
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    .camera-button.shutter-press {
+      animation: shutterSnap 0.3s ease-out;
+    }
+
+    @keyframes shutterSnap {
+      0% { transform: scale(0.9) rotate(0deg); filter: brightness(2); }
+      50% { transform: scale(1.2) rotate(-12deg); filter: brightness(1.5); }
+      100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+    }
+
+    .camera-flash-overlay {
+      position: fixed;
+      inset: 0;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .camera-flash-overlay.snap {
+      animation: cameraFlash 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+    }
+
+    @keyframes cameraFlash {
+      0% { opacity: 0.95; }
+      100% { opacity: 0; }
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 800px) {
+      .topbar {
+        top: 10px;
       }
 
-      .title h3 {
-        margin-top: 1.5rem;
-        font-size: 1.5rem;
+      .brand {
+        font-size: 0.65rem;
       }
 
-      .details-box {
-        min-width: 250px;
-        align-self: center;
-        align-items: center;
-        align-content: center;
+      .status {
+        font-size: 0.55rem;
       }
 
-      .name {
-        font-size: 2rem;
-        width: 350px;
+      main {
+        padding-top: 100px;
+        padding-bottom: 150px;
       }
 
-      li {
-        font-size: 1rem;
+      .card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        border-radius: 25px;
+      }
+
+      .visual {
+        min-height: 330px;
+        padding: 25px 20px 5px;
+        gap: 8px;
+      }
+
+      .photo-ring {
+        width: 230px;
+        height: 230px;
+        border-radius: 24px;
+      }
+
+      .info {
+        padding: 20px 25px 45px;
+        text-align: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 3px;
+        margin-bottom: 5px;
+      }
+
+      .info h1 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+      }
+
+      .role {
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+      }
+
+      .details {
+        text-align: left;
       }
 
       .year {
-        font-size: 1rem;
+        margin: auto;
       }
 
-      img {
+      .logo-button {
+        width: 58px;
+        height: 58px;
+        right: 15px;
+        bottom: 15px;
+      }
+
+      .camera-button {
+        width: 85px;
+        height: 85px;
+        left: 15px;
+        bottom: 15px;
+      }
+
+      .terminal {
+        display: none;
+      }
+    }
+
+
+    /* =====================================================
+       TOUCH DEVICES
+    ===================================================== */
+
+    @media (hover: none) and (pointer: coarse) {
+      .card {
+        transform: none !important;
+      }
+    }
+
+
+    /* =====================================================
+       SMALL MOBILE
+    ===================================================== */
+
+    @media (max-width: 450px) {
+      .info h1 {
+        font-size: 2.3rem;
+      }
+
+      .photo-ring {
         width: 200px;
+        height: 200px;
+        border-radius: 22px;
+      }
+
+      .visual {
+        min-height: 290px;
+      }
+
+      .topbar {
+        padding: 11px 15px;
+      }
+
+      .status {
+        letter-spacing: 1px;
       }
 
       .bulletin {
-        font-size: 1.1rem;
-        bottom: 50px;
+        font-size: 0.65rem;
+        padding: 12px 16px;
       }
     }
+
   </style>
+
 </head>
 
+
 <body>
-  <div class="bg-container">
-    <div class="bg-image"></div>
+
+  <!-- =====================================================
+       CAMERA FLASH OVERLAY
+  ===================================================== -->
+  <div class="camera-flash-overlay" id="cameraFlash"></div>
+
+
+  <!-- =====================================================
+       CREATIVE BACKGROUND
+  ===================================================== -->
+
+  <div class="creative-background">
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
+    <span class="creative-dot"></span>
   </div>
 
-  <div class="title">
-    <h1>Astronomy Club</h1>
-    <h3>Working Member</h3>
+
+  <!-- =====================================================
+       TOP BAR
+  ===================================================== -->
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      AC-TCET
+    </div>
+
+    <div
+      class="status"
+      id="statusEgg"
+      title="There is something hidden here..."
+    >
+      ✦ CREATIVE MODE
+    </div>
+  </header>
+
+
+  <!-- =====================================================
+       MAIN
+  ===================================================== -->
+
+  <main>
+    <div class="profile-wrapper">
+
+      <!-- =================================================
+           PROFILE CARD
+      ================================================= -->
+
+      <section class="card" id="card">
+
+        <!-- =================================================
+             IMAGE SIDE
+        ================================================= -->
+
+        <div class="visual">
+          <div
+            class="photo-ring"
+            id="photo"
+            title="Double-click five times..."
+          >
+            <img
+              src="WC/Siddhi Saw.png"
+              alt="Siddhi Saw"
+              class="photo"
+            >
+          </div>
+
+          <div class="click-photo">
+            CLICK TO EXPLORE
+          </div>
+        </div>
+
+
+        <!-- =================================================
+             INFORMATION
+        ================================================= -->
+
+        <div class="info">
+          <div class="eyebrow">
+            CREATIVE TEAM &nbsp; 2026
+          </div>
+
+          <h1 id="nameEgg">
+           Siddhi<br>
+            SAW
+          </h1>
+
+          <p class="role" id="roleEgg">
+            Turning ideas into
+            <span>something unforgettable.</span>
+          </p>
+
+
+          <!-- =================================================
+               DETAILS
+          ================================================= -->
+
+          <div class="details">
+            <div class="detail">
+              <div class="icon">✎</div>
+              <div>
+                <small>Domain</small>
+                <strong>Creative Team</strong>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="icon">◉</div>
+              <div>
+                <small>Domain Head</small>
+                <strong>Ashika Gupta</strong>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="icon">◇</div>
+              <div>
+                <small>Organization</small>
+                <strong>AC-TCET</strong>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- =================================================
+               CREATIVE TERMINAL
+          ================================================= -->
+
+          <div class="terminal">
+            <span>&gt; opening_creative_canvas...</span>
+            <span class="green">&gt; CREATIVE_TEAM: ONLINE</span>
+            <span>&gt; imagination: ACTIVE</span>
+            <span>&gt; ideas: INFINITE</span>
+            <span>&gt; creativity: UNLIMITED</span>
+          </div>
+
+
+          <!-- =================================================
+               IDEA EASTER EGG
+          ================================================= -->
+
+          <div
+            class="year"
+            id="timeEgg"
+            title="Click me. Maybe there's an idea inside."
+          >
+            IDEA ARCHIVE — 2026 — 2027
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+
+  <!-- =====================================================
+       CAMERA PNG BUTTON (BOTTOM-LEFT)
+  ===================================================== -->
+
+  <img
+    src="cam1.png"
+    alt="Capture"
+    class="camera-button"
+    id="cameraButton"
+    title="Capture the frame..."
+  >
+
+
+  <!-- =====================================================
+       LOGO (BOTTOM-RIGHT)
+  ===================================================== -->
+
+  <img
+    src="logo-removebg-preview.png"
+    alt="AC-TCET"
+    class="logo-button"
+    id="logoButton"
+    title="AC-TCET"
+  >
+
+
+  <!-- =====================================================
+       NORMAL BULLETIN
+  ===================================================== -->
+
+  <div class="bulletin" id="bulletin">
+    ✦ AC-TCET OF THAKUR COLLEGE OF ENGINEERING AND TECHNOLOGY ✦
   </div>
 
-  <div class="container">
-    <div class="content">
-      <img src="W PRATHAM.png" alt="Working Member image without background" />
-      <h3 class="name">PRATHAM GUPTA</h3>
-      <div class="details-box">
-        <ul>
-          <li>Domain: Technical Team</li>
-          <li>Domain Head: Mansi More</li>
-        </ul>
-      </div>
-      <div class="year" style="background-color: #07bccc; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-        AC-TCET 2025–2026
-      </div>
+
+  <!-- =====================================================
+       EASTER EGG MESSAGE
+  ===================================================== -->
+
+  <div class="bulletin" id="eggMessage">
+    ...
+  </div>
+
+
+  <!-- =====================================================
+       PROFILE MODAL
+  ===================================================== -->
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <h2>CREATIVE PROFILE</h2>
+      <p>
+        Siddhi Saw is a Working Member of the AC-TCET's Creative Team for the 2026–2027 committee.
+        <br><br>
+        <span
+          style="
+            color:#9ed4e3;
+            font-family:monospace;
+            font-size:0.75rem;
+          "
+        >
+          CREATIVE MODE: ACTIVE<br>
+          IDEAS: ALWAYS IN PROGRESS<br>
+          IMAGINATION: UNLIMITED
+        </span>
+      </p>
+
+      <button class="close" id="closeModal">
+        CLOSE
+      </button>
     </div>
   </div>
 
-  <!-- Bulletin Text -->
-  <div class="bulletin" id="bulletinText">
-    Astronomy Club of Thakur College of Engineering and Technology
-  </div>
 
-  <!-- Logo -->
-  <img src="logo-removebg-preview.png" alt="Astronomy Club Logo" class="logo" id="logoButton" />
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
 
   <script>
-      const logo = document.getElementById("logoButton");
-    const bulletin = document.getElementById("bulletinText");
 
-    logo.addEventListener("click", () => {
+    /* =====================================================
+       CARD PARALLAX
+    ===================================================== */
+
+    const card = document.getElementById("card");
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    window.addEventListener("pointermove", (e) => {
+      if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
+        return;
+      }
+      targetX = ((e.clientX / window.innerWidth) - 0.5) * 3;
+      targetY = ((e.clientY / window.innerHeight) - 0.5) * -2.5;
+    });
+
+    window.addEventListener("pointerleave", () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    function animateCard() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      card.style.transform =
+        `perspective(1200px) rotateY(${currentX}deg) rotateX(${currentY}deg)`;
+
+      requestAnimationFrame(animateCard);
+    }
+
+    animateCard();
+
+
+    /* =====================================================
+       PROFILE MODAL
+    ===================================================== */
+
+    const photo = document.getElementById("photo");
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementById("closeModal");
+
+    photo.addEventListener("click", () => {
+      modal.classList.add("active");
+    });
+
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("active");
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+      }
+    });
+
+
+    /* =====================================================
+       LOGO BULLETIN
+    ===================================================== */
+
+    const logoButton = document.getElementById("logoButton");
+    const bulletin = document.getElementById("bulletin");
+
+    logoButton.addEventListener("click", () => {
       bulletin.classList.toggle("active");
     });
+
+
+    /* =====================================================
+       EASTER EGG MESSAGE SYSTEM
+    ===================================================== */
+
+    const eggMessage = document.getElementById("eggMessage");
+    let eggTimeout;
+
+    function showEgg(message) {
+      clearTimeout(eggTimeout);
+      eggMessage.textContent = "✦ " + message + " ✦";
+      eggMessage.classList.add("active");
+
+      eggTimeout = setTimeout(() => {
+        eggMessage.classList.remove("active");
+      }, 4500);
+    }
+
+
+    /* =====================================================
+       EASTER EGG 1: STATUS CLICK ×3
+    ===================================================== */
+
+    const statusEgg = document.getElementById("statusEgg");
+    let creativeClicks = 0;
+    let creativeTimer;
+
+    statusEgg.addEventListener("click", () => {
+      creativeClicks++;
+      clearTimeout(creativeTimer);
+      creativeTimer = setTimeout(() => {
+        creativeClicks = 0;
+      }, 1000);
+
+      if (creativeClicks === 3) {
+        showEgg("CREATIVE MODE UNLOCKED // CURIOSITY IS PART OF THE PROCESS.");
+        creativeClicks = 0;
+      }
+    });
+
+
+    /* =====================================================
+       EASTER EGG 2: IDEA ARCHIVE
+    ===================================================== */
+
+    const timeEgg = document.getElementById("timeEgg");
+
+    timeEgg.addEventListener("click", () => {
+      const ideas = [
+        "IDEA FOUND // START WITH A THOUGHT. END WITH SOMETHING PEOPLE REMEMBER.",
+        "IDEA FOUND // ROUGH SKETCHES CAN BECOME GREAT STORIES.",
+        "IDEA FOUND // DON'T WAIT FOR PERFECT. MAKE SOMETHING.",
+        "IDEA FOUND // CREATIVITY GROWS WHEN YOU KEEP PLAYING.",
+        "IDEA FOUND // THE BEST CONCEPTS ARE THE ONES YOU DARE TO TRY.",
+        "IDEA FOUND // EVERY EMPTY SPACE IS AN INVITATION.",
+        "IDEA FOUND // MAKE THEM FEEL SOMETHING.",
+        "IDEA FOUND // SOMETIMES THE WEIRD IDEA IS THE RIGHT ONE.",
+        "IDEA FOUND // DESIGN IS THINKING MADE VISIBLE."
+      ];
+
+      showEgg(ideas[Math.floor(Math.random() * ideas.length)]);
+    });
+
+
+    /* =====================================================
+       EASTER EGG 3: PHOTO DOUBLE-CLICK ×5
+    ===================================================== */
+
+    let creativePhotoClicks = 0;
+    let creativePhotoTimer;
+
+    photo.addEventListener("dblclick", (e) => {
+      e.preventDefault();
+      creativePhotoClicks++;
+      clearTimeout(creativePhotoTimer);
+      creativePhotoTimer = setTimeout(() => {
+        creativePhotoClicks = 0;
+      }, 1200);
+
+      if (creativePhotoClicks === 5) {
+        document.body.classList.add("creative-glitch");
+        showEgg("CREATIVITY DETECTED // THERE ARE NO WRONG SKETCHES, ONLY DIRECTIONS.");
+
+        setTimeout(() => {
+          document.body.classList.remove("creative-glitch");
+        }, 1300);
+
+        creativePhotoClicks = 0;
+      }
+    });
+
+
+    /* =====================================================
+       EASTER EGG 4: LOGO ×5
+    ===================================================== */
+
+    let logoClicks = 0;
+    let logoClickTimer;
+
+    logoButton.addEventListener("click", () => {
+      logoClicks++;
+      clearTimeout(logoClickTimer);
+      logoClickTimer = setTimeout(() => {
+        logoClicks = 0;
+      }, 1000);
+
+      if (logoClicks === 5) {
+        showEgg("YOU FOUND THE LOGO LAYER // EVERY GOOD DESIGN HAS SOMETHING HIDING IN PLAIN SIGHT.");
+        logoClicks = 0;
+      }
+    });
+
+
+    /* =====================================================
+       EASTER EGG 5: CLICK THE NAME
+    ===================================================== */
+
+    const nameEgg = document.getElementById("nameEgg");
+    let nameEggState = false;
+
+    nameEgg.addEventListener("click", () => {
+      nameEggState = !nameEggState;
+
+      if (nameEggState) {
+        nameEgg.innerHTML = "IDEAS<br>FIRST";
+        showEgg("CREATIVE RULE #01 // START WITH THE IDEA.");
+      } else {
+        nameEgg.innerHTML = "";
+      }
+    });
+
+
+    /* =====================================================
+       EASTER EGG 6: CLICK ROLE
+    ===================================================== */
+
+    const roleEgg = document.getElementById("roleEgg");
+    const roleMessages = [
+      "Turning ideas into <span>something unforgettable.</span>",
+      "Making imagination <span>look intentional.</span>",
+      "Turning blank spaces into <span>possibilities.</span>",
+      "Giving good ideas <span>a visual voice.</span>",
+      "Making people stop, look & <span>feel something.</span>"
+    ];
+
+    let roleIndex = 0;
+
+    roleEgg.addEventListener("click", () => {
+      roleIndex = (roleIndex + 1) % roleMessages.length;
+      roleEgg.innerHTML = roleMessages[roleIndex];
+      showEgg("CREATIVE DIRECTION UPDATED.");
+    });
+
+
+    /* =====================================================
+       EASTER EGG 7: CAMERA PNG EASTER EGG
+    ===================================================== */
+
+    const cameraButton = document.getElementById("cameraButton");
+    const cameraFlash = document.getElementById("cameraFlash");
+
+    cameraButton.addEventListener("click", () => {
+      // Trigger snap animation on the camera button
+      cameraButton.classList.remove("shutter-press");
+      void cameraButton.offsetWidth;
+      cameraButton.classList.add("shutter-press");
+
+      // Trigger fullscreen flash
+      cameraFlash.classList.remove("snap");
+      void cameraFlash.offsetWidth;
+      cameraFlash.classList.add("snap");
+
+      const cameraQuotes = [
+        "FRAME CAPTURED // FOCUS ON WHAT MATTERS.",
+        "SHUTTER // FREEZING TIME IN 60FPS.",
+        "EXPOSURE // EVERY PERSPECTIVE BRINGS A NEW LIGHT.",
+        "SNAPSHOT // LIFE IS THE ULTIMATE HIGH-RESOLUTION CANVAS."
+      ];
+
+      showEgg(cameraQuotes[Math.floor(Math.random() * cameraQuotes.length)]);
+    });
+
+
+    /* =====================================================
+       EASTER EGG 8: TYPING WORDS (INFINITY, MYSTERY, EXPLORE, CAMERA, ETC.)
+    ===================================================== */
+
+    let secretInput = "";
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key.length !== 1) return;
+
+      secretInput += e.key.toUpperCase();
+      if (secretInput.length > 30) {
+        secretInput = secretInput.slice(-30);
+      }
+
+      if (secretInput.includes("INFINITY")) {
+        document.body.classList.toggle("infinity-mode");
+        showEgg("INFINITY MODE // TO IMAGINATION AND BEYOND ∞");
+        secretInput = "";
+        return;
+      }
+
+      if (secretInput.includes("MYSTERY")) {
+        document.body.classList.toggle("mystery-mode");
+        showEgg("MYSTERY UNVEILED // SHADOWS HOLD THE BEST SECRETS.");
+        secretInput = "";
+        return;
+      }
+
+      if (secretInput.includes("EXPLORE")) {
+        document.body.classList.toggle("explore-mode");
+        showEgg("EXPLORER PROTOCOL // EXPANDING HORIZONS.");
+        secretInput = "";
+        return;
+      }
+
+      if (secretInput.includes("CAMERA")) {
+        cameraButton.click();
+        secretInput = "";
+        return;
+      }
+
+      if (secretInput.includes("CREATE")) {
+        showEgg("CREATE // THE IDEA WAS ALWAYS THERE. YOU JUST HAD TO LOOK DIFFERENTLY.");
+        secretInput = "";
+        return;
+      }
+
+      if (secretInput.includes("IDEA")) {
+        showEgg("IDEA // SMALL THOUGHTS CAN BECOME BIG THINGS.");
+        secretInput = "";
+        return;
+      }
+
+      if (secretInput.includes("DESIGN")) {
+        showEgg("DESIGN // MAKE IT CLEAR. MAKE IT BEAUTIFUL. MAKE IT MATTER.");
+        secretInput = "";
+      }
+    });
+
+
+    /* =====================================================
+       EASTER EGG 9: C ×3 (CANVAS MODE)
+    ===================================================== */
+
+    let cPresses = 0;
+    let cTimer;
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key.toLowerCase() !== "c") return;
+
+      cPresses++;
+      clearTimeout(cTimer);
+      cTimer = setTimeout(() => {
+        cPresses = 0;
+      }, 800);
+
+      if (cPresses === 3) {
+        document.body.classList.toggle("canvas-mode");
+        showEgg("CANVAS MODE // THE SCREEN IS YOUR SKETCHBOOK.");
+        cPresses = 0;
+      }
+    });
+
+
+    /* =====================================================
+       EASTER EGG 10: TEAM SHORTCUT ("CREATIVE")
+    ===================================================== */
+
+    let teamSequence = "";
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key.length !== 1) return;
+
+      teamSequence += e.key.toUpperCase();
+      if (teamSequence.length > 30) {
+        teamSequence = teamSequence.slice(-30);
+      }
+
+      if (teamSequence.includes("CREATIVE")) {
+        const creativeQuotes = [
+          "CREATIVE // WE PAINT WITH PIXELS AND IDEAS.",
+          "CREATIVE // EVERY PIXEL TELLS A STORY.",
+          "CREATIVE // MAKING THE INVISIBLE VISIBLE.",
+          "CREATIVE // BREAKING RULES BEAUTIFULLY.",
+          "CREATIVE // WHERE IMAGINATION MEETS EXECUTION."
+        ];
+
+        showEgg(creativeQuotes[Math.floor(Math.random() * creativeQuotes.length)]);
+        teamSequence = "";
+      }
+    });
+
+
+    /* =====================================================
+       EASTER EGG 11: KONAMI CODE
+    ===================================================== */
+
+    let konamiSequence = [];
+    const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown"];
+
+    document.addEventListener("keydown", (e) => {
+      konamiSequence.push(e.key);
+      if (konamiSequence.length > 4) {
+        konamiSequence.shift();
+      }
+
+      const isKonami =
+        konamiSequence.length === 4 &&
+        konamiSequence.every((val, idx) => val === konamiCode[idx]);
+
+      if (isKonami) {
+        document.body.style.filter = "hue-rotate(180deg)";
+        showEgg("PALETTE SHIFT // SEEING THINGS FROM A DIFFERENT ANGLE.");
+        konamiSequence = [];
+
+        setTimeout(() => {
+          document.body.style.filter = "";
+        }, 3000);
+      }
+    });
+
+
+    /* =====================================================
+       ESCAPE KEY HANDLER
+    ===================================================== */
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        modal.classList.remove("active");
+        eggMessage.classList.remove("active");
+        document.body.classList.remove("infinity-mode", "mystery-mode", "explore-mode", "canvas-mode");
+      }
+    });
+
+
+    /* =====================================================
+       DISABLE PARALLAX ON RESIZE
+    ===================================================== */
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 800) {
+        card.style.transform = "none";
+      }
+    });
+
   </script>
+
 </body>
 
 </html>

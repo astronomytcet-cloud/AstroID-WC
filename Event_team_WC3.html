@@ -2,339 +2,949 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astronomy Club | Working Committee</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Astronomy Club | Event Management Team</title>
+
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    @font-face {
-      font-family: "Meta";
-      src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2") format("woff2");
-      font-style: normal;
-      font-weight: normal;
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      background: #060e14;
       color: white;
-      overflow-x: hidden;
-      margin: 0;
-      height: 100vh;
-      background: black;
+      font-family: "Space Grotesk", sans-serif;
+      min-height: 100vh;
+      position: relative;
     }
 
-    .bg-container {
+    /* =====================================================
+       SPACE BACKGROUND (No Stars)
+    ===================================================== */
+    .space {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       overflow: hidden;
-      z-index: -1;
+      z-index: -10;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(39, 84, 107, 0.38), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(39, 84, 107, 0.25), transparent 40%),
+        radial-gradient(circle at 50% 100%, rgba(74, 150, 176, 0.15), transparent 45%),
+        #060e14;
     }
 
-    .bg-image {
+    .nebula {
       position: absolute;
-      width: 100%;
-      height: 200vh;
-      background-image: url('https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg');
-      background-repeat: repeat-y;
-      background-size: cover;
-      animation: moveDown 10s linear infinite;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.28;
+      animation: nebulaMove 20s ease-in-out infinite alternate;
     }
 
-    @keyframes moveDown {
-      0% {
-        top: 0;
-      }
-
-      100% {
-        top: -100vh;
-      }
+    .nebula.one {
+      background: #27546B;
+      top: -300px;
+      left: -250px;
     }
 
-    .title {
+    .nebula.two {
+      background: #397d98;
+      right: -300px;
+      bottom: -300px;
+      animation-delay: -7s;
+    }
+
+    .nebula.three {
+      background: #5caec7;
+      left: 35%;
+      top: 35%;
+      width: 450px;
+      height: 450px;
+      opacity: 0.14;
+      animation-delay: -3s;
+    }
+
+    @keyframes nebulaMove {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(80px, -50px) scale(1.18); }
+    }
+
+    .event-grid {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      right: -100px;
+      top: 30%;
+      opacity: 0.15;
+      transform: rotate(30deg) perspective(500px) rotateX(55deg);
+      background-image:
+        linear-gradient(rgba(120, 210, 230, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 210, 230, 0.3) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(circle, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(circle, black 20%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+    .topbar {
       position: fixed;
-      bottom: -100px;
-      width: 100%;
-      text-align: center;
-      animation: riseToTop 3s ease-out forwards;
-      z-index: 1000;
-      padding: 0 5vw;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 24px;
+      background: linear-gradient(135deg, rgba(39, 84, 107, 0.45), rgba(255, 255, 255, 0.055));
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 15px 40px rgba(0, 0, 0, 0.3);
+      z-index: 100;
     }
 
-    .title h1 {
-      font-family: "Meta", sans-serif;
-      font-size: 10vw;
-      color: transparent;
-      -webkit-text-stroke: 1px #d6f4f4;
-      font-variation-settings: "wght" 900, "ital" 1;
-      text-shadow:
-        3px 3px 0px #0acddf,
-        5px 5px 0px #0c80c4,
-        7px 7px 0px #0b4295,
-        10px 10px 0px #353138,
-        15px 15px 8px #ffffff;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: Orbitron, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      background: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #38bdf8;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.4);
+        box-shadow: 0 0 25px #38bdf8;
+      }
+    }
+
+    .status {
+      color: #b9efff;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      user-select: none;
       cursor: pointer;
-      transition: all 0.5s;
     }
 
-    .title h1:hover {
-      font-variation-settings: "wght" 100, "ital" 0;
-      text-shadow: none;
+    /* =====================================================
+       MAIN & PROFILE CARD
+    ===================================================== */
+    main {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 120px 20px 140px;
+      position: relative;
     }
 
-    .title h3 {
-      font-size: 5vw;
-      margin-top: 1vw;
+    .profile-wrapper {
+      width: min(1100px, 95vw);
+      position: relative;
+      perspective: 1200px;
     }
 
-    @keyframes riseToTop {
-      0% {
-        bottom: -100px;
-        opacity: 0;
-      }
-
-      40% {
-        opacity: 1;
-      }
-
-      100% {
-        bottom: 85%;
-      }
+    .orbit {
+      position: absolute;
+      width: 900px;
+      height: 900px;
+      border: 1px dashed rgba(80, 180, 210, 0.18);
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotateX(65deg);
+      animation: orbitSpin 24s linear infinite;
+      pointer-events: none;
     }
 
-    .container {
+    @keyframes orbitSpin {
+      to { transform: translate(-50%, -50%) rotateX(65deg) rotateZ(360deg); }
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      min-height: 570px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      border-radius: 35px;
+      background: linear-gradient(135deg, rgba(39, 84, 107, 0.55), rgba(39, 84, 107, 0.28) 45%, rgba(8, 21, 28, 0.45));
+      backdrop-filter: blur(35px) saturate(180%);
+      -webkit-backdrop-filter: blur(35px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .event-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      color: rgba(180, 230, 242, 0.25);
+      font-size: 0.55rem;
+      letter-spacing: 1.5px;
+    }
+
+    .event-code {
+      position: absolute;
+      white-space: nowrap;
+      text-shadow: 0 0 10px rgba(39, 84, 107, 0.4);
+      opacity: 0.45;
+    }
+
+    .code-1 { top: 22px; left: 30px; }
+    .code-2 { bottom: 24px; left: 30px; }
+    .code-3 { top: 30px; right: 35px; }
+    .code-4 { top: 52%; right: 25px; transform: rotate(90deg); }
+    .code-5 { bottom: 30px; right: 35px; font-size: 0.48rem; }
+    .code-6 { top: 48%; left: 22px; transform: rotate(-90deg); }
+
+    .visual {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 120px 5vw 20px 5vw;
-    }
-
-    .content {
-      opacity: 0;
-      animation: fadeIn 2s ease 3s forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    img {
-      width: 50vw;
-      max-width: 200px;
-      margin-top: 5vh;
-      border-radius: 10px;
-    }
-
-    .name {
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 6.5vw;
-      background-color: #ffffff;
-      color: #208e98;
-      width: 350px;
-      height: 75px;
-      margin-top: 0.5vh;
-      border: #06365a 4px solid;
-      border-radius: 8px;
-      transition: 0.3s ease;
-      display: flex;
       justify-content: center;
-      align-items: center;
-      text-align: center;
+      gap: 12px;
+      min-height: 570px;
+      padding: 20px 35px;
     }
 
-    .name:hover {
-      background-color: #034e90;
-      border: #ffffff 4px solid !important;
-      border-radius: 0px;
-      color: white;
+    .planet-glow {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 214, 255, 0.18), transparent 65%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .photo-ring {
+      position: relative;
+      width: clamp(280px, 29vw, 430px);
+      height: clamp(280px, 29vw, 430px);
+      border-radius: 28px;
+      padding: 8px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(39, 84, 107, 0.38));
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: block;
+    }
+
+    .click-photo {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      color: #bfe7ef;
+      opacity: 0.95;
+      text-align: center;
+      user-select: none;
+      z-index: 3;
+    }
+
+    .info {
+      padding: 20px 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: Orbitron, sans-serif;
+      color: #b9efff;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      margin-bottom: 5px;
+    }
+
+    .info h1 {
+      font-family: Orbitron, sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+      background: linear-gradient(90deg, #ffffff, #dff6ff, #9ed4e3);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
       cursor: pointer;
     }
 
-    .details-box {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      margin-top: 20px;
-      border-radius: 8px;
-      border: 4px solid #03243d;
-      background-color: #054f6cde;
-      color: #d6f4f4;
-      font-weight: bold;
-      width: 350px;
-      max-width: 90vw;
+    .role {
+      color: #d8eaf0;
+      font-size: 1rem;
+      margin-bottom: 27px;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .role span { color: #9ed4e3; }
+
+    .details {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 30px;
     }
 
-    li {
-      margin: 1vh 0;
-      font-size: 4vw;
+    .detail {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(39, 84, 107, 0.34), rgba(255, 255, 255, 0.045));
+      backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.35s ease;
+    }
+
+    .detail:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(55, 111, 136, 0.48), rgba(255, 255, 255, 0.07));
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(39, 84, 107, 0.25);
+      color: #b9efff;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .detail small {
+      display: block;
+      color: #b7d0d9;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    .detail strong {
+      font-size: 0.95rem;
+      color: #f4fcff;
     }
 
     .year {
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 4vw;
-      margin-top: 1vh;
-      color: #d6f4f4;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-    }
-.logo {
-      position: fixed;
-      bottom: 10px;
-      left: 5px;
-      width: 40px;
-      height: 40px;
+      display: inline-flex;
+      width: fit-content;
+      padding: 11px 20px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, rgba(39, 84, 107, 0.35), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #e8faff;
+      font-family: Orbitron, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
       cursor: pointer;
-      z-index: 1001;
-      border-radius: 50%;
-      transition: transform 0.3s;
-      background-color: thistle;
+      transition: 0.3s;
     }
 
-    .logo:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgb(255, 255, 255);
+    .year:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(92, 174, 199, 0.3);
     }
 
-    /* Bulletin */
+    /* =====================================================
+       INFINITY ARTIFACT (BOTTOM LEFT TRIGGER)
+    ===================================================== */
+    .infinity-dock {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      z-index: 150;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .infinity-btn {
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
+      background: radial-gradient(circle, rgba(16, 42, 57, 0.85) 0%, rgba(5, 16, 23, 0.95) 100%);
+      border: 1.5px solid rgba(130, 225, 255, 0.45);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 200, 255, 0.2);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .infinity-btn img,
+    .infinity-btn svg {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(100, 220, 255, 0.8));
+      transition: transform 0.6s ease;
+    }
+
+    .infinity-btn:hover {
+      transform: scale(1.12) translateY(-3px);
+      border-color: rgba(180, 245, 255, 0.85);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 230, 255, 0.5);
+    }
+
+    .infinity-btn:hover img,
+    .infinity-btn:hover svg {
+      transform: rotate(180deg) scale(1.1);
+    }
+
+    .infinity-hint {
+      font-family: Orbitron, sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 2px;
+      color: rgba(185, 239, 255, 0.7);
+      text-transform: uppercase;
+      pointer-events: none;
+      animation: hintFade 2s infinite alternate;
+    }
+
+    @keyframes hintFade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    /* =====================================================
+       ASTRO LOGO BUTTON & BULLETIN (BOTTOM RIGHT)
+    ===================================================== */
+    .logo-button {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
+      object-fit: contain;
+      padding: 6px;
+      background: rgba(2, 6, 12, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      cursor: pointer;
+      border: 2px solid rgba(39, 84, 107, 0.75);
+      box-shadow: 0 0 20px rgba(39, 84, 107, 0.3);
+      transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .logo-button:hover {
+      transform: scale(1.12) rotate(8deg);
+      box-shadow: 0 0 25px #27546B, 0 0 45px rgba(56, 189, 248, 0.35);
+      border-color: rgba(56, 189, 248, 0.8);
+    }
+
     .bulletin {
       position: fixed;
-      bottom: 15px;
-      height: 25px;
+      bottom: 105px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      padding: 14px 28px;
+      border-radius: 50px;
+      background: rgba(4, 18, 28, 0.9);
+      border: 1px solid rgba(120, 210, 235, 0.35);
+      backdrop-filter: blur(15px);
+      color: #bffaff;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s ease;
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.15);
+      text-align: center;
       white-space: nowrap;
-      font-size: 1rem;
-      background-color: #056988;
-      border:#06bcbc 2px solid ;
-      color: #d6f4f4;
-      padding: 10px 20px;
-      border-radius: 0 5px 5px 0;
-      border-left: 5px solid #00ffff;
-      z-index: 1000;
-      font-weight: bold;
-      visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 1;
     }
 
     .bulletin.active {
-      visibility: visible;
-      animation: scrollBulletin 15s linear infinite;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
-    @keyframes scrollBulletin {
-      0% {
-        left: 100%;
-        opacity: 1;
-      }
-      5% {
-        opacity: 1;
-      }
-      10% {
-        opacity: 1; /* Fade out behind logo */
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        left: -100%;
-        opacity: 1;
-      }
+    /* =====================================================
+       MYSTERY DIMENSION OVERLAY
+    ===================================================== */
+    .mystic-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(3, 14, 24, 0.88), rgba(1, 4, 7, 0.98));
+      backdrop-filter: blur(25px);
+      z-index: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-    @media (min-width: 768px) {
-      .title h1 {
-        font-size: 4rem;
-      }
 
-      .title h3 {
-        margin-top: 1.5rem;
-        font-size: 1.5rem;
-      }
+    .mystic-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-      .details-box {
-        min-width: 250px;
-        align-self: center;
-        align-items: center;
-        align-content: center;
-      }
+    .singularity {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #00f2fe, #4facfe, #6b11ff, #00f2fe);
+      filter: blur(40px);
+      opacity: 0.6;
+      animation: singularitySpin 6s linear infinite;
+    }
 
-      .name {
-        font-size: 2rem;
-        width: 350px;
-      }
+    @keyframes singularitySpin {
+      to { transform: rotate(360deg); }
+    }
 
-      li {
-        font-size: 1rem;
-      }
+    .anomaly-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(4, 18, 28, 0.85);
+      border: 1px solid rgba(130, 225, 255, 0.4);
+      border-radius: 30px;
+      padding: 40px;
+      max-width: 540px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(0, 195, 255, 0.25);
+    }
 
-      .year {
-        font-size: 1rem;
-      }
+    .anomaly-box h3 {
+      font-family: Orbitron, sans-serif;
+      color: #b9efff;
+      letter-spacing: 4px;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
 
-      img {
-        width: 200px;
-      }
+    .anomaly-quote {
+      font-size: 0.95rem;
+      color: #d1ecf4;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
 
-      .bulletin {
-        font-size: 1.1rem;
-        bottom: 50px;
-      }
+    .anomaly-metric {
+      font-family: Orbitron, monospace;
+      font-size: 0.75rem;
+      color: #5ce6b0;
+      letter-spacing: 2px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 16px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 25px;
+      border: 1px solid rgba(92, 230, 176, 0.2);
+    }
+
+    .exit-anomaly {
+      padding: 10px 30px;
+      border-radius: 40px;
+      border: 1px solid #38bdf8;
+      background: transparent;
+      color: #38bdf8;
+      font-family: Orbitron, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .exit-anomaly:hover {
+      background: #38bdf8;
+      color: #031017;
+      box-shadow: 0 0 25px #38bdf8;
+    }
+
+    /* Cosmic HUD Toast */
+    .cosmic-message {
+      position: fixed;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      padding: 12px 28px;
+      border-radius: 50px;
+      background: rgba(4, 20, 32, 0.9);
+      border: 1px solid rgba(130, 225, 255, 0.35);
+      backdrop-filter: blur(15px);
+      color: #dffaff;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.2);
+    }
+
+    .cosmic-message.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 8, 12, 0.85);
+      backdrop-filter: blur(15px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+    }
+
+    .modal.active { opacity: 1; pointer-events: auto; }
+
+    .modal-box {
+      width: min(450px, 90%);
+      padding: 40px;
+      text-align: center;
+      border-radius: 25px;
+      background: linear-gradient(145deg, rgba(20, 58, 74, 0.95), rgba(4, 15, 21, 0.98));
+      border: 1px solid rgba(120, 210, 235, 0.35);
+      box-shadow: 0 0 80px rgba(0, 180, 255, 0.15);
+    }
+
+    .modal-box h2 { font-family: Orbitron; color: #b9efff; margin-bottom: 15px; }
+    .modal-box p { color: #d8eaf0; line-height: 1.7; }
+    .close {
+      margin-top: 25px;
+      padding: 10px 25px;
+      border-radius: 30px;
+      border: 1px solid #27546B;
+      background: transparent;
+      color: #b9efff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .close:hover { background: #27546B; color: white; }
+
+    @media (max-width: 800px) {
+      .card { grid-template-columns: 1fr; border-radius: 25px; }
+      .visual { min-height: 320px; padding: 25px 20px 5px; }
+      .photo-ring { width: 220px; height: 220px; }
+      .info { padding: 20px 25px 45px; text-align: center; }
+      .info h1 { font-size: 2.8rem; }
+      .year { margin: auto; }
+      .details { text-align: left; }
+      .bulletin { white-space: normal; width: 85%; font-size: 0.65rem; }
+      .infinity-dock { bottom: 18px; left: 16px; }
+      .logo-button { bottom: 18px; right: 16px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg-container">
-    <div class="bg-image"></div>
+
+  <!-- Clean Space Backdrop -->
+  <div class="space">
+    <div class="nebula one"></div>
+    <div class="nebula two"></div>
+    <div class="nebula three"></div>
+    <div class="event-grid"></div>
   </div>
 
-  <div class="title">
-    <h1>Astronomy Club</h1>
-    <h3>Working Member</h3>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      ASTRONOMY CLUB
+    </div>
+    <div class="status" id="statusTrigger">
+      ● EVENT SYSTEM ONLINE
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="profile-wrapper">
+      <div class="orbit"></div>
+
+      <section class="card" id="card">
+        <div class="event-overlay">
+          <span class="event-code code-1">DIMENSION://PRIMARY</span>
+          <span class="event-code code-2">VENUE://LOCKED</span>
+          <span class="event-code code-3">SCHEDULE://SET</span>
+          <span class="event-code code-4">COGNITION://∞</span>
+          <span class="event-code code-5">PLAN • COORDINATE • EXECUTE</span>
+          <span class="event-code code-6">MYSTERY://ACTIVE</span>
+        </div>
+
+        <div class="visual">
+          <div class="planet-glow"></div>
+          <div class="photo-ring" id="photo">
+            <img src="WC/Diksha Pathak.png" alt="Diksha Pathak" class="photo">
+          </div>
+          <div class="click-photo">CLICK PROFILE</div>
+        </div>
+
+        <div class="info">
+          <div class="eyebrow">EVENT MANAGEMENT &nbsp; COMMITTEE 2026</div>
+          <h1 id="heroName">Diksha <br> Pathak</h1>
+          <p class="role">
+            Bridging conceptual visions into <span>infinite realities.</span>
+          </p>
+
+          <div class="details">
+            <div class="detail">
+              <div class="icon">✦</div>
+              <div>
+                <small>Domain</small>
+                <strong>Event Management</strong>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="icon">◉</div>
+              <div>
+                <small>Domain Head</small>
+                <strong>Dristi Aggrawal</strong>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="icon">◇</div>
+              <div>
+                <small>Organization</small>
+                <strong>AC-TCET</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="year" id="yearBadge">COMMITTEE 2026 — 2027</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Interactive Infinity Mystery Trigger at Bottom Left -->
+  <div class="infinity-dock">
+    <div class="infinity-btn" id="infinityBtn" title="Breach Infinity Dimension">
+      <img src="infinity.png" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2390e0ef\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.356-8-5.096 0-5.096 8 0 8 5.223 0 7.261-8 12.356-8z\'/></svg>'" alt="Infinity">
+    </div>
+    <span class="infinity-hint">UNFOLD INFINITY</span>
   </div>
 
-  <div class="container">
-    <div class="content">
-      <img src="W NIKHIL.png" alt="Working Member image without background" />
-      <h3 class="name">NIKHIL YADAV</h3>
-      <div class="details-box">
-        <ul>
-          <li>Domain: Technical Team</li>
-          <li>Domain Head: Tanmay Walunj</li>
-        </ul>
-      </div>
-      <div class="year" style="background-color: #07bccc; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-        AC-TCET 2025–2026
-      </div>
+  <!-- Astronomy Club Logo Button at Bottom Right -->
+  <img
+    src="logo-removebg-preview.png"
+    alt="Astronomy Club"
+    class="logo-button"
+    id="logoButton"
+    title="Astronomy Club AC-TCET"
+  >
+
+  <!-- Club Bulletin Popup -->
+  <div class="bulletin" id="bulletin">
+    ✦ ASTRONOMY CLUB OF THAKUR COLLEGE OF ENGINEERING AND TECHNOLOGY ✦
+  </div>
+
+  <!-- Fullscreen Cosmic Mystery Portal -->
+  <div class="mystic-overlay" id="mysticOverlay">
+    <div class="singularity"></div>
+    <div class="anomaly-box">
+      <h3 id="mysteryTitle">ANOMALY DETECTED</h3>
+      <p class="anomaly-quote" id="mysteryText">
+        "Beyond linear coordination lies the realm of infinite possibilities. Every event is a localized cosmic alignment."
+      </p>
+      <div class="anomaly-metric" id="mysteryMetric">SPACE-TIME DRIFT: 0.00000042 AU</div>
+      <br>
+      <button class="exit-anomaly" id="exitAnomaly">RETURN TO BASE</button>
     </div>
   </div>
 
-  <!-- Bulletin Text -->
-  <div class="bulletin" id="bulletinText">
-    Astronomy Club of Thakur College of Engineering and Technology
+  <!-- Profile Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <h2>EVENT PROFILE</h2>
+      <p>
+        Diksha Pathak is an active Working Member of the Astronomy Club's Event Management Team for 2026–2027.
+        <br><br>
+        <span style="color:#9ed4e3; font-family:monospace; font-size:0.75rem;">
+          COORDINATION: SYNCHRONIZED<br>
+          TRANSMISSION: ACTIVE<br>
+          PROBABILITY: ∞
+        </span>
+      </p>
+      <button class="close" id="closeModal">CLOSE</button>
+    </div>
   </div>
 
-  <!-- Logo -->
-  <img src="logo-removebg-preview.png" alt="Astronomy Club Logo" class="logo" id="logoButton" />
+  <div class="cosmic-message" id="cosmicMessage"></div>
 
   <script>
-      const logo = document.getElementById("logoButton");
-    const bulletin = document.getElementById("bulletinText");
+    const cosmicMessage = document.getElementById("cosmicMessage");
+    function showToast(msg) {
+      cosmicMessage.textContent = msg;
+      cosmicMessage.classList.add("show");
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => cosmicMessage.classList.remove("show"), 2800);
+    }
 
-    logo.addEventListener("click", () => {
-      bulletin.classList.toggle("active");
+    // Parallax Tilt
+    const card = document.getElementById("card");
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+
+    window.addEventListener("pointermove", (e) => {
+      targetX = ((e.clientX / window.innerWidth) - 0.5) * 3;
+      targetY = ((e.clientY / window.innerHeight) - 0.5) * -2.5;
+    });
+
+    function animateCard() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      card.style.transform = `perspective(1200px) rotateY(${currentX}deg) rotateX(${currentY}deg)`;
+      requestAnimationFrame(animateCard);
+    }
+    animateCard();
+
+    // Profile Modal
+    const photo = document.getElementById("photo");
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementById("closeModal");
+
+    photo.addEventListener("click", () => modal.classList.add("active"));
+    closeModal.addEventListener("click", () => modal.classList.remove("active"));
+    modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("active"); });
+
+    // Logo Button Bulletin Toggle
+    const logoButton = document.getElementById("logoButton");
+    const bulletin = document.getElementById("bulletin");
+    let logoClicks = 0;
+
+    if (logoButton) {
+      logoButton.addEventListener("click", () => {
+        bulletin.classList.toggle("active");
+        logoClicks++;
+        if (logoClicks >= 5) {
+          showToast("🌌 AC-TCET DEEP SPACE FREQUENCY CONNECTED");
+          logoClicks = 0;
+        }
+      });
+    }
+
+    // Mystery Infinity System
+    const mysteries = [
+      {
+        title: "QUANTUM TRANSMISSION // 01",
+        text: "The cosmos doesn't demand perfect conditions—it demands bold trajectories. Every event is a localized reality rewrite.",
+        metric: "EVENT PROBABILITY: 99.98%"
+      },
+      {
+        title: "DEEP VOID ARCHIVE // 02",
+        text: "Every grand mission starts not with a rocket, but with a singular idea mapped across infinite time.",
+        metric: "TEMPORAL FLUX: NOMINAL"
+      },
+      {
+        title: "COSMIC SINGULARITY // 03",
+        text: "You have breached the boundary layer of the AC-TCET event horizon. All timelines now converge.",
+        metric: "DIMENSION: 11-D ACCESSIBLE"
+      },
+      {
+        title: "DARK MATTER VECTOR // 04",
+        text: "Invisible forces steer the grandest celestial bodies—just like logistics guide the greatest spectacles.",
+        metric: "GRAVITATIONAL ANCHOR: LOCKED"
+      }
+    ];
+
+    const infinityBtn = document.getElementById("infinityBtn");
+    const mysticOverlay = document.getElementById("mysticOverlay");
+    const exitAnomaly = document.getElementById("exitAnomaly");
+    const mysteryTitle = document.getElementById("mysteryTitle");
+    const mysteryText = document.getElementById("mysteryText");
+    const mysteryMetric = document.getElementById("mysteryMetric");
+
+    infinityBtn.addEventListener("click", () => {
+      const chosen = mysteries[Math.floor(Math.random() * mysteries.length)];
+      mysteryTitle.textContent = chosen.title;
+      mysteryText.textContent = `"${chosen.text}"`;
+      mysteryMetric.textContent = chosen.metric;
+      mysticOverlay.classList.add("active");
+      showToast("🌌 BREACHING THE INFINITY EVENT HORIZON");
+    });
+
+    exitAnomaly.addEventListener("click", () => {
+      mysticOverlay.classList.remove("active");
+    });
+
+    // Secret Name Easter Egg
+    const heroName = document.getElementById("heroName");
+    let nameClicks = 0;
+    heroName.addEventListener("click", () => {
+      nameClicks++;
+      if (nameClicks === 3) {
+        showToast("✦ DIKSHA PATHAK // ARCHITECT OF EXPERIENCES");
+        nameClicks = 0;
+      }
+    });
+
+    // Escape Key Handler
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        modal.classList.remove("active");
+        mysticOverlay.classList.remove("active");
+        bulletin.classList.remove("active");
+      }
     });
   </script>
 </body>
