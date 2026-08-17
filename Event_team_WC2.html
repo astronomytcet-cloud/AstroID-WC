@@ -1526,107 +1526,13 @@
     /* =====================================================
        SECRET GALAXY
     ===================================================== */
-
-    .secret-galaxy {
-      position: fixed;
-
-      left: 50%;
-      top: 50%;
-
-      width: 500px;
-      height: 500px;
-
-      transform:
-        translate(-50%, -50%)
-        scale(0)
-        rotate(0deg);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(255,255,255,0.95) 0%,
-          rgba(150,210,255,0.5) 4%,
-          rgba(100,140,255,0.25) 12%,
-          transparent 30%
-        );
-
-      opacity: 0;
-
-      pointer-events: none;
-
-      z-index: 999;
-
-      filter: blur(1px);
-
-      transition:
-        transform 1.5s
-        cubic-bezier(.16,1,.3,1),
-        opacity 1s ease;
-
-      animation:
-        galaxyRotate 18s linear infinite;
-    }
-
-    .secret-galaxy::before,
-    .secret-galaxy::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 20%;
-
-      border-radius: 50%;
-
-      background:
-        conic-gradient(
-          from 0deg,
-          transparent,
-          rgba(120,180,255,.35),
-          transparent,
-          rgba(210,150,255,.3),
-          transparent
-        );
-
-      filter: blur(12px);
-
-      transform:
-        rotate(25deg)
-        scaleX(2.2);
-    }
-
-    .secret-galaxy::after {
-      transform:
-        rotate(110deg)
-        scaleX(2.2);
-    }
-
-    .secret-galaxy.active {
-      opacity: 1;
-
-      transform:
-        translate(-50%, -50%)
-        scale(1)
-        rotate(360deg);
-    }
-
-    @keyframes galaxyRotate {
-
-      from {
-        transform:
-          translate(-50%, -50%)
-          scale(1)
-          rotate(0deg);
-      }
-
-      to {
+      .top-secret-galaxy {
         transform:
           translate(-50%, -50%)
           scale(1)
           rotate(360deg);
       }
-    }
+    
 
 
     /* =====================================================
@@ -1885,13 +1791,7 @@
       .event-info {
         display: none;
       }
-
-      .secret-galaxy {
-        width: 320px;
-        height: 320px;
-      }
-
-      .cosmic-message {
+.cosmic-message {
         width: 88%;
         font-size: 0.65rem;
       }
@@ -1947,12 +1847,7 @@
       .event-code {
         font-size: 0.4rem;
       }
-
-      .secret-galaxy {
-        width: 280px;
-        height: 280px;
-      }
-    }
+}
 
   </style>
 
@@ -2113,16 +2008,16 @@
 
           <div class="eyebrow">
 
-            EVENT MANAGEMENT &nbsp; COMMITTEE 2026
+            EVENT MANAGEMENT &nbsp;  2026 - 2027
 
           </div>
 
 
           <h1>
-          Imran 
+          IMRAN 
           <br>
 
-          Khan        
+          KHAN        
 
           </h1>
 
@@ -2156,11 +2051,11 @@
               <div>
 
                 <small>
-                  Domain
+                  DOMAIN
                 </small>
 
                 <strong>
-                  Event Management
+                  EVENT MANAGEMENT
                 </strong>
 
               </div>
@@ -2177,11 +2072,11 @@
               <div>
 
                 <small>
-                  Domain Head
+                  DOMAIN HEAD
                 </small>
 
                 <strong>
-                  Dristi Aggrawal
+                  DRISTI AGRAWAL
                 </strong>
 
               </div>
@@ -2198,11 +2093,11 @@
               <div>
 
                 <small>
-                  Organization
+                  ORGANIZATION
                 </small>
 
                 <strong>
-                  AC-TCET
+                  ASTRONOMY CLUB
                 </strong>
 
               </div>
@@ -2352,15 +2247,7 @@
     class="cosmic-message"
     id="cosmicMessage">
   </div>
-
-
-  <div
-    class="secret-galaxy"
-    id="secretGalaxy">
-  </div>
-
-
-  <div
+<div
     class="possibility-counter"
     id="possibilityCounter">
     ∞
@@ -2616,15 +2503,7 @@
       document.getElementById(
         "cosmicMessage"
       );
-
-
-    const secretGalaxy =
-      document.getElementById(
-        "secretGalaxy"
-      );
-
-
-    const possibilityCounter =
+const possibilityCounter =
       document.getElementById(
         "possibilityCounter"
       );
@@ -2713,120 +2592,6 @@
 
     }
 
-
-    /* =====================================================
-       GALAXY SYSTEM
-    ===================================================== */
-
-    function showGalaxy(
-      duration = 5000
-    ) {
-
-      secretGalaxy.classList.add(
-        "active"
-      );
-
-
-      clearTimeout(
-        window.galaxyTimer
-      );
-
-
-      window.galaxyTimer =
-        setTimeout(
-          () => {
-
-            secretGalaxy.classList.remove(
-              "active"
-            );
-
-          },
-          duration
-        );
-
-    }
-
-
-    /* =====================================================
-       STAR BURST
-    ===================================================== */
-
-    function createStarBurst(
-      x,
-      y
-    ) {
-
-      for (
-        let i = 0;
-        i < 10;
-        i++
-      ) {
-
-        const burst =
-          document.createElement(
-            "div"
-          );
-
-
-        burst.className =
-          "star-burst";
-
-
-        burst.style.left =
-          x + "px";
-
-
-        burst.style.top =
-          y + "px";
-
-
-        const angle =
-          Math.random() *
-          Math.PI *
-          2;
-
-
-        const distance =
-          Math.random() *
-          90 +
-          30;
-
-
-        burst.style.setProperty(
-          "--x",
-          Math.cos(angle) *
-            distance +
-            "px"
-        );
-
-
-        burst.style.setProperty(
-          "--y",
-          Math.sin(angle) *
-            distance +
-            "px"
-        );
-
-
-        document.body.appendChild(
-          burst
-        );
-
-
-        setTimeout(
-          () => {
-
-            burst.remove();
-
-          },
-          1000
-        );
-
-      }
-
-    }
-
-
     /* =====================================================
        STAR CLICK EASTER EGG
     ===================================================== */
@@ -2873,32 +2638,6 @@
                 message
               );
 
-
-              /* 7 STARS */
-
-              if (
-                clickedStars === 7
-              ) {
-
-                showCosmicMessage(
-                  "✦ 7 STARS FOUND — GALAXY PROTOCOL UNLOCKED."
-                );
-
-
-                setTimeout(
-                  () => {
-
-                    showGalaxy(
-                      5000
-                    );
-
-                  },
-                  700
-                );
-
-              }
-
-
               /* 15 STARS */
 
               if (
@@ -2923,35 +2662,6 @@
     /* =====================================================
        DOUBLE CLICK BACKGROUND
     ===================================================== */
-
-    document.addEventListener(
-      "dblclick",
-      (e) => {
-
-        if (
-          e.target.closest(".card") ||
-          e.target.closest(".topbar") ||
-          e.target.closest(".logo-button") ||
-          e.target.closest(".modal")
-        ) {
-
-          return;
-
-        }
-
-
-        showGalaxy(
-          6000
-        );
-
-
-        showCosmicMessage(
-          "🌌 GALAXY DISCOVERED"
-        );
-
-      }
-    );
-
 
     /* =====================================================
        POSSIBILITY COUNTER
@@ -3175,14 +2885,7 @@
             showCosmicMessage(
               "🌌 AC-TCET DEEP SPACE CHANNEL OPEN."
             );
-
-
-            showGalaxy(
-              5000
-            );
-
-
-            logoClicks = 0;
+logoClicks = 0;
 
           }
 
@@ -3250,13 +2953,7 @@
             showCosmicMessage(
               "🚀 SECRET MISSION UNLOCKED — BEYOND THE STARS."
             );
-
-
-            showGalaxy(
-              7000
-            );
-
-          }
+}
 
         } else {
 
