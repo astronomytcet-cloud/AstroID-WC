@@ -351,32 +351,69 @@
 
     .photo-ring {
       position: relative;
-      width: clamp(350px, 40vw, 550px);
-      height: clamp(350px, 40vw, 550px);
+
+      width:
+        clamp(280px, 29vw, 430px);
+
+      height:
+        clamp(280px, 29vw, 430px);
+
       border-radius: 28px;
-      padding: 0;
-      background: transparent;
-      box-shadow: none;
+
+      padding: 8px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.22),
+          rgba(39, 84, 107, 0.38)
+        );
+
+      box-shadow:
+
+        0 20px 55px
+        rgba(0, 0, 0, 0.35),
+
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.35);
+
       cursor: pointer;
+
       overflow: hidden;
+
       z-index: 2;
+
       transition:
         transform 0.4s cubic-bezier(.2,.8,.2,1),
         box-shadow 0.4s ease;
     }
 
     .photo-ring:hover {
-      transform: translateY(-5px) scale(1.015);
-      box-shadow: none;
+      transform:
+        translateY(-5px)
+        scale(1.015);
+
+      box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(39, 84, 107, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
     }
 
     .photo {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
-      object-position: top center;
+
+      object-position:
+        top center;
+
       border-radius: 22px;
-      border: none;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
       display: block;
     }
 
@@ -1041,10 +1078,14 @@
        TOP BAR
   ===================================================== -->
 
-  <header class="topbar">
+<header class="topbar">
+
     <div class="brand">
+
       <span class="brand-dot"></span>
-      AC-TCET
+
+      ASTRONOMY CLUB
+
     </div>
 
     <div
@@ -1075,21 +1116,30 @@
         ================================================= -->
 
         <div class="visual">
+
+
           <div
             class="photo-ring"
             id="photo"
             title="Double-click five times..."
           >
+
             <img
               src="WC/Siddhi Saw.png"
               alt="Siddhi Saw"
               class="photo"
             >
+
           </div>
 
+
           <div class="click-photo">
+
             CLICK TO EXPLORE
+
           </div>
+
+
         </div>
 
 
@@ -1099,12 +1149,12 @@
 
         <div class="info">
           <div class="eyebrow">
-            CREATIVE TEAM &nbsp; 2026
+            CREATIVE TEAM &nbsp; 2026 – 2027
           </div>
 
           <h1 id="nameEgg">
-           Siddhi<br>
-            SAW
+           SIDDHI<br>
+           SAW
           </h1>
 
           <p class="role" id="roleEgg">
@@ -1117,28 +1167,28 @@
                DETAILS
           ================================================= -->
 
-          <div class="details">
+           <div class="details">
             <div class="detail">
               <div class="icon">✎</div>
               <div>
-                <small>Domain</small>
-                <strong>Creative Team</strong>
+                <small>DOMAIN</small>
+                <strong>CREATIVE TEAM</strong>
               </div>
             </div>
 
             <div class="detail">
               <div class="icon">◉</div>
               <div>
-                <small>Domain Head</small>
-                <strong>Ashika Gupta</strong>
+                <small>DOMAIN HEAD</small>
+                <strong>ASHIKA GUPTA</strong>
               </div>
             </div>
 
             <div class="detail">
               <div class="icon">◇</div>
               <div>
-                <small>Organization</small>
-                <strong>AC-TCET</strong>
+                <small>ORGANIZATION</small>
+                <strong>ASTRONOMY CLUB</strong>
               </div>
             </div>
           </div>
@@ -1208,7 +1258,7 @@
   ===================================================== -->
 
   <div class="bulletin" id="bulletin">
-    ✦ AC-TCET OF THAKUR COLLEGE OF ENGINEERING AND TECHNOLOGY ✦
+    ✦ ASTRONOMY CLUB OF THAKUR COLLEGE OF ENGINEERING AND TECHNOLOGY ✦
   </div>
 
 
@@ -1455,7 +1505,7 @@
         nameEgg.innerHTML = "IDEAS<br>FIRST";
         showEgg("CREATIVE RULE #01 // START WITH THE IDEA.");
       } else {
-        nameEgg.innerHTML = "";
+        nameEgg.innerHTML = "SIDDHI<br>SAW";
       }
     });
 
